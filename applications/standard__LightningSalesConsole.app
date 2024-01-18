@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>User_Story_Record_Page2</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>copado__User_Story__c</pageOrSobjectType>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>User_Story_Record_Page2</content>
-        <formFactor>Small</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>copado__User_Story__c</pageOrSobjectType>
-    </actionOverrides>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
@@ -38,77 +20,9 @@
     <tabs>standard-Feed</tabs>
     <tabs>standard-CollaborationGroup</tabs>
     <tabs>standard-File</tabs>
-    <tabs>copado__Pull_Request__c</tabs>
-    <tabs>ChartObject__c</tabs>
-    <tabs>AuditLog__c</tabs>
-    <tabs>copado__Step__c</tabs>
-    <tabs>copado__Deployment_Task__c</tabs>
-    <tabs>copado__User_Story_Commit__c</tabs>
-    <tabs>copado__User_Story_Data_Commit__c</tabs>
-    <tabs>copado__Promoted_User_Story__c</tabs>
-    <tabs>copado__Deployment_Job__c</tabs>
-    <tabs>Way__c</tabs>
-    <tabs>Industry__c</tabs>
-    <tabs>Employee__c</tabs>
-    <tabs>Sales</tabs>
-    <tabs>copado__Deployment_Flow_Step__c</tabs>
-    <tabs>copado__Git_Org_Commit__c</tabs>
-    <tabs>Change_Request__c</tabs>
-    <tabs>Release_Milestone__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LightningSalesConsole_UtilityBar</utilityBar>
     <workspaceConfig>
-        <mappings>
-            <tab>AuditLog__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Change_Request__c</tab>
-        </mappings>
-        <mappings>
-            <tab>ChartObject__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Employee__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Industry__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Release_Milestone__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Sales</tab>
-        </mappings>
-        <mappings>
-            <tab>Way__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Deployment_Flow_Step__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Deployment_Job__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Deployment_Task__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Git_Org_Commit__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Promoted_User_Story__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Pull_Request__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Step__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__User_Story_Commit__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__User_Story_Data_Commit__c</tab>
-        </mappings>
         <mappings>
             <tab>standard-Account</tab>
         </mappings>

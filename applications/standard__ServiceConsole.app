@@ -180,75 +180,7 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
-    <tabs>copado__Pull_Request__c</tabs>
-    <tabs>ChartObject__c</tabs>
-    <tabs>AuditLog__c</tabs>
-    <tabs>copado__Step__c</tabs>
-    <tabs>copado__Deployment_Task__c</tabs>
-    <tabs>copado__User_Story_Commit__c</tabs>
-    <tabs>copado__User_Story_Data_Commit__c</tabs>
-    <tabs>copado__Promoted_User_Story__c</tabs>
-    <tabs>copado__Deployment_Job__c</tabs>
-    <tabs>Way__c</tabs>
-    <tabs>Industry__c</tabs>
-    <tabs>Employee__c</tabs>
-    <tabs>Sales</tabs>
-    <tabs>copado__Deployment_Flow_Step__c</tabs>
-    <tabs>copado__Git_Org_Commit__c</tabs>
-    <tabs>Change_Request__c</tabs>
-    <tabs>Release_Milestone__c</tabs>
     <workspaceConfig>
-        <mappings>
-            <tab>AuditLog__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Change_Request__c</tab>
-        </mappings>
-        <mappings>
-            <tab>ChartObject__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Employee__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Industry__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Release_Milestone__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Sales</tab>
-        </mappings>
-        <mappings>
-            <tab>Way__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Deployment_Flow_Step__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Deployment_Job__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Deployment_Task__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Git_Org_Commit__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Promoted_User_Story__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Pull_Request__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__Step__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__User_Story_Commit__c</tab>
-        </mappings>
-        <mappings>
-            <tab>copado__User_Story_Data_Commit__c</tab>
-        </mappings>
         <mappings>
             <tab>standard-Account</tab>
         </mappings>

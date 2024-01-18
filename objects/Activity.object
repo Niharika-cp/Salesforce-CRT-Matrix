@@ -113,51 +113,28 @@
         <type>Default</type>
     </actionOverrides>
     <enableFeeds>false</enableFeeds>
-    <fields>
-        <fullName>Activity1__c</fullName>
-        <externalId>false</externalId>
-        <label>Activity1</label>
-        <length>14</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Activity2__c</fullName>
-        <externalId>false</externalId>
-        <label>Activity2</label>
-        <length>25</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
+    <listViews>
+        <fullName>AllActivities</fullName>
+        <filterScope>Team</filterScope>
+        <label>All Activities</label>
+    </listViews>
     <listViews>
         <fullName>MyActivities</fullName>
         <filterScope>Mine</filterScope>
         <label>My Activities</label>
     </listViews>
     <listViews>
-        <fullName>MyDelegatedActivities</fullName>
-        <filterScope>Delegated</filterScope>
-        <label>My Delegated Activities</label>
-    </listViews>
-    <listViews>
-        <fullName>MyTeamsActivities</fullName>
-        <filterScope>Team</filterScope>
-        <label>My Team&apos;s Activities</label>
-    </listViews>
-    <listViews>
         <fullName>TodaysTasks</fullName>
         <filterScope>Mine</filterScope>
-        <filters>
-            <field>TASK.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
         <filters>
             <field>ACTIVITY.TASK</field>
             <operation>equals</operation>
             <value>1</value>
+        </filters>
+        <filters>
+            <field>TASK.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
         </filters>
         <filters>
             <field>TASK.DUE_DATE</field>

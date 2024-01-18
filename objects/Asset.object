@@ -135,6 +135,22 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>CurrentAmount</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>CurrentLifecycleEndDate</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>CurrentMrr</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>CurrentQuantity</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Description</fullName>
         <trackHistory>false</trackHistory>
     </fields>
@@ -149,6 +165,9 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>HasLifecycleManagement</fullName>
+    </fields>
+    <fields>
         <fullName>InstallDate</fullName>
         <trackHistory>false</trackHistory>
     </fields>
@@ -158,6 +177,14 @@
     </fields>
     <fields>
         <fullName>IsInternal</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>LifecycleEndDate</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>LifecycleStartDate</fullName>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
@@ -173,6 +200,11 @@
     <fields>
         <fullName>Name</fullName>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ParentId</fullName>
@@ -230,6 +262,10 @@
         <fullName>StockKeepingUnit</fullName>
     </fields>
     <fields>
+        <fullName>TotalLifecycleAmount</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>UsageEndDate</fullName>
         <trackHistory>false</trackHistory>
     </fields>
@@ -237,26 +273,6 @@
         <fullName>Uuid</fullName>
         <inlineHelpText>Unique string identifying the asset.</inlineHelpText>
         <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
-        <fullName>test_1__c</fullName>
-        <externalId>false</externalId>
-        <label>test 1</label>
-        <length>12</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>test_2__c</fullName>
-        <externalId>false</externalId>
-        <label>test 2</label>
-        <length>12</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <listViews>
         <fullName>AllAssets</fullName>

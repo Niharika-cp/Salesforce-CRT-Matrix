@@ -6,31 +6,10 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <tabs>standard-Chatter</tabs>
-    <tabs>standard-UserProfile</tabs>
-    <tabs>standard-CollaborationGroup</tabs>
-    <tabs>standard-File</tabs>
     <tabs>standard-Campaign</tabs>
     <tabs>standard-Lead</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
-    <tabs>copado__Pull_Request__c</tabs>
-    <tabs>ChartObject__c</tabs>
-    <tabs>AuditLog__c</tabs>
-    <tabs>copado__Step__c</tabs>
-    <tabs>copado__Deployment_Task__c</tabs>
-    <tabs>copado__User_Story_Commit__c</tabs>
-    <tabs>copado__User_Story_Data_Commit__c</tabs>
-    <tabs>copado__Promoted_User_Story__c</tabs>
-    <tabs>copado__Deployment_Job__c</tabs>
-    <tabs>Way__c</tabs>
-    <tabs>Industry__c</tabs>
-    <tabs>standard-Quote</tabs>
-    <tabs>Employee__c</tabs>
-    <tabs>Sales</tabs>
-    <tabs>copado__Deployment_Flow_Step__c</tabs>
-    <tabs>copado__Git_Org_Commit__c</tabs>
-    <tabs>Change_Request__c</tabs>
-    <tabs>Release_Milestone__c</tabs>
 </CustomApplication>

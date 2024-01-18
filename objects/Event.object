@@ -212,6 +212,11 @@
         <fullName>Phone</fullName>
     </fields>
     <fields>
+        <fullName>ServiceAppointmentId</fullName>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>ShowAs</fullName>
         <trackHistory>false</trackHistory>
     </fields>

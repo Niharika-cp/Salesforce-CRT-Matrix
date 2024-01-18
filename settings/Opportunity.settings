@@ -4,7 +4,7 @@
     <customizableProductSchedulesEnabled>false</customizableProductSchedulesEnabled>
     <doesEnforceStandardOpportunitySaveLogic>true</doesEnforceStandardOpportunitySaveLogic>
     <enableFindSimilarOpportunities>false</enableFindSimilarOpportunities>
-    <enableOpportunityFieldHistoryTracking>true</enableOpportunityFieldHistoryTracking>
+    <enableOpportunityFieldHistoryTracking>false</enableOpportunityFieldHistoryTracking>
     <enableOpportunityInsightsInMobile>false</enableOpportunityInsightsInMobile>
     <enableOpportunityTeam>false</enableOpportunityTeam>
     <enableUpdateReminders>true</enableUpdateReminders>

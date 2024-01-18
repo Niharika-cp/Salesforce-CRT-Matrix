@@ -223,36 +223,6 @@
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
-        <fullName>Expire_30_Days__c</fullName>
-        <externalId>false</externalId>
-        <formula>EndDate - 30</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Expire 30 Days</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Expire_60_Days__c</fullName>
-        <externalId>false</externalId>
-        <formula>EndDate - 60</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Expire 60 Days</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Expire_90_Days__c</fullName>
-        <externalId>false</externalId>
-        <formula>EndDate - 90</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Expire 90 Days</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Name</fullName>
         <trackHistory>true</trackHistory>
     </fields>

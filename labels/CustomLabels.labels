@@ -1,24 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-    <labels>
-        <fullName>Job_Step_Name_CheckMarx</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CheckMarx Job Step Name</shortDescription>
-        <value>CheckMarx</value>
-    </labels>
-    <labels>
-        <fullName>TestCannotBeRunMessage_custom</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>TestCannotBeRunMessage_custom</shortDescription>
-        <value>Please define a user story in order to run the single test execution from this record.</value>
-    </labels>
-    <labels>
-        <fullName>TestCannotBeRunMessage_custom2</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>TestCannotBeRunMessage_custom2</shortDescription>
-        <value>Please define a user story in order to run the single test execution from this record. Custom</value>
-    </labels>
-</CustomLabels>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata"/>
+
