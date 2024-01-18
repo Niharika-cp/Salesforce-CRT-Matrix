@@ -1,0 +1,84 @@
+/* Calendar overall styling */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-grid {
+    margin: 0;
+    padding: 0.5;
+    border-collapse: collapse;
+    width: 100%;
+    grid-gap: 0; /* remove gap between grid items */
+}
+
+/* Styling for the days of the week header */
+.slds-col.slds-size_1-of-7 {
+    padding: 0.5rem;
+    text-align: center;
+    background-color: #f4f6f9;
+    border: 2px solid #d8dde6;
+    color: #04347b;
+    font-size: 0.9250rem;
+    font-weight: 500;
+    margin-bottom: -1px; /* negative margin to remove gaps */
+}
+
+/* Styling for the individual day cells */
+.day {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #f4f6f9;
+    background-color: #f4f6f9; 
+    color: #0a1a31;
+    font-size: 0.9rem;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Styling for days that are not part of the current month */
+.empty {
+    padding: 0.5rem;
+    background-color: #f4f6f9; 
+    color: #f4f6f9; 
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #f4f6f9;
+}
+
+/* Optional: Highlighting today's date */
+.day-today {
+    background-color: #0176d3;
+    color: white;
+}
+
+/* Calendar header with the month and navigation buttons */
+.calendar-header h2 {
+    font-size: 1.85rem;
+    color: #f40f0f;
+}
+
+/* Navigation button styling */
+lightning-button-icon {
+    --sds-c-button-brand-color-background: #16325c;
+    --sds-c-button-brand-color-border: #16325c;
+    --sds-c-button-brand-color-text: #b5afaf;
+}
+
+/* Responsive grid */
+@media screen and (max-width: 600px) {
+    .slds-col.slds-size_1-of-7 {
+        padding: 0.2rem;
+    }
+
+    .day {
+        padding: 0.2rem;
+        font-size: 0.7rem;
+    }
+
+    .calendar-header h2 {
+        font-size: 1rem;
+    }
+}

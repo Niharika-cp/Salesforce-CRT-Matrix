@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- About me --></label>
+        <name>infy_dm__About_me__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>infy_dm__Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- My Location --></label>
+        <name>infy_dm__My_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>infy_dm__Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Picklist --></label>
+        <name>infy_dm__Picklist__c</name>
+        <picklistValues>
+            <masterLabel>value1</masterLabel>
+            <translation><!-- value1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>value2</masterLabel>
+            <translation><!-- value2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>value3</masterLabel>
+            <translation><!-- value3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>value4</masterLabel>
+            <translation><!-- value4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>value5</masterLabel>
+            <translation><!-- value5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>value6</masterLabel>
+            <translation><!-- value6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>value7</masterLabel>
+            <translation><!-- value7 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Serial Number --></label>
+        <name>infy_dm__Serial_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Task Name --></label>
+        <name>infy_dm__Task_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- city --></label>
+        <name>infy_dm__city__c</name>
+    </fields>
+    <fields>
+        <label><!-- city with Name --></label>
+        <name>infy_dm__city_with_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- dependent --></label>
+        <name>infy_dm__dependent__c</name>
+        <picklistValues>
+            <masterLabel>a</masterLabel>
+            <translation><!-- a --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>b</masterLabel>
+            <translation><!-- b --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>v</masterLabel>
+            <translation><!-- v --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- field1 Enc --></label>
+        <name>infy_dm__field1_Enc__c</name>
+    </fields>
+    <fields>
+        <label><!-- field2__c Enc --></label>
+        <name>infy_dm__field2_cEnc__c</name>
+    </fields>
+    <fields>
+        <label><!-- isUseful? --></label>
+        <name>infy_dm__isUseful__c</name>
+    </fields>
+    <fields>
+        <label><!-- roll Num --></label>
+        <name>infy_dm__roll_Num__c</name>
+    </fields>
+    <fields>
+        <label><!-- scheduled Date --></label>
+        <name>infy_dm__scheduled_Date__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Record Type1 --></label>
+        <name>infy_dm__Record_Type1</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Record Type2 --></label>
+        <name>infy_dm__Record_Type2</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Doesnot start with T --></errorMessage>
+        <name>infy_dm__validationOnTesting</name>
+    </validationRules>
+</CustomObjectTranslation>

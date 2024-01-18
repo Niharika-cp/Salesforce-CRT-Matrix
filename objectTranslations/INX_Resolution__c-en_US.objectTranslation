@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Resolution</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Resolutions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Email --></label>
+        <name>INX_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- File Path --></label>
+        <name>INX_File_Path__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commit (hash) --></label>
+        <name>INX_Hash__c</name>
+    </fields>
+    <fields>
+        <label><!-- Id --></label>
+        <name>INX_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Repository --></label>
+        <name>INX_Repository__c</name>
+        <relationshipLabel><!-- Resolutions --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

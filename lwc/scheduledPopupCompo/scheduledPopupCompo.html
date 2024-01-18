@@ -1,0 +1,195 @@
+<template>
+    <lightning-card > 
+
+      
+            <section aria-modal="true" class="slds-modal slds-fade-in-open">
+   
+                <div class="slds-modal__container " style="text-align:left">
+                  
+                  <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium"><strong><p style="color:rgb(11, 10, 11)"><font size="+2">Scheduled Job</font></p></strong> </h2><br/>
+                        <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+                        <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+                      
+                    <div  style="text-align:left">    
+                        <div class="control" >
+                          <p class="required" style="text-align:middle"> <strong><font size="2"></font><span class="required" ></span> &nbsp; Note :-   *  -  Required Fields  </font></strong></p>
+                        </div><br/><br/>
+
+                        <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+                        <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+
+                          
+                         
+                                <div class="control">
+                                  <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                                  <label for="name">Schedule Job Name : &nbsp; <span class="required">*</span></label><input aria-describedby="required-description" id="name" type="text" value={scheduleJobName} onchange={scheduleJobNameHandleChange}/></font></strong> </p><br/><br/>
+                                </div>
+
+
+                                <div class="control">
+                                      <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2"></font><span class="required">*</span>Fetch the records for deletion : </font></strong></p>
+                                    
+
+                                  <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                                    &nbsp;&nbsp;<lightning-radio-group  name="radioGroup1"
+                                                            label="Fetch the records for deletion : " 
+                                                            options={options1}
+                                                            value={value}
+                                                            required
+                                                            onchange={handleChange1}
+                                                            type="radio"
+                                                            variant="label-hidden"
+                                                            style="columns: 5;"
+                                                            >
+                                    </lightning-radio-group></font></strong> </p><br/>
+
+                        <template if:true={showSelectedMonthFlag}>         
+                                    <p class="slds-var-p-left_x-small" style="text-align:left"> <font size="2">
+                                      (Selected Month = {month} month)</font></p>
+                        </template> 
+                                  </div><br/>
+
+                                  
+                                
+                                <div class="control">
+                                  <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2"><span class="required">*</span>When do you want to schedule the Records cleanup job? </font></strong></p>
+
+                                
+                                    <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+
+                                    &nbsp;&nbsp;<lightning-radio-group  name="radioGroup2"
+                                                            label="When do you want to schedule the Records cleanup job?"
+                                                            options={options2}
+                                                            value={value}
+                                                            required
+                                                            onchange={handleChange2}
+                                                            type="radio"
+                                                            variant="label-hidden"
+                                                            style="columns: 5;"
+                                                            >
+                                    </lightning-radio-group></font></strong> </p><br/>
+
+                                    <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+                                    <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+                                  
+                                              <template if:true={showHourlyButton}>     
+                                                    <div>
+                                                        <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Every: &nbsp;</font></strong> 
+                                                          <input type="number" value={numberOfHours} min="1" style="width:50px" onchange={numberOfEveryHoursHandler}>&nbsp;
+                                                          <strong><font size="2"> Hour(s) </font></strong> </p> 
+                                                    </div>      
+                                              </template> 
+
+
+                                                <template if:true={showDailyButton}>     
+                                                      <div>
+                                                          <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Every: &nbsp;</font></strong>
+                                                            <input type="number" value={numberOfDays}  min="1" style="width:50px" onchange={numberOfDaysHandler}>&nbsp;
+                                                            <strong><font size="2"> Day(s) </font></strong> </p> 
+                                                      </div>      
+                                                </template> 
+
+                                                <template if:true={showWeeklyButton}>
+                                                           <!-- Button group: simple buttons -->
+                                                           
+
+                                                      <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="-1"></font>
+                                                          <lightning-button-group>
+                                                            <template if:true={showMonButton}>
+                                                              <lightning-button  class="button"  label="Monday"  onclick={mondayHandler}></lightning-button>
+                                                            </template>
+                                                              <template if:true={showMondayBrandButton}>
+                                                                   <lightning-button variant="brand"  class="button"  label="Monday"  onclick={mondayBrandHandler}></lightning-button>
+                                                              </template>
+
+                                                            
+                                                              <template if:true={showTueButton}>
+                                                              <lightning-button  class="button" label="Tuesday" onclick={tuesdayHandler}></lightning-button>
+                                                            </template>
+                                                            <template if:true={showTuesBrandButton}>
+                                                              <lightning-button variant="brand"  class="button"  label="Tuesday"  onclick={TuesdayBrandHandler}></lightning-button>
+                                                         </template>
+
+
+                                                            <template if:true={showWedButton}>
+                                                              <lightning-button class="button" label="Wednesday" onclick={wednesdayHandler}></lightning-button>
+                                                            </template>
+                                                            <template if:true={showWedBrandButton}>
+                                                              <lightning-button variant="brand"  class="button"  label="Wednesday"  onclick={WednesdayBrandHandler}></lightning-button>
+                                                         </template>
+
+
+                                                            <template if:true={showThurButton}>
+                                                              <lightning-button class="button" label="Thursday" onclick={thursdayHandler}></lightning-button>
+                                                            </template>
+                                                            <template if:true={showThursBrandButton}>
+                                                              <lightning-button variant="brand"  class="button"  label="Thursday"  onclick={ThursdayBrandHandler}></lightning-button>
+                                                         </template>
+
+
+                                                            <template if:true={showFriButton}>
+                                                              <lightning-button class="button" label="Friday" onclick={fridayHandler}></lightning-button>
+                                                            </template>
+                                                            <template if:true={showFridayBrandButton}>
+                                                              <lightning-button variant="brand"  class="button"  label="Friday"  onclick={FridayBrandHandler}></lightning-button>
+                                                         </template>
+
+
+                                                            <template if:true={showSatButton}>
+                                                              <lightning-button class="button" label="Saturday" onclick={saturdayHandler}></lightning-button>
+                                                            </template>
+                                                            <template if:true={showSatBrandButton}>
+                                                              <lightning-button variant="brand"  class="button"  label="Saturday"  onclick={SaturdayBrandHandler}></lightning-button>
+                                                         </template>
+
+
+                                                            <template if:true={showSunButton}>
+                                                              <lightning-button class="button" label="Sunday" onclick={sundayHandler}></lightning-button>
+                                                            </template>
+                                                            <template if:true={showSunBrandButton}>
+                                                              <lightning-button variant="brand"  class="button"  label="Sunday"  onclick={SundayBrandHandler}></lightning-button>
+                                                         </template>
+
+                                                         </lightning-button-group>
+                                                        
+                                                      </font></strong> </p>
+
+                                                      
+                                                        
+                                                     
+                                                      
+                                                    
+                                                 </template> <br/>
+                                                </div>
+                                                
+                                                <div>   
+                                                  <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Time Start At : &nbsp;</font></strong> 
+                                                    <input type="number" value={Hour} placeholder="HH" min="00" max="23" style="width:50px" onchange={numberOfHoursHandler}>&nbsp;
+                                                    <input type="number" value={Minut} placeholder="MM" min="00" max="59" style="width:50px" onchange={numberOfMinutesHandler}></p><br/>
+                                                </div>      
+                                                
+                                            
+
+                      
+                              <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Cron Expression : &nbsp;</font></strong> 
+                              <input type="text" value={cron} style="width:250px" ></p><br/>
+
+                               
+                          
+                        </div>
+                
+                  </header>
+              
+                <footer class="slds-modal__footer">
+                <center><lightning-button variant="success" label="Schedule" name="Schedule" onclick={scheduleApexJob}></lightning-button> &nbsp; &nbsp; &nbsp;
+                        <lightning-button variant="neutral" label="Close" onclick={scheduleJobPopupHandler} class="slds-p-around_x-medium"></lightning-button></center>
+                  
+                </footer>
+              </div>
+             
+          </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+          
+          </lightning-card>
+</template>

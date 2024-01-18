@@ -1,0 +1,811 @@
+<apex:page controller="sfdatagenerator.DummyDataController" standardStylesheets="false" docType="html-5.0" sidebar="false">
+  <head>
+    <style>
+      html { 
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        height: calc(100% - 36px);
+        padding: 0 18px 18px 18px;
+        font-family: sans-serif;
+      }
+      .object-body {
+        background: #EFEFEF;
+        color: #555;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        border: 1px solid #EEEEEE;
+        border-radius: 5px;
+      }
+      input {
+        outline: none !important;
+      }
+      .input-label {
+        margin: 0 0 0px 4px;
+        text-transform: uppercase;
+        font-size: 11px;
+        font-weight: bold;
+      }
+      .input-sublabel {
+        margin: 0 0 2px 4px;
+        font-size: 11px;
+        font-weight: bold;
+      }
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 10px 15px 0;
+      }
+      .red {
+        color: #F57272;
+      }
+      .fit-parent {
+        width: 100%;
+        height: 100%;
+      }
+
+      .box {
+        min-width: 250px;
+        max-width: 500px;
+        position: fixed;
+        right: 14px;
+        top: 14px;
+        z-index: 3;
+        cursor: pointer;
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.4);
+        border-radius: 5px;
+        color: white;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 14px;
+        min-height: 50px;
+        opacity: 0.9;
+        font-family: sans-serif;
+        -webkit-transition: all 0.7s ease-in-out;
+        -moz-transition: all 0.7s ease-in-out;
+        -ms-transition: all 0.7s ease-in-out;
+        -o-transition: all 0.7s ease-in-out;
+        transition: all 0.7s ease-in-out;
+      }
+
+      .status-box {
+        background: #FAD050;
+      }
+
+      .error-box {
+        background: #F57272;
+        z-index: 2;
+        right: 14px;
+      }
+      .success-box {
+        background: #32AEDA;
+        right: 14px;
+      }
+      .hidden {
+        display: none;
+      }
+
+      .min-width-180 {
+        min-width: 180px;
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #EFEFEF;
+        font-family: sans-serif;
+        box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.1) inset;
+        flex: 1;
+      }
+      .btn {
+        background-color: #00E0B0;
+        border-radius: 24px;
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+        width: 173px;
+        height: 48px;
+        color: #FFFFFF;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 22px;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn.primary {
+        
+      }
+      .btn.primary:hover {
+        background-color: #00C595;
+      }
+      .btn.secondary {
+        background-color: #FFFFFF;
+        border: 1px solid #00E0B0;
+        border-radius: 5px;
+        color: #00E0B0;
+        width: unset;
+        padding: 0 8px;
+      }
+      .btn.secondary:hover {
+        color: #00C595;
+        border: 1px solid #00C595;
+      }
+      .btn.attached {
+        position: absolute;
+        bottom: -45px;
+        width: 100%;
+        border: none;
+        background: #FAFAFA;
+        border-radius: 0 0 24px 24px;
+        cursor: pointer;
+      }
+      .btn.btn.attached:hover {
+        background: #EFEFEF;
+        color: #00C595;
+        border: none;
+      }
+      .btn.corner {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 0 5px 0 0;
+        border: none;
+        height: 60px;
+        width: unset;
+        padding: 16px;
+        box-shadow: none;
+        background: #FAFAFA;
+        color: #00E0B0;
+      }
+      .btn.corner:hover {
+        background: #EFEFEF;
+        color: #00C595;
+      }
+      .btn.field-delete {
+        border-radius: 5px;
+        width: unset;
+        padding-top: 5px;
+        outline: none;
+      }
+      .btn.field-delete:hover {
+        background: #00C595;
+      }
+      .btn.disabled {
+        cursor: unset;
+        background: #DDDDDD;
+      }
+      .btn.disabled:hover {
+        background-color: #DDDDDD;
+      }
+
+      .header-buttons {
+        width: calc(100% - 24px);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 12px;
+      }
+
+      .main-content {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+      }
+      .child-container {
+        display: flex;
+        flex-direction: row;
+      }
+      .child-indent {
+        width: 58px;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .child-indent span {
+        border: 2px solid #BBB;
+        height: calc(100% - 45px);
+        flex: 1;
+        width: 1px;
+        max-width: 0px;
+        border-radius: 5px;
+        margin-top: 14px;
+        margin-right: 4px;
+      }
+      .child-content {
+        flex: 1;
+      }
+
+      /*  */
+      /* object body */
+      /*  */
+
+      .card {
+        background: #FFFFFF;
+        margin: 12px 12px 60px 12px;
+        border: 1px solid #DCDBDA;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+        position: relative;
+
+      }
+      .card-title {
+        height: 28px;
+        background: #FAFAFA;
+        display: flex;
+        align-items: center;
+        padding: 16px 26px;
+        color: #333333;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 5px 5px 0 0;
+      }
+      .card-body {
+       
+      }
+      .card-body-main {
+        display: flex;
+        align-items: flex-end;
+        padding: 16px 26px;
+      }
+      .card-body-fields {
+        padding: 16px 26px;
+      }
+      .field-row {
+        display: flex;
+        flex-direction: row;
+        padding: 12px 0px;
+      }
+      span ~ span .field-row {
+        border-top: 1px solid #EEEEEE;
+      }
+      .field-title {
+        width: 288px;
+        padding-right: 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .field-help {
+        margin-top: 12px;
+        font-size: 12px;
+        color: #F57272;
+        opacity: 0.8;
+        font-weight: bold;
+      }
+      .field-settings {
+        flex: 1;
+      }
+      .field-customization {
+        display: flex;
+        flex-flow: row wrap;
+      }
+      .picklist-item {
+        padding: 0 20px 0px 0;
+        width: 170px;
+        max-width: 170px;
+      }
+      .field-blanks {
+        min-width: 130px;
+        padding-right: 20px;
+      }
+      .field-blank {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      input[type='checkbox'] {
+        -webkit-appearance:none;
+        width:30px;
+        height:30px;
+        background:white;
+        border-radius:5px;
+        border:2px solid #555;
+      }
+      input[type='checkbox']:checked {
+        background: #00E0B0;
+      }
+      .field-delete {
+        min-width: 48px;
+      }
+      .add-field {
+        display: flex;
+        align-items: flex-end;
+      }
+      .custom-input {
+        background-color: #FFFFFF;
+        border: 1px solid #EEEEEE;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+        height: 50px;
+        font-size: 16px;
+        padding: 8px;
+        outline: none;
+        width: 260px;
+      }
+      .custom-input.small {
+        height: 32px;
+        width: 52px;
+      }
+      .custom-input.medium {
+        height: 32px;
+        width: 153px;
+        /* 114 */
+        /* 153 */
+        /* 260 */
+      }
+      .custom-input.slim {
+        height: 32px;
+      }
+      .checkbox {
+          width: 100%;
+          margin: 15px auto;
+          position: relative;
+          display: block;
+          height: 51px;
+          display: flex;
+          align-items: center;
+      }
+
+      .checkbox input[type="checkbox"] {
+          opacity: 0.00000001;
+          position: absolute;
+          left: 0;
+          z-index: 1;
+          cursor: pointer;
+      }
+      .checkbox label {
+          position: relative;
+      }
+      .checkbox label:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          margin: 4px;
+          width: 22px;
+          height: 22px;
+          transition: transform 0.28s ease;
+          border: 1px solid #EEEEEE;
+          border-radius: 5px;
+          box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+          background-color: #FFFFFF;
+      }
+      .checkbox label:after {
+        content: '';
+          display: block;
+          width: 10px;
+          height: 5px;
+          border-bottom:  2px solid #FFFFFF;
+          border-left:  2px solid #FFFFFF;
+          -webkit-transform: rotate(-45deg) scale(0);
+          -moz-transform: rotate(-45deg) scale(0);
+          -ms-transform: rotate(-45deg) scale(0);
+          transform: rotate(-45deg) scale(0);
+          position: absolute;
+          top: 12px;
+          left: 10px;
+      }
+      .checkbox input[type="checkbox"]:checked ~ label::before {
+          color: #00E0B0;
+          background-color: #00E0B0;
+      }
+
+      .checkbox input[type="checkbox"]:checked ~ label::after {
+          -webkit-transform: rotate(-45deg) scale(1);
+          -moz-transform: rotate(-45deg) scale(1);
+          -ms-transform: rotate(-45deg) scale(1);
+          transform: rotate(-45deg) scale(1);
+      }
+
+      .checkbox label {
+          min-height: 34px;
+          display: block;
+          padding-left: 40px;
+          margin-bottom: 0;
+          font-weight: normal;
+          cursor: pointer;
+          vertical-align: sub;
+      }
+      .checkbox label span {
+          position: absolute;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+      }
+      .checkbox input[type="checkbox"]:focus + label::before {
+          outline: 0;
+      }
+
+      .generation-container {
+        width: 100%;
+      }
+      .generation-row:last-child {
+        margin-bottom: 16px;
+      }
+      .generation-row {
+        height: 60px;
+        min-height: 60px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .generation-row.card-title {
+        padding: 0 16px;
+      }
+      .generation-row-col {
+        font-size: 10px;
+        color: #999;
+      }
+      .generation-row-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: calc(100% - 8px);
+        margin: 0 8px;
+      }
+      .generation-row-trash-title {
+        width: 80px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+      .generation-row-trash {
+        width: 80px;
+      }
+      .generation-row-col .btn {
+        height: 38px;
+        width: 24px;
+        margin: 0 19px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 2px;
+      }
+      .generation-row-refresh {
+        width: 80px;
+      }
+      .generation-row-refresh .btn {
+        fill: #00E0B0;
+      }
+      .generation-row-refresh .btn:hover{
+        fill: #00C595;
+      }
+      .generation-row-trash .btn {
+        border: 1px solid #F57272;
+        stroke: #F57272;
+        fill: none;
+      }
+      .generation-row-trash .btn:hover {
+        stroke: #c44e4e;
+        border-color: #c44e4e;
+      }
+      .generation-row-count {
+        font-size: 12px;
+        color: #666;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 150px;
+        overflow: hidden;
+      }
+      .generation-row-date {
+        width: 160px;
+      }
+      .generation-table-borders {
+        border-top: 1px solid #EEEEEE;
+        border-bottom: 1px solid #EEEEEE;
+        margin: 0 0 0 8px;
+      }
+      .generation-table-borders ~ .generation-table-borders {
+        border-top: none;
+      }
+      .reuse-generation {
+        height: calc(100% - 6px);
+        width: 21px;
+        background:#FFF;
+        color:#FFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        cursor: pointer;
+        padding: 3px;
+      }
+
+      .generation-details {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .generation-details.disabled {
+        cursor: unset;
+      }
+
+      .generation-details.disabled:hover .reuse-generation {
+        color:#FFFFFF;
+      }
+
+      .generation-details:hover .reuse-generation {
+        color: #00E0B0;
+      }
+
+      .delete-generation {
+        background:#FAFAFA;
+        width: 21px;
+        color: #F57272;
+      }
+      .delete-generation:hover {
+        background: #EFEFEF;
+        color: #c44e4e;
+      }
+      .delete-generation.disabled {
+        color: #CCC;
+        cursor: unset;
+      }
+      .delete-generation.disabled {
+        background: #FAFAFA;
+        color: #CCC;
+      }
+     </style>
+  </head>
+
+  <apex:actionStatus startText="Loading object metadata..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden" id="object-status"/>
+  <apex:actionStatus startText="Adding field..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden"  id="field-status"/>
+  <apex:actionStatus startText="Removing field..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden"  id="field-rm-status"/>
+  <apex:actionStatus startText="Processing..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden"  id="string-status"/>
+  <apex:actionStatus startText="Processing..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden"  id="nulls-status"/>
+  <apex:actionStatus startText="Adding child object..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden"  id="child-status"/>
+  <apex:actionStatus startText="Removing child object..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden"  id="child-rm-status"/>
+  <!-- <apex:actionStatus startText="Generating your data..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden"  id="generate-status"/> -->
+  <apex:actionStatus startText="Deleting the generated records..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden"  id="delete-generation"/>
+  <apex:actionStatus startText="Preparing the page..." startStyleClass="box status-box" stopText="" stopStyleClass="hidden"  id="moving"/>
+
+  
+  <apex:form id="objectBody" styleClass="object-body">
+    <apex:actionFunction action="{!generateData}" name="generateData" rerender="objectBody,record-count, msg" status="generate-status" />
+    <apex:actionFunction action="{!updateRemainingRecords}" name="updateRemainingRecords" rerender="record-count" />
+    <apex:actionFunction action="{!reuseGeneration}" name="reuseGeneration" rerender="objectBody,record-count" status="moving">
+        <apex:param name="id" value="" />
+    </apex:actionFunction>
+    <apex:actionFunction action="{!deleteGeneration}" name="deleteGeneration" rerender="objectBody,record-count" status="delete-generation">
+        <apex:param name="id" value="" />
+    </apex:actionFunction>
+
+    <div style="height:calc(100% - 60px);;width:64px;background:#00E0B0;border-radius: 5px 0 0 5px;color: #FFFFFF;display:flex;flex-direction: column;align-items:flex-end;padding:30px 0;">
+      <div style="cursor:pointer;width:40px;padding:5px;margin: 10px 0;   background:#FFFFFF;border-radius:8px 0 0 8px;color:#00E0B0;box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.1);">
+        <c:svgPlus ></c:svgPlus>
+      </div>
+      <!-- <div style="cursor:pointer;width:40px;padding:5px;margin: 10px 0;">
+        <c:svgPencil></c:svgPencil>
+      </div> -->
+      <!-- <div style="cursor:pointer;width:40px;padding:5px;margin: 10px 0;">
+        <c:svgWatch></c:svgWatch>
+      </div> -->
+    </div>
+    
+    <div style="width: 228px;background:#FFFFFF; height:100%;overflow: scroll;min-width: 228px;">
+      <div style="display: flex; justify-content:center;background: #FFF;padding: 14px 0;">
+        <div onclick="startGenerateDate();" style="height:40px;font-size:16px;" class="btn primary">Run</div>
+      </div>
+      <apex:outputPanel id="record-count" style="display: flex; justify-content:center;background: #FFF;padding: 0 0 14px 0;">
+        <div style="color:#FFFFFF;font-weight:600;font-size:14px;padding:5px;border-radius:3px;{! IF(RemainingRecords <= 10000,'background:#CCCCCC;','background:#F57272;')}">
+          {! IF(RemainingRecords <= 10000,TEXT(remainingRecords) + '/10000 Records', 'Too many records')}
+        </div>
+      </apex:outputPanel>
+      <!-- <div style="display: flex; justify-content:center;background: #FFF;padding: 14px 0;">
+        <div onclick="startGenerateDate();" style="height:40px;font-size:16px;padding: 0;border-radius: 24px;width: 173px;" class="btn secondary">
+          <span>Save</span>
+          <span style="width: 22px;transform: rotate(90deg);">
+            <c:svgArrow />
+          </span>
+        </div>
+      </div> -->
+      <div style="width:calc(100% - 16px);background:#CCCCCC;padding:11px 0;text-align:center;color:#FFF;font-weight: 600;text-transform: uppercase;font-size: 14px;letter-spacing: 0.2em;border-radius: 4px;margin: 4px 8px;">
+        History
+      </div>
+      <div style="width:100%;height:calc(100% - 114px);overflow:scroll;display:flex;flex-direction:column;">
+        <apex:repeat value="{!generations}" var="generation">
+          <div class="generation-row generation-table-borders">
+            <div class="reuse-generation delete-generation {! IF(AND(NOT(generation.isDeleted), generation.recordCount > 0),'','disabled')}" onclick="{! IF(AND(NOT(generation.isDeleted), generation.recordCount > 0), 'deleteGeneration', 'console.log')}('{!generation.Id}')">
+              <c:svgTrash />
+            </div>
+            <div class="generation-details {! IF(generation.hasConfig,'','disabled')}" onclick="{! IF(generation.hasConfig, 'reuseGeneration', 'console.log')}('{!generation.Id}')">
+              <div class="generation-row-left">
+                <div class="generation-row-count generation-row-col" style="font-weight: 600;">{!generation.recordCount} Record{!IF(generation.recordCount == 1, '', 's')}</div>
+                <div class="generation-row-count generation-row-col">{!generation.objects}</div>
+                <div class="generation-row-col">{!generation.createdDate}</div>
+              </div>
+              <div class="reuse-generation">
+                <c:svgArrow />
+              </div>
+            </div>
+          </div>
+        </apex:repeat>
+      </div>
+    </div>
+
+    <apex:outputPanel styleClass="form-container">
+      <div class="main-content">
+        <apex:outputPanel id="level1-item" styleClass="fit-parent">
+          <c:ObjectBody baseObject="{!baseObject}" renderId="level1-item" isChild="false">
+            <apex:commandButton action="{!baseObject.addChild}" status="child-status" reRender="level1-child,record-count" value="+ Add Child" styleClass="btn secondary attached"/>
+          </c:ObjectBody>
+          <div class="child-container">
+            <div class="child-indent"><span /></div>
+            <div class="child-content">
+              <apex:outputPanel id="level1-child" rendered="{!baseObject.hasSelectedObject}">
+                <apex:variable value="0" var="level1Num"/>
+                <apex:repeat value="{!baseObject.children}" var="child">
+                  <apex:outputPanel id="level2-item">
+                    <c:ObjectBody baseObject="{!child}" renderId="level2-item" isChild="true" childIndex="{!level1Num}" parentObject="{!baseObject}">
+                      <apex:commandButton action="{!child.addChild}" status="child-status" reRender="level2-child,record-count" value="+ Add Child" styleClass="btn secondary attached" />
+                    </c:ObjectBody>
+                    <div class="child-container">
+                        <div class="child-indent"><span /></div>
+                        <div class="child-content">
+                        <apex:outputPanel id="level2-child" rendered="{!child.hasSelectedObject}">
+                          <apex:variable value="0" var="level2Num"/>
+                          <apex:repeat value="{!child.children}" var="grandChild">
+            
+                            <apex:outputPanel id="level3-item">
+                              <c:ObjectBody baseObject="{!grandChild}" renderId="level3-item" isChild="true" childIndex="{!level2Num}" parentObject="{!child}">
+                                <apex:commandButton action="{!grandChild.addChild}" status="child-status" reRender="level3-child,record-count" value="+ Add Child" styleClass="btn secondary attached" />
+                              </c:ObjectBody>
+                              <div class="child-container">
+                                  <div class="child-indent"><span /></div>
+                                  <div class="child-content">
+                                <apex:outputPanel id="level3-child" rendered="{!grandChild.hasSelectedObject}">
+                                  <apex:variable value="0" var="level3Num"/>
+                                  <apex:repeat value="{!grandChild.children}" var="greatGrandChild">
+              
+                                    <apex:outputPanel id="level4-item">
+                                      <c:ObjectBody baseObject="{!greatGrandChild}" renderId="level4-item" isChild="true" childIndex="{!level3Num}" parentObject="{!grandChild}">
+                                        <apex:commandButton action="{!greatGrandChild.addChild}" status="child-status" reRender="level4-child,record-count" value="+ Add Child" styleClass="btn secondary attached" />
+                                      </c:ObjectBody>
+                                      <div class="child-container">
+                                        <div class="child-indent"><span /></div>
+                                        <div class="child-content">
+                                          <apex:outputPanel id="level4-child" rendered="{!greatGrandChild.hasSelectedObject}">
+                                            <apex:variable value="0" var="level4Num"/>
+                                            <apex:repeat value="{!greatGrandChild.children}" var="greatGreatGrandChild">
+                  
+                                              <apex:outputPanel id="level5-item">
+                                                <c:ObjectBody baseObject="{!greatGreatGrandChild}" renderId="level5-item" isChild="true" childIndex="{!level4Num}" parentObject="{!greatGrandChild}" />
+                                              </apex:outputPanel>
+                                              <apex:variable var="level4Num" value="{!VALUE(level4Num) + 1}"/>
+
+                                            </apex:repeat>
+                                          </apex:outputPanel>
+                                        </div>
+                                      </div>
+                                  </apex:outputPanel>
+                                  <apex:variable var="level3Num" value="{!VALUE(level3Num) + 1}"/>
+
+                                </apex:repeat>
+                              </apex:outputPanel>
+                            </div>
+                            </div>
+                          </apex:outputPanel>
+                          <apex:variable var="level2Num" value="{!VALUE(level2Num) + 1}"/>
+
+                        </apex:repeat>
+                      </apex:outputPanel>
+                    </div>
+                    </div>
+                  </apex:outputPanel>
+                  <apex:variable var="level1Num" value="{!VALUE(level1Num) + 1}"/>
+
+                </apex:repeat>
+              </apex:outputPanel>
+            </div>
+          </div>
+        </apex:outputPanel>
+      </div>
+    </apex:outputPanel>
+    <apex:actionPoller rerender="msg" interval="5" enabled="{!AND(batchProcessing, NOT(showCompletion))}"/>
+    <apex:outputPanel id="msg" styleClass="box status-box {!IF(batchProcessing, '', 'hidden')} dynamic-status" style="{! IF(showError, 'background: #F57272;', IF(message = 'Record Creation: 100% Complete, 0 errors', 'background:#00e0b0;',''))}" onclick="fadeElement();">
+      {!message}
+      <apex:outputPanel rendered="{!AND(showCompletion,NOT(showError))}">
+        <script>
+          function fadeMessageBox() {
+            var els = document.getElementsByClassName('dynamic-status');
+            setTimeout(function() {
+              for (var i = 0; i < els.length; i++) {
+                fadeAway(els[i]);
+              }
+            }, 500);
+          }
+          fadeMessageBox();
+        </script>
+      </apex:outputPanel>
+    </apex:outputPanel>
+    <apex:actionPoller rerender="delete-msg" interval="5" enabled="{!AND(deleteBatchProcessing, NOT(showCompletion))}"/>
+    <apex:outputPanel id="delete-msg" styleClass="box status-box {!IF(deleteBatchProcessing, '', 'hidden')} dynamic-status-deletion" style="{! IF(showError, 'background: #F57272;', IF(deleteMessage = 'Record Deletion: 100% Complete, 0 errors', 'background:#00e0b0;',''))}" onclick="fadeElement();">
+      {!deleteMessage}
+      <apex:outputPanel rendered="{!AND(showCompletion,NOT(showError))}">
+        <script>
+          function fadeDeleteMessage() {
+            var els = document.getElementsByClassName('dynamic-status-deletion');
+            setTimeout(function() {
+              for (var i = 0; i < els.length; i++) {
+                fadeAway(els[i]);
+              }
+            }, 500);
+          }
+          fadeDeleteMessage();
+        </script>
+      </apex:outputPanel>
+    </apex:outputPanel>
+    <apex:outputPanel styleClass="box error-box" rendered="{!errors.size > 0}" onclick="fadeElement();">
+      Oops. Something happened:
+      <ul>
+        <apex:repeat value="{!errors}" var="err">
+          <li>{!err}</li>
+        </apex:repeat>
+      </ul>
+    </apex:outputPanel>
+    <!-- <apex:outputPanel styleClass="box success-box" rendered="{!showSuccess}" onclick="fadeElement();">
+      {successMessage}
+      <script>
+        function fadeSuccessBox() {
+          var els = document.getElementsByClassName('success-box');
+          setTimeout(function() {
+            for (var i = 0; i < els.length; i++) {
+              fadeAway(els[i]);
+            }
+          }, 7500);
+        }
+        fadeSuccessBox();
+      </script>
+    </apex:outputPanel> -->
+    <script>
+      function fadeAway(el) {
+        function removeElement(el) {
+          el.style.display = 'none';
+        }
+      
+        el.style.opacity = 0;
+        setTimeout(function () {
+          removeElement(el);
+        }, 700);
+      }
+
+      function fadeElement() {
+        var el = event.target;
+
+        while (!el.classList.contains('box')) {
+          el = el.parentNode;
+        }
+
+        fadeAway(el);
+      }
+
+      function startGenerateDate() {
+        // first, call the action function to post the form
+        generateData();
+
+        var els = document.getElementsByClassName('primary');
+        for (var i = 0; i < els.length; i++) {
+          els[i].classList.add('disabled');
+          els[i].setAttribute('disabled', 'disabled');
+        }
+        // second, disable the buttons
+        // buttonsEnabled(false);
+
+        // third, return false to prevent the click from
+        // posting the form a second time
+        return false;
+      }
+    </script>
+  </apex:form>
+</apex:page>

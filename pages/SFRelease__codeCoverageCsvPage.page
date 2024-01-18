@@ -1,0 +1,137 @@
+<apex:page Controller="SFRelease.GetTestCoverageDataControllerPdf" contentType="application/vnd.ms-excel#codeCoverageReport.xls" >
+   
+    
+    <center>
+        <apex:outputText title="Code Coverage Report" value="Code Coverage Report" style="font-size:225%;"></apex:outputText>
+        <br/><br/>
+   </center>    
+<table>
+    <tr>
+        <td>
+            <apex:panelGrid columns="1" width="100%">
+                <apex:outputText title="Created Date" value="Created Date : {!dateTimeNow}"></apex:outputText>
+                <apex:outputText title="Created By" value="Created By : {!createdBy}"></apex:outputText>
+                <apex:outputText title="Production Org Name" value="Production Org Name : {!productionOrg}"></apex:outputText>
+            </apex:panelGrid> 
+        </td>
+        
+        <td width ="10%"></td>
+        <td>
+            <!--<apex:panelGrid columns="1" width="100%" style="text-align:right; float"  rendered="{!displayd}">
+                <apex:outputText title="Org1 Last Run" value="{!torg1} - Last Run Date : {!org1LastRun}"></apex:outputText>
+                <apex:outputText title="Org2 Last Run" value="{!torg2} - Last Run Date : {!org2LastRun}"></apex:outputText>                
+            </apex:panelGrid>
+            <apex:panelGrid columns="1" width="100%" style="text-align:right; float"  rendered="{!display3}">
+                <apex:outputText title="Org1 Last Run" value="{!torg1} - Last Run Date : {!org1LastRun}"></apex:outputText>
+                <apex:outputText title="Org2 Last Run" value="{!torg2} - Last Run Date : {!org2LastRun}"></apex:outputText>
+                <apex:outputText title="Org3 Last Run" value="{!torg3} - Last Run Date : {!org3LastRun}"></apex:outputText>
+            </apex:panelGrid>
+            <apex:panelGrid columns="1" width="100%" style="text-align:right; float"  rendered="{!display4}">
+                <apex:outputText title="Org1 Last Run" value="{!torg1} - Last Run Date : {!org1LastRun}"></apex:outputText>
+                <apex:outputText title="Org2 Last Run" value="{!torg2} - Last Run Date : {!org2LastRun}"></apex:outputText>
+                <apex:outputText title="Org3 Last Run" value="{!torg3} - Last Run Date : {!org3LastRun}"></apex:outputText>
+                <apex:outputText title="Org4 Last Run" value="{!torg4} - Last Run Date : {!org4LastRun}"></apex:outputText>
+            </apex:panelGrid>-->
+            <apex:panelGrid columns="1" width="100%" style="text-align:right; float">
+                <apex:outputText title="Org1 Last Run" value="{!torg1} - Last Run Date : {!org1LastRun}" rendered="{!(display5||display4||display3||displayd)}"></apex:outputText>
+                <apex:outputText title="Org2 Last Run" value="{!torg2} - Last Run Date : {!org2LastRun}" rendered="{!(display5||display4||display3||displayd)}"></apex:outputText>
+                <apex:outputText title="Org3 Last Run" value="{!torg3} - Last Run Date : {!org3LastRun}" rendered="{!(display5||display4||display3)}"></apex:outputText>
+                <apex:outputText title="Org4 Last Run" value="{!torg4} - Last Run Date : {!org4LastRun}" rendered="{!(display5||display4)}"></apex:outputText>
+                <apex:outputText title="Org5 Last Run" value="{!torg5} - Last Run Date : {!org5LastRun}" rendered="{!display5}"></apex:outputText>
+            </apex:panelGrid>
+        </td>
+    </tr>
+</table><br/> 
+<div class='container-fluid'> 
+    <div style="width:700px; height:2px;background:black;"> </div><br/>
+</div>  
+<!-- 2 Orgs Comparision-->    
+<apex:pageBlock rendered="{!displayd}">
+    <table  style="border: 1px solid black; width:100%;">
+        <thead>
+            <th style=" border: 1px solid black;">ApexClass/Trigger</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org1}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org2}</th>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!cccoveragelist}" var="cc">
+                <tr style=" border: 1px solid black;">
+                    <td style=" border: 1px solid black;">{!cc.apexclassname}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org1}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org2}</td>  
+                </tr>
+            </apex:repeat>
+        </tbody>        
+    </table>
+</apex:pageBlock>
+<!-- 3 Orgs Comparision-->    
+<apex:pageBlock rendered="{!display3}">
+    <table  style="border: 1px solid black; width:100%;">
+        <thead>
+            <th style=" border: 1px solid black;">ApexClass/Trigger</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org1}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org2}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org3}</th> 
+        </thead>
+        <tbody>
+            <apex:repeat value="{!cccoveragelist}" var="cc">
+                <tr style=" border: 1px solid black;">
+                    <td style=" border: 1px solid black;">{!cc.apexclassname}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org1}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org2}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org3}</td>   
+                </tr>
+            </apex:repeat>
+        </tbody>        
+    </table>    
+</apex:pageBlock>
+    
+<!-- 4 Orgs Comparision-->
+<apex:pageBlock rendered="{!display4}">
+    <table  style="border: 1px solid black; width:100%;">
+        <thead>
+            <th style=" border: 1px solid black;">ApexClass/Trigger</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org1}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org2}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org3}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org4}</th>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!cccoveragelist}" var="cc">
+                <tr style=" border: 1px solid black;">
+                    <td style=" border: 1px solid black;">{!cc.apexclassname}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org1}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org2}</td>  
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org3}</td>  
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org4}</td>  
+                </tr>
+            </apex:repeat>
+        </tbody>        
+    </table>
+</apex:pageBlock>
+<!-- 5 Orgs Comparision-->
+<apex:pageBlock rendered="{!display5}">
+    <table  style="border: 1px solid black; width:100%;">
+        <thead>
+            <th style=" border: 1px solid black;">ApexClass/Trigger</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org1}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org2}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org3}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org4}</th>
+            <th style=" border: 1px solid black;text-align:center;">{!org5}</th>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!cccoveragelist}" var="cc">
+                <tr style=" border: 1px solid black;">
+                    <td style=" border: 1px solid black;">{!cc.apexclassname}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org1}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org2}</td>  
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org3}</td>  
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org4}</td>
+                    <td style=" border: 1px solid black;text-align:center;">{!cc.org5}</td>
+                </tr>
+            </apex:repeat>
+        </tbody>        
+    </table>
+</apex:pageBlock>    
+</apex:page>

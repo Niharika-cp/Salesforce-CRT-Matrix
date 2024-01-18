@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Data Masking Configuration</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Data Masking Configurations</value>
+    </caseValues>
+    <fields>
+        <label><!-- FieldName --></label>
+        <name>FieldName__c</name>
+    </fields>
+    <fields>
+        <label><!-- MaskingRule --></label>
+        <name>MaskingRule__c</name>
+        <picklistValues>
+            <masterLabel>Custom String</masterLabel>
+            <translation><!-- Custom String --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Random Date</masterLabel>
+            <translation><!-- Random Date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Random Email</masterLabel>
+            <translation><!-- Random Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Random Phone</masterLabel>
+            <translation><!-- Random Phone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Random String</masterLabel>
+            <translation><!-- Random String --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- MaskingText --></label>
+        <name>MaskingText__c</name>
+    </fields>
+    <fields>
+        <label><!-- ObjectName --></label>
+        <name>ObjectName__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- A value is required for Masking Type &quot;Custom String&quot; --></errorMessage>
+        <name>Mandate_Masking_Text_for_Custom_String</name>
+    </validationRules>
+</CustomObjectTranslation>

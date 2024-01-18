@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Copado Manager</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Copado Managers</value>
+    </caseValues>
+    <fields>
+        <label><!-- Age --></label>
+        <name>Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copado Manager Email --></label>
+        <name>Copado_Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copado Manager Phone --></label>
+        <name>Copado_Manager_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- DOB --></label>
+        <name>DOB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Documents Present --></label>
+        <name>Documents_Present__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manager Salary --></label>
+        <name>Manager_Salary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Age --></label>
+        <name>Total_Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- salary in rs --></label>
+        <name>salary_in_rs__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please Enter Email Here........ --></errorMessage>
+        <name>Email_Validation_Rule</name>
+    </validationRules>
+</CustomObjectTranslation>

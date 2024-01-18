@@ -1,0 +1,168 @@
+<!-------------------------------------------------------------------------------------------
+-                                                                                            
+-         Name :  DataMaskingJobsPage
+-       Author :  Amarnathreddy Sureddy (Infosys Limited)                                              
+-  Description :  Developed for Infosys Data Masking AppExchange product                           
+-                 This Page is written to list out number of jobs configued for an instance.
+-                                                                                             
+-         © 2018 Infosys Limited, Bangalore, India. All rights reserved.                      
+-         No part of this code should be used without prior written consent from the author
+-------------------------------------------------------------------------------------------->
+
+<apex:page Controller="infy_dm.DataMaskingJobsController" sidebar="false" showheader="false" tabStyle="infy_dm__Data_Masking_Object_Config__c"  >
+    <table style="width:500px">
+        <tr>
+            <th align="center"><apex:image url="{!$Resource.infy_dm__DataMaskingLogo}" /></th>
+            <th><apex:sectionHeader id="DataMaskingJobHeader" title="List of all Data Masking Jobs existing in the Application" subtitle="Data Masking:Jobs Details"/></th>
+        </tr>
+    </table>
+    
+    <!--CSS Styling for Button-->
+    <style>
+        .buttong2y{
+        border-top: 1px solid #90ae6a;
+        background: #FFFFFF;
+        background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#FFFFFF));
+        background: -webkit-linear-gradient(top, #FFFFFF, #FFFFFF);
+        background: -moz-linear-gradient(top, #FFFFFF, #FFFFFF);
+        background: -ms-linear-gradient(top,#FFFFFF, #FFFFFF);
+        background: -o-linear-gradient(top, #FFFFFF, #FFFFFF);
+        padding: 5px 10px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        box-shadow: rgba(0,0,0,1) 0 1px 0;
+        text-shadow: rgba(0,0,0,.4) 0 1px 0;
+        color: #000000;
+        font-size: 14px;
+        font-family: Helvetica, Arial, Sans-Serif;
+        text-decoration: none;
+        vertical-align: middle;
+        }
+        .buttong2y:hover {
+        border-top-color: #BFDFFF;
+        background: #BFDFFF;
+        color: #000000;
+        }
+        .buttong2y:active {
+        border-top-color: #90EDF4;
+        background: #90EDF4;
+        }
+    </style>
+    <!--*************************************************-->
+    
+    <!--CSS Styling for Loading Image PopUp-->
+    <style>
+        .actionStatusPopup{
+        left: 50%;
+        padding:15px;
+        position: absolute;
+        z-index: 9999;
+        width: auto;
+        height:auto;
+        margin-left: auto;
+        top:180px;
+        }
+        .actionStatusPopupBackground{
+        background-color:black;
+        opacity: 0.80;
+        filter: alpha(opacity = 10);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left:0;
+        z-index: auto;
+        }
+    </style>
+    <!--*************************************************-->
+    
+    <!--  CSS Styling to change the background of Page -->
+    <style>
+        .bPageBlock {
+        background-color: #F1F8FF !important;
+        }
+    </style>
+    <!--  ******************************************** -->
+    
+    <!-- ******* CSS Styling for Changing background Color of header of pageBlockTables ********  -->
+    <style>
+        .headerRow .TableTitle{
+        background-color:#C2EBFF !important;
+        text-align:center;
+        }
+    </style>
+    
+    <script type="text/javascript">
+    function checkAll(cb,cbid)
+    {
+        var inputElem = document.getElementsByTagName("input");                    
+        for(var i=0; i<inputElem.length; i++)
+        {            
+            if(inputElem[i].id.indexOf(cbid)!=-1){                                       
+                inputElem[i].checked = cb.checked;
+            }
+        }
+    }
+    </script>
+    
+    <!-- **************************************************************************************** -->
+    
+    
+    <!--<apex:variable var="showExportButton" value="true" />-->
+    <apex:form id="JobForm">
+        
+        <apex:pageBlock title="Select Jobs to Mask Data" id="pageBlock">
+            <apex:pageMessages id="pageMessages"/>
+            <!--In our table we are displaying the dmObjectWrapper records-->
+            <apex:outputLabel value="Job Name represents the grouping of an Object and it's fields to be Masked."/>     
+            <center>
+                <apex:commandButton action="{!createNewJob}" value="Create New Job" styleClass="buttong2y" style="height:10%;text-align:center!important;"/>
+                <apex:commandButton action="{!deleteJobs}" value="Delete Jobs" styleClass="buttong2y" style="height:10%;text-align:center!important;" rerender="pageBlock" rendered="{!dmJobsList.size >0}"/>&nbsp;   
+                <apex:commandButton action="{!executeDataMasking}" value="Execute Data Masking" styleClass="buttong2y" style="height:10%;text-align:center!important;" rerender="pageBlock" rendered="{!dmJobsList.size>0}"/>&nbsp;
+                <apex:commandButton id="HomeButton" action="{!HomeButtonWizardStepOne}" value="Home" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;"/>
+                <apex:commandButton action="{!gotoExportJobs}" value="Export Jobs" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;"/>&nbsp; 
+            </center>
+            <br/>     
+            
+            <apex:pageBlockTable value="{!Jobs}" var="job" id="table" rendered="{!dmJobsList.size>0}">
+                <apex:column style="text-align:center;" headerClass="TableTitle">
+                    <!--<apex:facet name="header">
+                        <apex:outputLabel value="Select Jobs">
+                            <apex:inputCheckbox onclick="checkAll(this,'selectCheckBox')"/> 
+                        </apex:outputLabel>
+                    </apex:facet>--->
+                    <apex:inputCheckbox id="selectCheckBox" value="{!job.selected}" rendered="{!dmJobsList.size>0}"/>&nbsp;&nbsp; 
+                    <apex:commandlink action="{!editJob}" title="Click to Edit this Job">
+                        <apex:image id="editButton" value="{!$Resource.infy_dm__EditButton}" width="15" height="15"/>
+                        <apex:param name="jobIdParamEdit" value="{!job.dmo.Id}" assignTo="{!jobId}"/>
+                    </apex:commandlink>&nbsp;&nbsp;
+                    <apex:commandlink id="deleteJob" action="{!deleteJob}" title="Click to Delete this Job">
+                        <apex:image id="deleteButton" value="{!$Resource.infy_dm__DeleteButton}" width="15" height="15"/>
+                        <apex:param name="jobIdParamDelete" value="{!job.dmo.Id}" assignTo="{!jobId}"/>
+                    </apex:commandlink>
+                </apex:column>
+                <!-- This is how we access the Data Masking Jobs within our dmObjectWrapper container/wrapper -->
+                <apex:column value="{!job.dmo.infy_dm__Job_Name__c}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.Name}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.infy_dm__Records_Processed__c}" style="text-align:center;" headerClass="TableTitle"/>
+              <apex:column value="{!job.dmo.infy_dm__Description__c}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.infy_dm__Data_Masking_Status__c}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.infy_dm__Last_Masked_On__c}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.CreatedDate}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.infy_dm__Error_Log_File__c}" style="text-align:center;" headerClass="TableTitle"/>
+        
+            </apex:pageBlockTable>
+            <apex:actionPoller reRender="pageBlock" interval="30"/>
+        </apex:pageBlock>
+        
+        <center>
+            <apex:commandButton action="{!deleteJobs}" value="Delete Jobs" styleClass="buttong2y" style="height:10%;text-align:center!important;"  rerender="pageBlock" rendered="{!dmJobsList.size>0}"/>&nbsp;   
+            <apex:commandButton action="{!executeDataMasking}" value="Execute Data Masking" styleClass="buttong2y" style="height:10%;text-align:center!important;"  rerender="pageBlock" rendered="{!dmJobsList.size>0}"/>
+           <apex:commandButton id="HomeButton" action="{!HomeButtonWizardStepOne}" value="Home" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;"/>
+
+        </center>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,406 @@
+<template>
+    <lightning-card>
+        <div class="slds-align_absolute-center">
+            <header class="slds-truncate utils">
+                <h1 class="slds-section__title utilTitle1" ><p style="color:#0a0a0a"><strong><font size="6"> Shared Component Matrix </font></strong></p> </h1>
+            </header>
+       </div><br/><br/>
+
+       <div class="slds-align_absolute-center">
+               <p class="slds-var-p-middle_small" style="text-align:center"> 
+                    <lightning-input 
+                                type="search" 
+                                onchange={handleKeyChange} 
+                                class="my-cystom-input"        
+                                label="Search" 
+                                value={searchKey}
+                                variant="label-hidden"
+                                placeholder="Search Here....."
+                                style="width:500px; height:50px;"
+                                >
+                    </lightning-input>
+                </p>  
+       </div><br/>
+
+       <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+
+       <!-- DATE FILTERS -->
+       <div class="control">
+                <h1 class="slds-section__title utilTitle">
+                    <div class="slds-truncate utils" >
+                        <strong><font size="2"></font> Date Range : &nbsp;</font></strong>&nbsp;&nbsp;&nbsp;
+                        <lightning-icon class="my-icon" icon-name="action:refresh" alternative-text="Refresh" title="Refresh" size="small" onclick={refreshHandler}></lightning-icon> &nbsp;&nbsp;&nbsp;
+                    </div>
+                </h1><br/>
+
+                <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                                <lightning-radio-group  name="radioGroup2"
+                                                        label="hi"
+                                                        options={optionsFre}
+                                                        value={valueFre}
+                                                        required
+                                                        onchange={handleChangeFre}
+                                                        type="radio"
+                                                        variant="label-hidden"
+                                                        style="columns: 5;"
+                                                        >
+                                </lightning-radio-group></font></strong> </p><br/>
+                
+                <template if:true={showNoOfDays}>
+                    <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+                    <div class="control">
+                        <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                                                            <label for="name">Number of Days : &nbsp; </label>
+                                                            <input id="name" type="number" style="width:100px" value={numberOfDaysFre} min="1" onchange={numberOfDaysHandlerFre}/>
+                                                            &nbsp;Days
+                                                        </font></strong></p><br/>
+                     </div>
+                </template>
+
+                <template if:true={showFormToDate}>
+                    <div class="control">
+                        <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                                                            <lightning-input type="date" label="From :" value={formDate}  min="1" style="width:350px" onchange={formDateHandler}></lightning-input>&nbsp;
+                                                            <lightning-input type="date" value={toDate} label="To :" min="1" style="width:350px" onchange={toDateHandler}></lightning-input>
+                                                        </font></strong></p>
+                    </div>
+                </template>  
+      </div><br/>
+
+      <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+      <!-- Button -->
+        <p class="slds-var-p-left_x-small" style="text-align:center"><strong><font size="3">
+            <lightning-button style="width:1500px" variant="brand-outline" icon-name="action:record" label="Run" onclick={runHandler}></lightning-button> &nbsp;&nbsp;&nbsp;
+            <lightning-button style="width:1500px" variant="brand-outline" icon-name="doctype:csv" label="Export as CSV" onclick={exportCsvHandle}></lightning-button> &nbsp;&nbsp;&nbsp;
+            <lightning-button style="width:1000px" variant="brand-outline" icon-name="doctype:pdf" label="Export as Pdf" onclick={exportpdfHandler}></lightning-button>&nbsp;&nbsp;&nbsp;
+            <lightning-button style="width:1000px" variant="brand-outline" icon-name="action:email"  label="Send Email" onclick={sendEmailHandler}></lightning-button> &nbsp;&nbsp;&nbsp;
+            <lightning-button style="width:1500px" variant="brand-outline" icon-name="action:defer" label="Schedule" onclick={scheduleButtonHandler}></lightning-button> &nbsp;&nbsp;&nbsp;
+        </font></strong></p> <br/>
+     
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr>
+                    <th scope="col">Component Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">User Story Name</th>
+                    <th scope="col">Enviornment</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">
+                        <div>Last Commit Date</div>
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={recordsToDisplay} for:item="item">
+                    <tr key={item.component.Id}>
+                        <td data-label="Component Name">{item.component}</td>
+                        <td data-label="Type">{item.typer}</td>
+
+                        <td data-label="User Story Names">
+                            <template for:each={item.usList} for:item="usList">
+                                <div key={usList.Id}>
+                                    <a href="javascript:void(0);" onclick={navigateToUSRecord} data-contact-id={usList.Id}>
+                                        {usList.Name}
+                                    </a>
+                                </div>
+                            </template>
+                        </td>
+                        
+                        <td data-label="Source">
+                            <template for:each={item.usList} for:item="usList">
+                                <div key={usList.Id}>{usList.Environment}</div>
+                            </template>
+                        </td>
+                        
+                        <td data-label="Owner">
+                            <template for:each={item.usList} for:item="usList">
+                                <div key={usList.Id}>{usList.Owner}</div>
+                            </template>
+                        </td>
+                        
+                        <td data-label="Last Commit Date">
+                            <template for:each={item.usList} for:item="usList">
+                                <div key={usList.Id}>
+                                    <lightning-formatted-date-time value={usList.lastCommitDate} format="short">
+                                    </lightning-formatted-date-time>
+                                </div>
+                            </template>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        
+
+        <!-- CSV -->
+        <template if:true={goToVfPageforCsv} >
+            <iframe src={src} width="100%" height="0px" frameborder="0"></iframe>
+       </template >
+
+        <!-- PDF -->
+                <template if:true={goToVfPageforPdf} >
+                    <section aria-modal="true" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container ">
+
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={ClosePopupHandler}>
+                                <lightning-icon icon-name="utility:close"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="x-small"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>    
+                            </button>
+                            <lightning-card>
+                                <template if:true={showSpinnerFlag} >
+                                    <div class="backgroundInverse" style="min-height:3rem;transform: translate(0, 0);">
+                                        <lightning-spinner alternative-text="Loading" size="medium" ></lightning-spinner>
+                                    </div>
+                                </template>
+
+                            <iframe src={src1} width="100%" height="600px" frameborder="0"></iframe>
+                            </lightning-card> 
+                    
+                        <footer class="slds-modal__footer">
+                                <lightning-button variant="brand" label="Close" onclick={ClosePopupHandler}></lightning-button> 
+                            </font></strong></p>
+                            <br/>
+                    </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+        <!-- Send an Email -->
+        <template if:true={showEmailIdInput} > 
+            <section aria-modal="true" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container ">
+
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={ClosePopupHandlerEmail}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="x-small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>    
+                    </button>   
+                <lightning-card>            
+                    <p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="2">
+                            <lightning-input type="text" label="Enter Mail Id :-" placeholder="Enter Email Id here...." value={emailId}  style="width:500px" onchange={emailSelectionHandler}></lightning-input> <br/>
+                            
+                    </font></strong></p>
+
+                    <footer class="slds-modal__footer">
+                        <lightning-button style="width:1000px" variant="brand" label="Send" onclick={sendEmail}></lightning-button>&nbsp;&nbsp;&nbsp;
+                        <lightning-button variant="brand-outline" label="Close" onclick={ClosePopupHandlerEmail}></lightning-button> 
+                    </font></strong></p></footer>
+                    <br/>
+                </lightning-card>
+
+            </div>
+          </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+
+        <!-- Schedule -->
+        <template if:true={showScheduleInput} >
+            <section aria-modal="true" class="slds-modal slds-fade-in-open">
+                  <div class="slds-modal__container ">
+                      <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={schClosePopupHandler}>
+                              <lightning-icon icon-name="utility:close"
+                                  alternative-text="close"
+                                  variant="inverse"
+                                  size="x-small"></lightning-icon>
+                              <span class="slds-assistive-text">Close</span>    
+                          </button>  
+                   
+                      <lightning-card>
+                                  <div  style="text-align:left"> 
+                                      <div class="slds-box" style="height: auto;">
+                              
+                                          <div class="slds-align_absolute-center">
+                                              <header class="slds-truncate utils">
+                                                  <h1 class="slds-section__title utilTitle1" ><p style="color:rgb(6, 4, 6)"><strong><font size="6"> &nbsp; Scheduler Report </font></strong></p> </h1>
+                                              </header>
+                                      </div><br/>
+                                  
+                                  <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+                              
+                                  <h1 class="slds-section__title utilTitle">
+                                      <div class="slds-truncate utils" title="Retention Window"><strong><font size="3"> Schedule Job</font></font></strong></div>
+                                   </h1><br/><br/>
+                                  
+                                          <div class="control">
+                                              <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                                              <label for="name">Schedule Job Name : &nbsp; <span class="required">*</span></label><input aria-describedby="required-description" id="archivedid" type="text" style="width:450px" value={scheduleJobName} onchange={schJobNameHandler}/></font></strong> </p><br/><br/>
+                                          
+                                          </div>
+
+                                          <div class="control">
+                                              <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                                              <label for="name">Enter Mail Id : &nbsp; <span class="required">*</span></label><input aria-describedby="required-description" id="mail" type="text" value={emailIdSch}  style="width:500px" onchange={emailSelectionHandlersch}/></font></strong> </p><br/><br/>
+                                          
+                                          </div>
+                              
+                                          <div class="control">
+                                              <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2"><span class="required">*</span>Schedule Frequency :</font></strong></p>
+                              
+                                          
+                                              <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                              
+                                              &nbsp;&nbsp;<lightning-radio-group  name="radioGroup2"
+                                                                      label="When do you want to schedule the Records cleanup job?"
+                                                                      options={optionsRadio}
+                                                                      value={value}
+                                                                      required
+                                                                      onchange={handleChange3}
+                                                                      type="radio"
+                                                                      variant="label-hidden"
+                                                                      style="columns: 5;"
+                                                                      >
+                                              </lightning-radio-group></font></strong> </p><br/>
+                              
+                                              
+                                              <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+                                              
+                                                          <template if:true={showHourlyButton}>     
+                                                              <div>
+                                                                  <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Every: &nbsp;</font></strong> 
+                                                                      <input type="number" value={numberOfHours} min="1" style="width:50px" onchange={numberOfEveryHoursHandler}>&nbsp;
+                                                                      <strong><font size="2"> Hour(s) </font></strong> </p> 
+                                                              </div>      
+                                                          </template> 
+                              
+                              
+                                                          <template if:true={showDailyButton}>     
+                                                                  <div>
+                                                                      <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Every: &nbsp;</font></strong>
+                                                                      <input type="number" value={numberOfDays}  min="1" style="width:50px" onchange={numberOfDaysHandler}>&nbsp;
+                                                                      <strong><font size="2"> Day(s) </font></strong> </p> 
+                                                                  </div>      
+                                                          </template> 
+                              
+                                                          <template if:true={showWeeklyButton}>
+                                                                      <!-- Button group: simple buttons -->
+                              
+                                                              <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="-1"></font>
+                                                                  <lightning-button-group>
+                                                                      <template if:true={showMonButton}>
+                                                                          <lightning-button  class="button"  label="Monday"  onclick={mondayHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showMondayBrandButton}>
+                                                                          <lightning-button variant="brand"  class="button"  label="Monday"  onclick={mondayBrandHandler}></lightning-button>
+                                                                      </template>
+                                                                      
+                                                                      <template if:true={showTueButton}>
+                                                                          <lightning-button  class="button" label="Tuesday" onclick={tuesdayHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showTuesBrandButton}>
+                                                                          <lightning-button variant="brand"  class="button"  label="Tuesday"  onclick={TuesdayBrandHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showWedButton}>
+                                                                          <lightning-button class="button" label="Wednesday" onclick={wednesdayHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showWedBrandButton}>
+                                                                          <lightning-button variant="brand"  class="button"  label="Wednesday"  onclick={WednesdayBrandHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showThurButton}>
+                                                                          <lightning-button class="button" label="Thursday" onclick={thursdayHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showThursBrandButton}>
+                                                                          <lightning-button variant="brand"  class="button"  label="Thursday"  onclick={ThursdayBrandHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showFriButton}>
+                                                                          <lightning-button class="button" label="Friday" onclick={fridayHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showFridayBrandButton}>
+                                                                          <lightning-button variant="brand"  class="button"  label="Friday"  onclick={FridayBrandHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showSatButton}>
+                                                                          <lightning-button class="button" label="Saturday" onclick={saturdayHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showSatBrandButton}>
+                                                                          <lightning-button variant="brand"  class="button"  label="Saturday"  onclick={SaturdayBrandHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showSunButton}>
+                                                                          <lightning-button class="button" label="Sunday" onclick={sundayHandler}></lightning-button>
+                                                                      </template>
+                              
+                                                                      <template if:true={showSunBrandButton}>
+                                                                          <lightning-button variant="brand"  class="button"  label="Sunday"  onclick={SundayBrandHandler}></lightning-button>
+                                                                      </template>
+                                                                  </lightning-button-group>
+                                                                  
+                                                              </font></strong> </p>
+                                                          </template> <br/>
+                                                          </div>
+
+                                                          <template if:true={timeStartFlag} >    
+                                                                  <div>   
+                                                                      <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Time Start At : &nbsp;</font></strong> 
+                                                                      <input type="number" value={Hour} placeholder="HH" min="00" max="23" style="width:50px" onchange={numberOfHoursHandler}>&nbsp;
+                                                                      <input type="number" value={Minut} placeholder="MM" min="00" max="59" style="width:50px" onchange={numberOfMinutesHandler}></p><br/>
+                                                                  </div>      
+                                                        </template>  
+                                          <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Cron Job : &nbsp;</font></strong> 
+                                          <input type="text" value={cron} style="width:250px" ></p><br/>
+                                  </div>
+                              
+                              <footer class="slds-modal__footer">
+                                     <p class="slds-var-p-left_x-small" style="text-align:center"><strong><font size="3">
+                                          <lightning-button  variant="brand" label="Schedule" onclick={scheduleHandler}></lightning-button>&nbsp;&nbsp;&nbsp;
+                                          <lightning-button variant="brand-outline" label="Close" onclick={schClosePopupHandler}></lightning-button> </font></strong> </p>
+                              </footer>
+                          </div>
+                      <br/>
+              </lightning-card>
+              </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+ </template>
+
+ <!-- Pagination -->
+
+ <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread" style="padding-top: 0.5em;">
+    <!--RECORDS PER PAGE-->
+    <div class="slds-col">
+        <div class="slds-list_inline slds-p-bottom_xx-small">
+            <label class="slds-text-color_weak slds-p-horizontal_x-small" for="recordsPerPage">Page Size:</label>
+            <div class="slds-select_container">
+                <select class="slds-select" id="recordsPerPage" onchange={handleRecordsPerPage}>
+                    <template for:each={pageSizeOptions} for:item="option">
+                        <option key={option} value={option}>{option}</option>
+                    </template>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!--PAGE NAVIGATION-->
+    <div class="slds-align_absolute-center" style="height:5rem">
+        <lightning-button disabled={bDisableFirst} icon-name="utility:jump_to_left" label="First" class="slds-p-horizontal_x-small" alternative-text="first page" onclick={firstPage}></lightning-button>
+        <lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label="Previous" alternative-text="Previous" onclick={previousPage}></lightning-button>
+        &nbsp;
+        <span class="slds-badge">Showing {pageNumber} &nbsp;of&nbsp; {totalPages} &nbsp;&nbsp;Page(s)</span>
+        &nbsp;
+        <lightning-button disabled={bDisableLast} icon-name="utility:chevronright" label="Next" alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right"></lightning-button>
+        <lightning-button disabled={bDisableLast} icon-name="utility:jump_to_right" label="Last" alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+    </div>
+    <!--TOTAL RECORDS-->
+    <div class="slds-clearfix">
+        <div class="slds-float_right">
+            <span class="slds-badge"> Total Records: {totalRecords}</span>
+        </div>
+    </div>
+</div>
+    </lightning-card>
+</template>

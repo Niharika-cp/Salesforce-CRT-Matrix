@@ -1,0 +1,21 @@
+<apex:page standardController="AuditLog__c" extensions="MemberExt" recordSetVar="Member" renderAs="PDF">
+    <apex:form >
+       
+        <apex:pageBlock title="Audit Log"><br/>
+                <apex:variable var="rowNo" value="{!0}"/>
+                
+                <apex:pageBlockTable value="{!auditList}" var="objAL" id="theTable1" rowClasses="odd,even" styleClass="tableClass" border="1px" width="100%">
+                    <apex:column headerValue="Sl.No">
+                        <apex:variable var="rowNo" value="{!rowNo+1}"/>
+                        {!rowNo}
+                    </apex:column>
+                    <apex:column value="{!objAL.Name}"/>
+                    <apex:column value="{!objAL.Action__c}"/>
+                    <apex:column value="{!objAL.Deletion_Type__c}"/>
+                    <apex:column value="{!objAL.CreatedDate}"/>
+                </apex:pageBlockTable> <br/><br/>
+                
+            </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

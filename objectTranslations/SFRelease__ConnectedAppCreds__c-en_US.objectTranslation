@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- CallbackUrl --></label>
+        <name>SFRelease__CallbackUrl__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>SFRelease__Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Secret --></label>
+        <name>SFRelease__Secret__c</name>
+    </fields>
+</CustomObjectTranslation>

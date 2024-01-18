@@ -1,0 +1,40 @@
+<template>
+  
+    <div class="slds-grid slds-grid_vertical">
+        <div class="slds-col">
+            <c-progress-bar steps={steps} type="indicator" current-step={current} ></c-progress-bar>
+            <lightning-progress-indicator type="path" current-step={selectedStep}>
+                <lightning-progress-step label="Cleanup Operation" onstepfocus={selectStep1} value="Cleanup Operation">
+                </lightning-progress-step>
+                <lightning-progress-step label="Entity Selection" onstepfocus={selectStep2} value="Entity Selection">
+                </lightning-progress-step>
+                <lightning-progress-step label="Data Selection" onstepfocus={selectStep3} value="Data Selection">
+                </lightning-progress-step>
+                <lightning-progress-step label="Review Selection" onstepfocus={selectStep4} value="Review Selection">
+                </lightning-progress-step>
+            </lightning-progress-indicator>
+        </div><br/>
+
+        <lightning-card>
+
+     
+
+
+
+        <div class="slds-m-vertical_medium">
+            <footer class="slds-modal__footer">
+                        <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+                    <lightning-button variant="brand-outline" label="Previous" icon-name="utility:jump_to_left" class="slds-m-left_x-small" onclick={handlePrev}></lightning-button>
+                    <template if:false={isSelectStep4}>
+                        <lightning-button variant="brand-outline" class="slds-m-left_x-small" label="Next" icon-position="right" icon-name="utility:jump_to_right" onclick={handleNext}></lightning-button>
+                    </template>
+                    <template if:true={isSelectStep4}>
+                        <lightning-button variant="brand" class="slds-m-left_x-small" label="Finish" onclick={handleFinish}></lightning-button>
+                    </template>
+                </font></strong></p></center>
+            </footer> <br/><br/>
+        </div>
+        </lightning-card>
+</div>
+
+</template>

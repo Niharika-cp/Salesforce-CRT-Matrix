@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Data Masking Object Config --></label>
+        <name>infy_dm__Data_Masking_Object_Config__c</name>
+        <relationshipLabel><!-- Failed Jobs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Failed Record Ids --></label>
+        <name>infy_dm__Failed_Record_Ids__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Name --></label>
+        <name>infy_dm__Object_Name__c</name>
+    </fields>
+</CustomObjectTranslation>

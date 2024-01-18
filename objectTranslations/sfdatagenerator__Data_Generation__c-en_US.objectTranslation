@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Batch IDs --></label>
+        <name>sfdatagenerator__Batch_IDs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Configuration --></label>
+        <name>sfdatagenerator__Configuration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Error Count --></label>
+        <name>sfdatagenerator__Error_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Objects --></label>
+        <name>sfdatagenerator__Objects__c</name>
+    </fields>
+    <fields>
+        <label><!-- Records --></label>
+        <name>sfdatagenerator__Records__c</name>
+    </fields>
+    <fields>
+        <label><!-- deleted --></label>
+        <name>sfdatagenerator__deleted__c</name>
+    </fields>
+</CustomObjectTranslation>

@@ -1,0 +1,154 @@
+<template>
+    
+  <lightning-card > 
+      <section aria-modal="true" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container ">
+
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={userStoryPopupHandler}>
+            <lightning-icon icon-name="utility:close"
+                alternative-text="close"
+                variant="inverse"
+                size="x-small"></lightning-icon>
+            <span class="slds-assistive-text">Close</span>    
+        </button>
+
+            <header class="slds-modal__header">
+              <h2 class="slds-text-heading_medium"><strong><p style="color:rgb(6, 4, 6)">Record Cleanup Window</p></strong> </h2><br/>
+              <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+              <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+              
+      
+    <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="3"></font>
+      <template if:true={show3MonthButton}>
+        <lightning-button variant="brand-outline" label="3 Months" onclick={threeMonthHandler} ></lightning-button>
+        </template> 
+
+        <template if:true={show3MonthBrandButton}>
+          <lightning-button variant="brand" label="3 Months" onclick={threeMonthBrandHandler} ></lightning-button>
+          </template> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <template if:true={show6MonthButton}>
+        <lightning-button variant="brand-outline" label="6 Months" onclick={sixMonthHandler} > </lightning-button> 
+      </template>
+
+      <template if:true={show6MonthBrandButton}>
+        <lightning-button variant="brand" label="6 Months" onclick={sixMonthBrandHandler} > </lightning-button> 
+      </template>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </font></strong> </p>
+      
+            </header>
+            <div class="slds-modal__content">
+                <div class="slds-p-around_small">
+                  <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2">
+                      Selected Object = {objectReceived} <br/><br/>
+                      Total Record = {totalRecords}  <br/><br/>
+                      Selected Records = {selectedRecordsCount} <br/><br/>
+                      
+                    </font></strong></p>
+
+                        <!--DATA TABLE START-->    
+
+                           <lightning-datatable
+                                  key-field="Id"
+                                  data={sObjectRecordList}
+                                  columns={columns}    
+                                  draft-values={draftValues} 
+                                  onrowselection={selectedRecordsHandler}                     
+                                  onsave={saveHandler}> 
+                          </lightning-datatable>
+
+                      <!--DATA TABLE END-->
+                   
+                </div>
+            </div>
+
+              <template if:true={showSpinnerFlag} >
+                  <div class="backgroundInverse" style="min-height:3rem;transform: translate(0, 0);">
+                      <lightning-spinner alternative-text="Loading" size="small" ></lightning-spinner>
+                  </div>
+              </template>
+
+              <footer class="slds-modal__footer">
+                   <center><p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                    <lightning-button variant="neutral" label="Close" onclick={userStoryPopupHandler} class="slds-p-around_x-medium"></lightning-button>&nbsp; &nbsp; &nbsp;
+                    <lightning-button variant="neutral" label="Proceed" onclick={selectedHandler} class="slds-p-around_x-medium"></lightning-button>&nbsp; &nbsp; &nbsp;
+                   <lightning-button variant="success" label="Scheduled Job" onclick={ScheduledJobHandler} class="slds-p-around_x-medium"> </lightning-button>
+                  </font></strong> </p></center>
+             </footer>
+              
+
+             <template if:true={selectedPopup}>
+                      <section aria-modal="true" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container ">
+
+                          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={ClosePopupHandler}>
+                                <lightning-icon icon-name="utility:close"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="x-small"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>    
+                            </button>
+
+                            <header class="slds-modal__header">
+                              <h2 class="slds-text-heading_medium"><strong><p style="color:rgb(6, 4, 6)">Selected Records</p></strong> </h2><br/>
+                             
+                            </header>
+                            <div class="slds-modal__content">
+                                <div class="slds-p-around_small">
+                                  <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2">
+                                      
+                                      Total Record = {totalselectedRecords}  <br/><br/>
+                                      
+                                    </font></strong></p>
+                
+                                        <!--DATA TABLE START   --> 
+                
+                                          
+
+
+                                          <div style="height: 500px;">
+                                            <lightning-datatable
+                                                    key-field="id"
+                                                    data={selectedRecords}
+                                                    show-row-number-column
+                                                    row-number-offset={rowOffset}
+                                                    hide-checkbox-column
+                                                    columns={columns}>
+                                            </lightning-datatable>
+                                        </div>
+                
+                                      <!--DATA TABLE END-->
+                                  
+                                </div>
+                            </div>
+                      
+                      
+                      <footer class="slds-modal__footer">
+                        
+                        <center><p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                          <lightning-button variant="neutral" label="Close" onclick={ClosePopupHandler} class="slds-p-around_x-medium"></lightning-button>&nbsp; &nbsp; &nbsp;
+                          <lightning-button icon-name="utility:delete" variant="destructive" label="Recycle Bin" onclick={deleteHandler}> </lightning-button> &nbsp; &nbsp; &nbsp;
+                          <lightning-button icon-name="utility:delete" variant="destructive" label="Permanent Delete" onclick={deleteAllHandler}> </lightning-button> 
+                        </font></strong> </p></center> 
+                      
+                      </footer>
+                    </div>
+                  </section>
+                  <div class="slds-backdrop slds-backdrop_open"></div>
+
+                </template>
+
+            <template if:true={showScheduledFlag}>
+              
+                <!--Calling Child Compo Starts-->
+                <c-scheduled-popup-compo object-name-received={objectReceived}  onschedulepopupevent={scheduleclosePopupHandler}> </c-scheduled-popup-compo>
+                <!--Calling Child Compo Ends-->
+          
+            </template>
+            
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </lightning-card>
+
+</template>

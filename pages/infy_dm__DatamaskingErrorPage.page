@@ -1,0 +1,129 @@
+<!-------------------------------------------------------------------------------------------
+-                                                                                            
+-         Name :  DataMaskingErrorPage
+-       Author :  Amarnathreddy Sureddy (Infosys Limited)                                              
+-  Description :  Developed for Infosys Data Masking AppExchange product                           
+-                 This Page is written to show error message if no job are created/job count is zero.
+-                                                                                             
+-         © 2018 Infosys Limited, Bangalore, India. All rights reserved.                      
+-         No part of this code should be used without prior written consent from the author
+-------------------------------------------------------------------------------------------->
+<apex:page Controller="infy_dm.DataMaskingJobsController" sidebar="false" showheader="false" tabStyle="infy_dm__Data_Masking_Object_Config__c"  >
+   <table>
+<tr>
+    <td><apex:image url="{!$Resource.infy_dm__DataMaskingLogo}" /></td>
+</tr>
+    <tr>
+    <td align="left"><h3>Hello {!userName}!</h3> </td>
+</tr>
+</table>
+    
+    <!--CSS Styling for Button-->
+    <style>
+        .buttong2y{
+        border-top: 1px solid #90ae6a;
+        background: #FFFFFF;
+        background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#FFFFFF));
+        background: -webkit-linear-gradient(top, #FFFFFF, #FFFFFF);
+        background: -moz-linear-gradient(top, #FFFFFF, #FFFFFF);
+        background: -ms-linear-gradient(top,#FFFFFF, #FFFFFF);
+        background: -o-linear-gradient(top, #FFFFFF, #FFFFFF);
+        padding: 5px 10px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        box-shadow: rgba(0,0,0,1) 0 1px 0;
+        text-shadow: rgba(0,0,0,.4) 0 1px 0;
+        color: #000000;
+        font-size: 14px;
+        font-family: Helvetica, Arial, Sans-Serif;
+        text-decoration: none;
+        vertical-align: middle;
+        }
+        .buttong2y:hover {
+        border-top-color: #BFDFFF;
+        background: #BFDFFF;
+        color: #000000;
+        }
+        .buttong2y:active {
+        border-top-color: #90EDF4;
+        background: #90EDF4;
+        }
+    </style>
+    <!--*************************************************-->
+    
+    <!--CSS Styling for Loading Image PopUp-->
+    <style>
+        .actionStatusPopup{
+        left: 50%;
+        padding:15px;
+        position: absolute;
+        z-index: 9999;
+        width: auto;
+        height:auto;
+        margin-left: auto;
+        top:180px;
+        }
+        .actionStatusPopupBackground{
+        background-color:black;
+        opacity: 0.80;
+        filter: alpha(opacity = 10);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left:0;
+        z-index: auto;
+        }
+    </style>
+    <!--*************************************************-->
+    
+    <!--  CSS Styling to change the background of Page -->
+    <style>
+        .bPageBlock {
+        background-color: #F1F8FF !important;
+        }
+    </style>
+    <!--  ******************************************** -->
+    
+    <!-- ******* CSS Styling for Changing background Color of header of pageBlockTables ********  -->
+    <style>
+        .headerRow .TableTitle{
+        background-color:#C2EBFF !important;
+        text-align:center;
+        }
+    </style>
+    
+    <script type="text/javascript">
+    function checkAll(cb,cbid)
+    {
+        var inputElem = document.getElementsByTagName("input");                    
+        for(var i=0; i<inputElem.length; i++)
+        {            
+            if(inputElem[i].id.indexOf(cbid)!=-1){                                       
+                inputElem[i].checked = cb.checked;
+            }
+        }
+    }
+    </script>
+    
+    <!-- **************************************************************************************** -->
+    
+    
+    <!--<apex:variable var="showExportButton" value="true" />-->
+    <apex:form id="JobForm">
+        
+        <apex:pageBlock title="No Jobs Found !! ">
+<center><b>Please create new Job using below "Create New Job" Button</b></center>
+            <br/>
+</apex:pageBlock>
+        
+        <center>
+           <apex:commandButton action="{!createNewJob}" value="Create New Job" styleClass="buttong2y" style="height:10%;text-align:center!important;"/>
+           <apex:commandButton id="HomeButton" action="{!HomeButtonWizardStepOne}" value="Home" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;"/>
+
+        </center>
+    </apex:form>
+</apex:page>

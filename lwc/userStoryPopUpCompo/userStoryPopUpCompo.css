@@ -1,0 +1,15 @@
+.slds-modal__container{
+	width: 80% !important;
+	max-width: 80% !important;
+
+  height: 100% !important;
+  max-height: 100% !important;
+}
+
+
+
+.backgroundInverse {
+  position: relative;
+  background-color: #cdddf4;
+  height: 80px;
+}

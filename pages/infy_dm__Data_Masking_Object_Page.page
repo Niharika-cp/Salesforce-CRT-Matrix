@@ -1,0 +1,196 @@
+<!-------------------------------------------------------------------------------------------
+-                                                                                            
+-         Name :  DataMaskingObjectPage
+-       Author :  Amarnathreddy Sureddy (Infosys Limited)                                              
+-  Description :  Developed for Infosys Data Masking AppExchange product                           
+-                 This Page is written to  perform create job functioanlity at Object level .
+-                                                                                             
+-         © 2018 Infosys Limited, Bangalore, India. All rights reserved.                      
+-         No part of this code should be used without prior written consent from the author
+-------------------------------------------------------------------------------------------->
+<apex:page Controller="infy_dm.DataMaskingObjectController" showheader="false" sidebar="false" tabStyle="infy_dm__Data_Masking_Object_Config__c" >
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+<table style="width:500px">
+    <tr>
+     <th align="center"><apex:image url="{!$Resource.infy_dm__DataMaskingLogo}"/></th>
+     <th><apex:sectionHeader id="DataMaskingHeader" title="Object Configuration" subtitle="Data Masking: Step 1 of 3 (Object Level Configuration)" /></th>
+    </tr>
+</table>
+
+    <!--CSS Styling for changing background color of page-->
+    <style>
+        .bPageBlock {
+              background-color: #F1F8FF !important;
+       }
+    </style>
+    <!--*************************************************-->
+
+<!--CSS Styling for Button-->
+   <style>
+        .buttong2y{
+               border-top: 1px solid #90ae6a;
+               background: #91af6a;
+               background: -webkit-gradient(linear, left top, left bottom, from(#91af6a), to(#91af6a));
+               background: -webkit-linear-gradient(top, #91af6a, #91af6a);
+               background: -moz-linear-gradient(top, #91af6a, #91af6a);
+               background: -ms-linear-gradient(top, #91af6a, #91af6a);
+               background: -o-linear-gradient(top, #91af6a, #91af6a);
+               padding: 5px 10px;
+               -webkit-border-radius: 8px;
+               -moz-border-radius: 8px;
+               border-radius: 8px;
+               -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+               -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+               box-shadow: rgba(0,0,0,1) 0 1px 0;
+               text-shadow: rgba(0,0,0,.4) 0 1px 0;
+               color: #000000;
+               font-size: 14px;
+               font-family: Helvetica, Arial, Sans-Serif;
+               text-decoration: none;
+               vertical-align: middle;
+               }
+        .buttong2y:hover {
+               border-top-color: #BFDFFF;
+               background: #BFDFFF;
+               color: #000000;
+               }
+        .buttong2y:active {
+               border-top-color: #91af6a;
+               background: #91af6a;
+               }
+    </style>
+    <!--*************************************************-->
+    
+        
+    
+    <!--CSS Styling for Loading Image PopUp-->
+    <style>
+        .actionStatusPopup{
+            left: 50%;
+            padding:15px;
+            position: absolute;
+            z-index: 9999;
+            width: auto;
+            height:auto;
+            margin-left: auto;
+            top:200px;
+        }
+        .actionStatusPopupBackground{
+            background-color:white;
+            opacity: 0.40;
+            filter: alpha(opacity = 10);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left:0;
+            z-index: auto;
+        }
+    </style>
+    <!--*************************************************-->
+    
+       
+   <apex:form id="ObjectPageForm">
+   
+   <apex:pageMessages />
+    <!--  ******************* Page Block for User to do Object Configuration ********************** -->
+    <apex:pageBlock title="Select an Object !" id="objectBlock" mode="edit">
+            <apex:pageBlockSection columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Object Name  " for="objectName" />
+                        <apex:outputPanel >
+                            <apex:selectList value="{!dmoc.Name}" size="1" multiselect="false" style="width:20%">
+                                <apex:selectOptions value="{!ObjectNames}"></apex:selectOptions>
+                                    <apex:actionSupport event="onchange" action="{!getJobObject}" reRender="objectBlock,jobnameid,recordTypeChkBox,recordTypeBlock" status="status"/>
+                            </apex:selectList>
+                            <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Select an Object whose Data Masking needs to be done."/>
+                        </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                 
+                
+                <apex:pageBlockSectionItem >
+                    Job Name
+                    <apex:outputPanel >
+                        <apex:inputText id="jobnameid" value="{!jobNameObject}" style="width:19.5%" onchange="passJobName(this.value)"/>
+                        <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Enter a Unique Job Name."/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>               
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Job Description" for="jobDescription"/>
+                        <apex:outputPanel >
+                            <apex:inputTextarea value="{!dmoc.infy_dm__Description__c}" rows="5" cols="45" style="width:20%"/>
+                            <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Enter Job Description."/>
+                        </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+               
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Deactivate Workflow Rule" for="BypassWorkflowRule"/>
+                        <apex:outputPanel >
+                            <apex:inputcheckbox id="BypassWorkflowRule" value="{!dmoc.infy_dm__Bypass_WorkflowRule__c}"  disabled="{!dmoc.Name=='-None-' || dmoc.Name==''}"  >
+                            </apex:inputcheckbox>
+                            <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Check to Deactivate Workflow Rules"/>
+                        </apex:outputPanel>
+                    
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+    </apex:pageBlock>
+    <!--***************************************************************************-->
+   
+   <!-- ******************************* Action Status *****************************-->
+            <apex:actionstatus id="status" layout="block">
+            <apex:facet name="start">
+            <apex:outputPanel styleClass="actionStatusPopupBackground" layout="block">
+            <apex:outputpanel styleClass="actionStatusPopup" layout="block">
+            <center>
+            <table>
+                <tr>
+                    <td><apex:image url="{!$Resource.infy_dm__LoadingImage}" style="width:70%;height:70%"/></td>
+                    <td><apex:outputlabel value="Please Wait..." style="color:black;font-style:italic"/></td>
+                </tr>
+            </table>
+            </center>
+            </apex:outputpanel>
+            </apex:outputPanel>
+            </apex:facet>
+            </apex:actionstatus>  
+    <!-- Action Status -->    
+    
+   <!-- ***** Action Function to pass JobName entered by the User to the Controller **** -->
+   <apex:actionFunction id="passJobName" name="passJobName">
+    <apex:param name="assignJobName" value="" assignto="{!jobNameObject}"/>
+    </apex:actionFunction>
+   <!--***************************************************************************--> 
+    
+    
+   <!-- *************** Output Panel for showing Record Types ******************** -->
+    <!--<apex:outputpanel id="recordTypeBlock">
+    <apex:pageBlock title="Select Record Type to exclude for Data Masking !" id="recordTypeBlock1" mode="edit" rendered="{!excludeRecordType}">
+        <apex:pageBlockSection columns="1">
+            <apex:pageBlockSectionItem >
+                <apex:selectCheckboxes value="{!recordTypesSelected}" layout="pagedirection">
+                    <!-- apex:selectCheckboxes value="{!dmoc.Exclude_Record_Type__c}" rendered="{!excludeRecordType}" layout="pagedirection"
+                    <apex:selectOptions value="{!RecordType}"/>
+                </apex:selectCheckboxes>
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>    
+    </apex:pageBlock>
+    </apex:outputpanel>-->
+    <!--***************************************************************************-->
+    
+    
+    <!-- *************** Button to Migrate to the Next Page ******************** -->
+    <center>
+      <apex:commandButton id="previousButtonObjectPage" action="{!previousButtonWizardStepOne}" value="Previous" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;"/>&nbsp;
+      <apex:commandButton id="nextButtonObjectPage" action="{!nextButtonWizardStepOne}" value="Next" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;"/>&nbsp;
+      <apex:commandButton id="cancelButton" action="{!Cancel}" value="Cancel" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;"/>
+          <apex:commandButton id="HomeButton" action="{!HomeButtonWizardStepOne}" value="Home" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;"/>
+
+       </center>
+    <!--***************************************************************************-->
+
+  </apex:form>
+</apex:page>

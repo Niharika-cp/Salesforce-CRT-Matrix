@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Data Type --></label>
+        <name>infy_dm__Data_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delimeter --></label>
+        <name>infy_dm__Delimeter__c</name>
+        <picklistValues>
+            <masterLabel>#</masterLabel>
+            <translation><!-- # --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>$</masterLabel>
+            <translation><!-- $ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>&amp;</masterLabel>
+            <translation><!-- &amp; --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>*</masterLabel>
+            <translation><!-- * --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>-</masterLabel>
+            <translation><!-- - --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>_</masterLabel>
+            <translation><!-- _ --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Email Domain.
+For eg: @company.com --></help>
+        <label><!-- Domain --></label>
+        <name>infy_dm__Domain__c</name>
+    </fields>
+    <fields>
+        <label><!-- Encryption Key --></label>
+        <name>infy_dm__Encryption_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>infy_dm__End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Masked Out Character Length --></label>
+        <name>infy_dm__Masked_Out_Character_Length__c</name>
+    </fields>
+    <fields>
+        <label><!-- Masked Out Character --></label>
+        <name>infy_dm__Masked_Out_Character__c</name>
+    </fields>
+    <fields>
+        <label><!-- Masking Mechanism --></label>
+        <name>infy_dm__Masking_Mechanism__c</name>
+        <picklistValues>
+            <masterLabel>Dictionary Substitution</masterLabel>
+            <translation><!-- Dictionary Substitution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Encryption</masterLabel>
+            <translation><!-- Encryption --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Masked Out</masterLabel>
+            <translation><!-- Masked Out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Random Substitution</masterLabel>
+            <translation><!-- Random Substitution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Randomization</masterLabel>
+            <translation><!-- Randomization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shuffling</masterLabel>
+            <translation><!-- Shuffling --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Masking Rule --></label>
+        <name>infy_dm__Masking_Rule__c</name>
+        <picklistValues>
+            <masterLabel>AES128 Encryption</masterLabel>
+            <translation><!-- AES128 Encryption --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AES192 Encryption</masterLabel>
+            <translation><!-- AES192 Encryption --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AES256 Encryption</masterLabel>
+            <translation><!-- AES256 Encryption --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alphabets</masterLabel>
+            <translation><!-- Alphabets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alphanumeric</masterLabel>
+            <translation><!-- Alphanumeric --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>City</masterLabel>
+            <translation><!-- City --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Female Name</masterLabel>
+            <translation><!-- Female Name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Male Name</masterLabel>
+            <translation><!-- Male Name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Numeric</masterLabel>
+            <translation><!-- Numeric --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone</masterLabel>
+            <translation><!-- Phone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Province</masterLabel>
+            <translation><!-- Province --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>State</masterLabel>
+            <translation><!-- State --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TestAT__Currency__c</masterLabel>
+            <translation><!-- TestAT__Currency__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TestAT__First_Name__c</masterLabel>
+            <translation><!-- TestAT__First_Name__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TestAT__Mobile__c</masterLabel>
+            <translation><!-- TestAT__Mobile__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TestAT__Number__c</masterLabel>
+            <translation><!-- TestAT__Number__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TestAT__Phone__c</masterLabel>
+            <translation><!-- TestAT__Phone__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TestAT__Test_Field__c</masterLabel>
+            <translation><!-- TestAT__Test_Field__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TestAT__Test_PS__c</masterLabel>
+            <translation><!-- TestAT__Test_PS__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>URL</masterLabel>
+            <translation><!-- URL --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Number --></label>
+        <name>infy_dm__Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Masking Object Config --></label>
+        <name>infy_dm__Object_Name__c</name>
+        <relationshipLabel><!-- Data Masking Field Config --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Post Delimeter --></label>
+        <name>infy_dm__Post_Delimeter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pre Delimeter --></label>
+        <name>infy_dm__Pre_Delimeter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rule --></label>
+        <name>infy_dm__Rule__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>infy_dm__Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TEXT --></label>
+        <name>infy_dm__TEXT__c</name>
+    </fields>
+    <fields>
+        <label><!-- longta --></label>
+        <name>infy_dm__longta__c</name>
+    </fields>
+    <fields>
+        <label><!-- richta --></label>
+        <name>infy_dm__richta__c</name>
+    </fields>
+    <fields>
+        <label><!-- ta --></label>
+        <name>infy_dm__ta__c</name>
+    </fields>
+</CustomObjectTranslation>

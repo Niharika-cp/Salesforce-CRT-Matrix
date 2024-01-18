@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Pass Record ID to Apex">
+        <div class="slds-p-around_medium">
+            <lightning-input label="Record ID" value={recordId} onchange={handleRecordIdChange}></lightning-input>
+            <lightning-button label="Process Record" variant="brand" onclick={processRecord}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

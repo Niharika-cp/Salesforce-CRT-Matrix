@@ -1,0 +1,408 @@
+<!-------------------------------------------------------------------------------------------
+-                                                                                            
+-         Name :  DataMaksingFieldEditPage
+-       Author :  Amarnathreddy Sureddy (Infosys Limited)                                              
+-  Description :  Developed for Infosys Data Masking AppExchange product                           
+-                 This Page is written to execute edit/reconfigure at field level for a particular saved jobs.
+-                                                                                             
+-         © 2018 Infosys Limited, Bangalore, India. All rights reserved.                      
+-         No part of this code should be used without prior written consent from the author
+-------------------------------------------------------------------------------------------->
+
+<apex:page Controller="infy_dm.DataMaskingObjectEditController" showheader="false" sidebar="false" tabStyle="infy_dm__Data_Masking_Object_Config__c">
+<table style="width:500px">
+    <tr>
+     <th align="center"><apex:image url="{!$Resource.infy_dm__DataMaskingLogo}" /></th>
+     <th><apex:sectionHeader id="configFieldDetails" title="Field Configuration" subtitle="Data Masking:Field Configuration Edit Page"/></th>
+    </tr>
+</table>
+<apex:pageMessages id="pageMsg"/>
+<Style>
+.requiredBlock{
+	bottom: 1px !important;
+	color: red !important;
+	font-size: 25px !important;
+	left: -10px !important;
+	position: absolute !important;
+}
+</Style>
+<!-- ********* Code Block for Floating Headers using jQuery ********** -->
+    
+    <apex:includeScript value="{!$Resource.infy_dm__jquery}"/>
+     <script src="{!URLFOR($Resource.jquery_vfFloatingHeaders)}"></script>
+        <style>
+            .tableContainer
+            {
+                height:290px;
+                width: 100%;
+                overflow: auto;
+            }
+                      
+            .floatingStyle 
+            { 
+                position:relative;
+                
+            }
+        </style>
+    
+        <script>
+        $(document).ready(function() {
+            $('.floatingHeaderTable').vfFloatingHeaders();
+        });
+        </script> 
+    <!-- *************************************************************** -->    
+    
+    
+    <!-- ************************* Custom Pop-up **************************-->
+    <style type="text/css">
+       .customPopup{
+            background-color: white;
+            border-style: solid;
+            border-width: 2px;
+            left: 50%;
+            padding:20px;
+            position: absolute;
+            z-index: auto;
+            width: auto;
+            height:auto;
+            margin-left: -200px;
+            top:220px;
+        }
+         .popupBackground{
+            background-color:black;
+            opacity: 0.80;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: auto;
+        }
+    </style>
+    <!-- ****************************************************************** -->
+    
+
+    <!-- ******* CSS Styling for Configuration Box ********** -->
+    <style>
+        .configurationBoxMaskedOut{
+            width: 15%
+        }
+        .configurationBoxEmail{
+            width: 80%
+        }
+    </style>
+    <!-- **************************************************** -->
+    
+    <!-- ******* CSS Styling for Changing background Color of header of pageBlockTables ********  -->
+    <style>
+        .headerRow .TableTitle{
+            background-color:#C2EBFF !important;
+            text-align:center;
+        }
+    </style>
+    <!-- **************************************************************************************** -->
+    
+    <!-- **** CSS Styling for Loading Image on Action Support Functions **** -->
+    <style>
+        .actionStatusPopup{
+            left: 50%;
+            padding:15px;
+            position: absolute;
+            z-index: 9999;
+            width: auto;
+            height:auto;
+            margin-left: auto;
+            top:200px;
+        }
+        .actionStatusPopupBackground{
+            background-color:white;
+            opacity: 0.40;
+            filter: alpha(opacity = 10);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left:0;
+            z-index: auto;
+        }
+    </style>
+    <!-- *************************************************************** -->
+    
+    
+    <!-- ****************** CSS Styling for Button **********************-->
+   <style>
+        .buttong2y{
+               border-top: 1px solid #90ae6a;
+               background: #91af6a;
+               background: -webkit-gradient(linear, left top, left bottom, from(#91af6a), to(#91af6a));
+               background: -webkit-linear-gradient(top, #91af6a, #91af6a);
+               background: -moz-linear-gradient(top, #91af6a, #91af6a);
+               background: -ms-linear-gradient(top, #91af6a, #91af6a);
+               background: -o-linear-gradient(top, #91af6a, #91af6a);
+               padding: 5px 10px;
+               -webkit-border-radius: 8px;
+               -moz-border-radius: 8px;
+               border-radius: 8px;
+               -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+               -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+               box-shadow: rgba(0,0,0,1) 0 1px 0;
+               text-shadow: rgba(0,0,0,.4) 0 1px 0;
+               color: #000000;
+               font-size: 14px;
+               font-family: Helvetica, Arial, Sans-Serif;
+               text-decoration: none;
+               vertical-align: middle;
+               }
+        .buttong2y:hover {
+               border-top-color: #BFDFFF;
+               background: #BFDFFF;
+               color: #000000;
+               }
+        .buttong2y:active {
+               border-top-color: #91af6a;
+               background: #91af6a;
+               }
+    </style>
+    <!--*************************************************-->
+    
+    
+    <!--  CSS Styling to change the background of Page -->
+    <style>
+        .bPageBlock {
+              background-color: #F1F8FF !important;
+       }
+    </style>
+    <!--  ******************************************** -->
+    
+<apex:form >
+
+  <apex:pageBlock title="Job Details:">
+         <apex:pageBlockSection columns="2" >
+            <apex:pageBlockTable value="{!dmoc}" var="dm" columns="3" align="center" border="1">
+                <apex:column id="JobName" value="{!dm.infy_dm__Job_Name__c}" style="text-align:center" headerClass="TableTitle"/>
+                <apex:column id="ObjectName" value="{!dm.Name}" style="text-align:center" headerClass="TableTitle"/> 
+                <apex:column id="Description" value="{!dm.infy_dm__Description__c}" style="text-align:center" headerClass="TableTitle"/>
+           </apex:pageBlockTable>
+         </apex:pageBlockSection>
+  </apex:pageBlock>  
+   
+
+  <apex:pageBlock title="Field Configurations:" id="fieldsPageBlock">
+    <apex:pageBlockSection columns="1">
+     <apex:outputPanel styleClass="tableContainer" layout="block">
+         <apex:pageBlockTable align="center" value="{!maskingWrapperList}" var="FieldConfigRow" id="fieldsTable" styleclass="floatingHeaderTable"> 
+                <apex:column headerValue="Field Name" width="15%" style="font-weight:bold;font-size:8.5pt" headerClass="TableTitle">
+                    <apex:outputText id="FldName" value="{!FieldConfigRow.fldConfig.Name}"></apex:outputText>
+                </apex:column>
+                
+                <apex:column headerValue="Data Type" width="15%" style="text-align:center" headerClass="TableTitle">
+                   
+                    <apex:outputText id="dataType" value="{!FieldConfigRow.dataType}"></apex:outputText>
+                </apex:column>
+                
+                <apex:column headerValue="Masking Mechanism" width="15%" style="font-weight:bold;font-size:8.5pt" headerClass="TableTitle">
+                    <apex:selectList id="MaskMechanism" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c}" size="1" multiselect="false" title="Select Masking Mechansim" >
+                            <apex:selectOptions value="{!FieldConfigRow.maskMechanismOptions}"></apex:selectOptions>
+                             <apex:actionsupport event="onchange" action="{!configvalidation2}" reRender="MaskingRule,popupButton,pageMsg" status="status"/>     
+                    </apex:selectList>
+                </apex:column>
+                
+                <!--Masking Rules-->
+                   <apex:column headerValue="Masking Rule" width="15%" style="text-align:center" headerClass="TableTitle">
+                   <apex:outputPanel id="MaskingRule">
+                    <apex:selectList id="SubstitutionRule" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Substitution' && $ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='string')}" >
+                      	<apex:selectOptions value="{!SubstitutionPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='string')}"></apex:selectOptions>
+                         <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                     <apex:selectList id="SubstitutionRule2" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Substitution'&&$ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='textarea')}" >
+         			 	<apex:selectOptions value="{!stringSubstitutionPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='textarea')}"></apex:selectOptions>
+                         <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                        <apex:selectList id="SubstitutionRule3" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Substitution'&&$ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='phone')}" >
+         			 	<apex:selectOptions value="{!PhoneSubstitutionPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='phone')}"></apex:selectOptions>
+                         <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                        <apex:selectList id="SubstitutionRule6" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Substitution'&&$ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='url')}" >
+         			 	<apex:selectOptions value="{!URLSubstitutionPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='url')}"></apex:selectOptions>
+                         <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                         <apex:selectList id="SubstitutionRule4" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Substitution'&&$ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='double')}" >
+         			 	<apex:selectOptions value="{!DoubleSubstitutionPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='double')}"></apex:selectOptions>
+                          <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                       <apex:selectList id="SubstitutionRule8" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Substitution'&&$ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='percent')}" >
+         			 	<apex:selectOptions value="{!percentSubstitutionPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='percent')}"></apex:selectOptions>
+                         <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                       <apex:selectList id="SubstitutionRule9" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Substitution'&&$ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='int')}" >
+         			 	<apex:selectOptions value="{!integerSubstitutionPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='int')}"></apex:selectOptions>
+                       <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                        <apex:selectList id="SubstitutionRule5" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Substitution'&&$ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='currency')}" >
+         			 	<apex:selectOptions value="{!CURRENCYSubstitutionPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='currency')}"></apex:selectOptions>
+                         <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                    <apex:selectList id="SubstitutionRule7" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Substitution'&&$ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='email')}" >
+         			 	<apex:selectOptions value="{!EmailSubstitutionPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='email')}"></apex:selectOptions>
+                         <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                        <apex:selectList id="RandomRule" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Randomization' && $ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='string')}"> 
+                        <apex:selectOptions value="{!stringRandomizationPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='string')}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                   <apex:selectList id="RandomRule1" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Randomization' && $ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='phone')}"> 
+                        <apex:selectOptions value="{!phoneRandomizationPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='phone')}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                       <apex:selectList id="RandomRule2" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Randomization'&& $ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='textarea')}"> 
+                        <apex:selectOptions value="{!textRandomizationPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='textarea')}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                   <apex:selectList id="RandomRule3" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Randomization'&& $ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='double')}"> 
+                        <apex:selectOptions value="{!doubleRandomizationNumPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='double')}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                       <apex:selectList id="RandomRule5" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Randomization'&& $ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='int')}"> 
+                        <apex:selectOptions value="{!IntegerRandomizationNumPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='int')}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                       <apex:selectList id="RandomRule4" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Randomization'&& $ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='currency')}"> 
+                        <apex:selectOptions value="{!currencyRandomizationNumPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='currency')}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                       <apex:selectList id="RandomRule6" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!(FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Randomization'&& $ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='percent')}"> 
+                        <apex:selectOptions value="{!percentRandomizationNumPicklist}" rendered="{!($ObjectType[ObjectName].Fields[FieldConfigRow.fldConfig.Name].Type=='percent')}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton,fieldsPageBlock" status="status"/>
+                    </apex:selectList>
+                    <apex:selectList id="EncryptionRule" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Encryption'}">
+                        <apex:selectOptions value="{!encryptionPicklist}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton" status="status"/>
+                    </apex:selectList>
+                    
+                    <apex:selectList id="EmailRule" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Email'}">
+                        <apex:selectOptions value="{!emailPicklist}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange"  reRender="popupButton" status="status"/>
+                    </apex:selectList>
+                     <apex:selectList id="RandomDateRule" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Random Date'}">
+                        <apex:selectOptions value="{!randomDatePicklist}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton" status="status"/>
+                    </apex:selectList>
+                    <apex:selectList id="MaskOutRule" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Masked Out'}">
+                        <apex:selectOptions value="{!MaskedOutPicklist}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton" status="status"/>
+                    </apex:selectList>
+                    
+                    <apex:selectList id="ShufflingRule" style="width:150px" value="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c}" size="1" multiselect="false" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Shuffling'}">
+                        <apex:selectOptions value="{!ShufflingPicklist}"></apex:selectOptions>
+                        <apex:actionsupport event="onchange" reRender="popupButton" status="status"/>
+                    </apex:selectList>
+                    </apex:outputPanel>
+                </apex:column>
+                  <!-- Masking Rules -->
+                  
+                  <!-- Pop Up Configuration Button -->
+                <apex:column headerClass="TableTitle">
+                  <apex:actionRegion >
+                    <apex:outputPanel id="popupButton">
+                    <apex:commandButton value="Configuration" action="{!showPopup}" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Masked Out' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Email'|| FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Random Date'}" rerender="popup" status="status" styleClass="buttong2y" style="height:10%;width:16%;text-align:center!important;"/>
+                    </apex:outputPanel>
+                  </apex:actionRegion>
+                </apex:column>
+                
+                <!-- Pop Up Configuration Window -->
+                <apex:column headerClass="TableTitle">
+                <apex:actionRegion >
+                <apex:outputPanel id="popup">
+                
+                 <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}">
+                    <apex:outputPanel styleClass="customPopup" layout="block" rendered="{!displayPopUp && FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Masked Out' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Masked Out'}">
+                    <div class="heading"><strong>Please do the Masked-Out Configuration:</strong></div> 
+                         
+                        <table bgcolor="white"><tr bgcolor="white">
+                        <td bgcolor="white"><apex:outputlabel value="Masked Out Char" for="maskedOutChar" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Masked Out' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Masked Out'}" style="font-weight:bold;font-size:8.5pt"/></td>
+                        <td bgcolor="white">
+                            <div class="requiredInput">
+                			<div class="requiredBlock"></div>
+                            <apex:inputfield id="maskedOutChar" styleClass="configurationBoxMaskedOut" value="{!FieldConfigRow.fldConfig.infy_dm__Masked_Out_Character__c}" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Masked Out' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Masked Out'}" required="false"/>
+                            </div>
+                                <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Enter Char with which Value will be masked"/></td>
+                        </tr>
+                        <tr bgcolor="white">
+                        <td bgcolor="white"><apex:outputlabel value="Masked Out Char Length" for="maskedOutCharLen" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Masked Out' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Masked Out'}" style="font-weight:bold;font-size:8.5pt"/></td>
+                        <td bgcolor="white">
+                            <div class="requiredInput">
+                			<div class="requiredBlock"></div>
+                            <apex:inputfield id="maskedOutCharLen" styleClass="configurationBoxMaskedOut" value="{!FieldConfigRow.fldConfig.infy_dm__Masked_Out_Character_Length__c}" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Masked Out' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Masked Out'}" required="false"/>
+                            </div>
+                                <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Enter Length upto which the Value will be masked"/></td>
+                        </tr></table>
+                        <center><apex:commandButton value="Done" action="{!closePopup}" rerender="popup,pageMsg" styleClass="buttong2y" style="height:10%;width:12%;text-align:center!important;"/></center>
+                    </apex:outputPanel>
+                     <apex:outputPanel styleClass="customPopup" layout="block" rendered="{!displayPopUp && FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Random Date' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Random Date'}">
+                    <center><div class="heading" style="align:center"><strong>Please do the Random Date Configuration:</strong></div></center> 
+                        <table bgcolor="white"><tr bgcolor="white">
+                        <td bgcolor="white"><apex:outputlabel value="Start Date" for="RandomStartDate" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Random Date' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Random Date'}" style="font-weight:bold;font-size:8.5pt"/></td>
+                        <td bgcolor="white">
+                             <div class="requiredInput">
+                			<div class="requiredBlock"></div>
+                            <apex:inputfield id="RandomStartDate"  styleClass="configurationBoxMaskedOut" value="{!FieldConfigRow.fldConfig.infy_dm__Start_Date__c}" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Random Date' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Random Date'}" required="false"/>
+                            </div>
+                        <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Enter start date from where Value will be masked"/></td>
+                        </tr>
+                        <tr bgcolor="white">
+                        <td bgcolor="white"><apex:outputlabel value="End Date" for="RandomEndDate" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Random Date' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Random Date'}" style="font-weight:bold;font-size:8.5pt"/></td>
+                        <td bgcolor="white">
+                            <div class="requiredInput">
+                			<div class="requiredBlock"></div>
+                            <apex:inputfield id="RandomEndDate" styleClass="configurationBoxMaskedOut" value="{!FieldConfigRow.fldConfig.infy_dm__End_Date__c}" rendered="{!FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Random Date' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Random Date'}" required="false"/>
+                            </div>
+                                <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Enter end date upto which the Value will be masked"/></td>
+                        </tr></table>
+                        <center><apex:commandButton value="Done" action="{!closePopup}" rerender="popup,pageMsg" styleClass="buttong2y" style="height:10%;width:14%;text-align:center!important;"/></center>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel styleClass="customPopup" layout="block" rendered="{!displayPopUp && FieldConfigRow.fldConfig.infy_dm__Masking_Rule__c=='Email' || FieldConfigRow.fldConfig.infy_dm__Masking_Mechanism__c=='Email'}">    
+                                    
+
+                        
+                    <center><apex:commandButton value="Done" action="{!closePopup}" rerender="popup,pageMsg" styleClass="buttong2y" style="height:10%;width:12%;text-align:center!important;"/></center>
+                    </apex:outputPanel>
+                 </apex:outputPanel>    
+                </apex:outputPanel>
+                </apex:actionRegion>
+                </apex:column>
+                
+         </apex:pageBlockTable>
+      </apex:outputPanel>
+     </apex:pageBlockSection>
+  </apex:pageBlock>
+  
+  <!-- Action Status -->
+        <apex:actionstatus id="status" layout="block">
+            <apex:facet name="start">
+                <apex:outputPanel styleClass="actionStatusPopupBackground" layout="block">
+                <apex:outputpanel styleClass="actionStatusPopup" layout="block">
+                    <center>
+                        <table>
+                            <tr>
+                                <td><apex:image url="{!$Resource.infy_dm__LoadingImage}" style="width:70%;height:70%"/></td>
+                                <td><apex:outputlabel value="Please Wait..." style="color:black;font-style:italic"/></td>
+                            </tr>
+                        </table>
+                    </center>
+                </apex:outputpanel>
+                </apex:outputPanel>
+            </apex:facet>
+        </apex:actionstatus>  
+    <!-- Action Status -->  
+  
+  <center>
+        <apex:commandButton id="previousButtonFieldEditPage" action="{!previousButtonFieldEditPage}" value="Previous" styleClass="buttong2y" style="height:10%;width:4%;text-align:center!important;"/>&nbsp;
+        <apex:commandButton id="nextButtonFieldEditPage"  action="{!nextButtonFieldEditPage}" value="Next"  styleClass="buttong2y" style="height:10%;width:4%;text-align:center!important;"/>&nbsp;
+        <apex:commandButton id="cancelButton" action="{!cancel}" value="Cancel"  styleClass="buttong2y" style="height:10%;width:4%;text-align:center!important;"/>
+        <apex:commandButton id="HomeButton" action="{!HomeButtonWizardStepOne}" value="Home" styleClass="buttong2y" style="height:10%;width:4%;text-align:center!important;"/>
+
+    </center>
+</apex:form>
+</apex:page>

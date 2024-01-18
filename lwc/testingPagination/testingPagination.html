@@ -1,0 +1,65 @@
+<template>
+    <lightning-card title="Selected Rows Persistent Pagination LWC Datatable" icon-name="standard:contact">
+        <!-- Datatable with Pagination End -->
+        <div class="slds-m-around_medium">
+            total Count = {totalRecountCount}
+            selected rows count={selectedRecountCount}
+           
+           <lightning-button variant="brand-outline" class="slds-m-left_x-small" label="Next" icon-position="right" icon-name="utility:jump_to_right" onclick={handleNextScreen3}></lightning-button>
+            <lightning-datatable data-id="datatable" 
+                                 key-field="Id" 
+                                 data={recordsToDisplay1Data} 
+                                 columns={columnsRecordCleanup1}    
+                                 selected-rows={selectedRowsArch} 
+                                 onrowselection={handleRowSelection}>
+            </lightning-datatable>
+        </div>
+
+        <!--  Pagination Buttons Start -->
+        <div class="slds-align_absolute-center">
+
+            <label class="slds-text-color_weak slds-p-horizontal_x-small" for="recordsPerPage">Page Size:</label>
+                                    <div class="slds-select_container">
+                                        <select class="slds-select" id="recordsPerPage1" onchange={handleRecordsPerPage1}>
+                                            <template for:each={pageSizeOptions1} for:item="option1">
+                                                <option key={option1} value={option1}>{option1}</option>
+                                            </template>
+                                        </select>
+                                    </div>
+
+
+            <lightning-button label="First" icon-name="utility:chevronleft" icon-position="left" onclick={firstHandler}
+                disabled={isNextDisable}>
+            </lightning-button> &nbsp;
+
+            <lightning-button label="Previous" icon-name="utility:chevronleft" icon-position="left" onclick={previousHandler}
+                disabled={isPreviousDisable}>
+            </lightning-button>
+            &nbsp;
+            <span class="slds-badge slds-badge_lightest"
+                        style="margin-right: 10px;margin-left: 10px;">
+                     <!-- Displaying {startingRecord} to {endingRecord} of {totalRecountCount} records.
+                     Page {page} of {totalPage}.-->
+                     Showing {page} &nbsp;of&nbsp; {totalPage} &nbsp;&nbsp;Page(s)
+            </span>
+            &nbsp;
+            <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" onclick={nextHandler}
+                disabled={isNextDisable}>
+            </lightning-button>
+            &nbsp;
+            <lightning-button label="Last" icon-name="utility:chevronright" icon-position="right" onclick={lastHandler}
+                disabled={isNextDisable}>
+            </lightning-button>
+
+             <!--TOTAL RECORDS-->
+             <div class="slds-clearfix">
+                <div class="slds-float_right">
+                    <span class="slds-badge"> Total Records: {totalRecountCount}</span>
+                </div>
+            </div>
+        </div><br/>
+        </div>
+        <!--  Pagination Buttons End -->
+        <!-- Datatable with Pagination End -->
+    </lightning-card>
+</template>

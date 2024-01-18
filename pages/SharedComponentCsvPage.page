@@ -1,0 +1,90 @@
+<!-- Author - Sai Teja
+ ** Description : The Visualforce page named "SharedComponentCsvPage" is designed to render a visually organized and the generated CSV attached report of shared components within a Salesforce environment. 
+It utilizes the SharedComponentMatrixClass controller for data retrieval and formatting. 
+This VisualForce Page is likely utilized in a Salesforce Lightning component (SharedComponentMatrix). 
+-->
+<apex:page controller="SharedComponentMatrixClass" readOnly="true" contentType="application/vnd.ms-excel#SharedComponent.xls">
+      <head>
+        
+        <style>
+            body, table {
+                font-family: serif;
+                font-size: 7.5pt; 
+            }
+            th, td {
+                padding: 4px;
+                text-align: left;
+                vertical-align: top;
+                border: 1px solid #ddd; 
+            }
+            th {
+                background-color: #f2f2f2;
+                
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: fixed;
+            	border: none;
+                
+            }
+            .nested-table {
+                width: 100%;
+                border-collapse: collapse;
+                
+            }
+            .nested-table td {
+                padding: 2px;
+                
+            }
+            .component-name-cell {
+                word-break: break-all; 
+            }
+        </style>
+        <h2>Shared Components Report </h2>
+        <!--<apex:pageBlock title="Shared Components Report">
+             </apex:pageBlock>-->
+    </head>
+    
+    <body>
+        
+        <apex:form >
+            
+                <table>
+                    <tr>
+                        <th style="width: 37%;">Component Name</th>
+                        <th style="width: 18%;">Type</th>
+                        <th style="width: 45%;">User Story Details</th>
+                    </tr>
+                    <apex:repeat value="{!complist}" var="usm">
+                        <tr>
+                            <td class="component-name-cell">{!usm.component}</td>
+                            <td>{!usm.typer}</td>
+                            <td>
+                                <table class="nested-table">
+                                    <tr>
+                                        <th>UserStory</th>
+                                        <th>Environment</th>
+                                        <th>Owner</th>
+                                        <th>Last Commit Date</th>
+                                    </tr>
+                                    <apex:repeat value="{!usm.usList}" var="usl">
+                                        <tr>
+                                           <td style="word-wrap: break-word;"><apex:outputLink value="/{!usl.userStory.Id}">{!usl.userStory.name}</apex:outputLink></td>
+                                        <td style="word-wrap: break-word;">{!usl.userStory.copado__Environment__r.Name}</td>
+                                        <td style="word-wrap: break-word;">{!usl.userStory.CreatedBy.Name}</td>
+                                         <td>   <apex:outputText value="{0,date,MMMM d, yyyy}">
+                                                 <apex:param value="{!usl.lastCommitDate}" />
+                                            </apex:outputText></td>
+                                        </tr>
+                                    </apex:repeat>
+                                </table>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+           
+        </apex:form>
+            
+    </body>
+</apex:page>

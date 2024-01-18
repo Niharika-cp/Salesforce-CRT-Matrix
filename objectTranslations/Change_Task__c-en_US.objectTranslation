@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Change Task</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Change Tasks</value>
+    </caseValues>
+    <fields>
+        <label><!-- Change Request --></label>
+        <name>Change_Request__c</name>
+        <relationshipLabel><!-- Change Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Change Task Number --></label>
+        <name>Change_Task_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Short description --></label>
+        <name>Short_description__c</name>
+    </fields>
+    <fields>
+        <label><!-- System ID --></label>
+        <name>System_ID__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

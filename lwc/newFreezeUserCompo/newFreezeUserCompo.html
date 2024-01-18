@@ -1,0 +1,163 @@
+<template>
+    <lightning-card>
+        <div class="slds-align_absolute-center">
+            <header class="slds-truncate utils">
+                <h1 class="slds-section__title utilTitle1" ><p style="color:rgb(87, 45, 158)"><strong><font size="5"><lightning-icon icon-name="standard:user" size="small"></lightning-icon> &nbsp; Freeze Users </font></strong></p> </h1>
+            </header>
+    </div><br/>
+    <div class="slds-box" style="height: auto;">
+
+
+        <lightning-layout vertical-align="top">
+            <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                <div class="custom-box">
+                        <h1 class="slds-section__title utilTitle" >
+                            <div class="slds-truncate utils" title="Select Sandboxes" ><strong><font > All Profiles &nbsp;</font></strong></div>
+                        </h1><br/>
+               
+                     
+                  <!--DATA TABLE START -->
+                       
+                  <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                            <lightning-datatable
+                                        key-field="Id"
+
+                                        data={profileList}
+
+                                        columns={columns1}    
+
+                                        draft-values={draftValues}
+
+                                        show-row-number-column="true"
+
+                                        onrowselection={selectedRecordsHandler}
+
+                                        onsave={saveHandler}
+
+                                        style="color:rgb(10, 10, 11);width:200px;"
+
+                                        disabled={disableprofileDataTableFlag}>
+
+                                </lightning-datatable>
+                            </font></strong></p>
+                            </div>
+
+                    </lightning-layout-item>
+            
+
+            <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                <div class="custom-box">
+                    <h1 class="slds-section__title utilTitle" >
+                        <div class="slds-truncate utils" title="Select Sandboxes" ><strong><font size="2"></font> All Users &nbsp;</font></strong></div>
+                     </h1><br/>
+              
+                     <lightning-input 
+                            type="search" 
+                            onchange={handleKeyChange} 
+                            class="slds-m-bottom_small"           
+                            label="Search" 
+                            value={searchKey}
+                            variant="label-hidden"
+                            placeholder="Search Here....."
+                            >
+                    </lightning-input>
+            
+                <!--DATA TABLE START -->
+                
+                        <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">   
+
+                                <lightning-datatable
+                                        key-field="Id"
+
+                                        data={data}
+
+                                        columns={columns2}    
+
+                                        draft-values={draftValues}
+
+                                        show-row-number-column="true"
+                                     
+                                        onrowselection={selectedRecordsHandler2}
+
+                                        onsave={saveHandler}
+                                        
+                                        style="color:rgb(10, 10, 11);width:200px;"
+
+                                        >
+
+                                </lightning-datatable>
+                    </font></strong></p>
+                </div>  <br/>
+            </lightning-layout-item>
+        </lightning-layout><br/><br/>
+
+        <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+            <lightning-button style="width:1000px" variant="brand-outline" label="Validate" onclick={validateHandler}></lightning-button>
+         </font></strong></p></center>
+
+
+         <template if:true={showActiveUserCountPopup} >
+            <section aria-modal="true" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container ">
+
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={ClosePopupHandler}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="x-small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>    
+                    </button>
+
+                    <header class="slds-modal__header">
+                      <h2 class="slds-text-heading_medium"><strong><p style="color:rgb(6, 4, 6)">Active User</p></strong> </h2><br/>
+                     
+                    </header>
+                    <div class="slds-modal__content">
+                        <div class="slds-p-around_small">
+                          
+        
+                                <!--DATA TABLE START   --> 
+
+                                  <div style="height: 500px;">
+                                    <lightning-datatable
+                                            key-field="id"
+                                            data={userList}
+                                            show-row-number-column
+                                            row-number-offset={rowOffset}
+                                            hide-checkbox-column
+                                            columns={UserProfileTable}>
+                                    </lightning-datatable>
+                                </div>
+        
+                              <!--DATA TABLE END-->
+                          
+                        </div>
+                    </div>
+              
+              
+              <footer class="slds-modal__footer">
+                
+                        <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+                        
+                                    <lightning-button style="width:1000px" variant="brand-outline" label="Freeze" onclick={freezeHandler}></lightning-button>
+                                    &nbsp;&nbsp;&nbsp;
+                        
+
+                           
+                                    <lightning-button style="width:1000px" variant="brand-outline" label="Unfreeze" onclick={unfreezeHandler}></lightning-button>
+                                        &nbsp;&nbsp;&nbsp;
+                           
+
+                            <lightning-button style="width:1000px" variant="brand-outline" label="Close" onclick={ClosePopupHandler}></lightning-button>
+                            &nbsp;&nbsp;&nbsp;
+                        </font></strong></p></center>
+              
+              </footer>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+               
+    </template>
+    </div>
+    </lightning-card>
+</template>

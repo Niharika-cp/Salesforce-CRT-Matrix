@@ -1,0 +1,765 @@
+<template>
+
+  <lightning-card>
+  <div class="slds-grid slds-grid_vertical">
+    <div class="slds-col">
+        <lightning-progress-indicator type="path" current-step={selectedStep}>
+            <lightning-progress-step label="Cleanup Operation" onstepfocus={selectStep1}  value="Cleanup Operation">
+            </lightning-progress-step>
+            <lightning-progress-step label="Entity Selection" onstepfocus={selectStep2} value="Entity Selection">
+            </lightning-progress-step>
+            <template if:true={showRunPathFlag}> 
+                      <lightning-progress-step label="Data Selection" onstepfocus={selectStep3} value="Data Selection">
+                      </lightning-progress-step>
+                      <lightning-progress-step label="Review Selection" onstepfocus={selectStep4} value="Review Selection">
+                      </lightning-progress-step>
+          </template>
+
+          <template if:true={showScheduledPathFlag}> 
+            <lightning-progress-step label="Scheduled" onstepfocus={selectStep5} value="Scheduled">
+            </lightning-progress-step>
+          </template>
+
+           
+        </lightning-progress-indicator>
+    </div><br/>
+
+  
+</div><br/>
+
+
+  
+    
+      <!--For Copado Records and GIT Branches Radio Button-->
+      <template if:true={firstRadioFlag}>
+        <div >
+      <div class="slds-col">
+        <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="+3">
+            <lightning-radio-group  name="radioGroup"
+                                    label=" "
+                                    options={options1} 
+                                    value={value} 
+                                    onchange={handleChange1} 
+                                    type="radio"
+                                    variant="label-hidden"
+                                    style="columns: 3;">
+            </lightning-radio-group>
+      </font></strong> </p> <br/><br/><br/>
+    </div>
+      
+        <footer class="slds-modal__footer">
+                    <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+                        <lightning-button class="slds-m-left_x-small" label="Next" icon-position="right" icon-name="utility:jump_to_right" onclick={handleNext}></lightning-button>
+                    </font></strong></p></center>
+        </footer> 
+      
+    
+</div>
+</template>
+
+<!--For Select Objects Radio Button-->
+<template if:true={selectObjectFlag}>
+        <label class="slds-form-element__label">
+            <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="3">Select Object  </font></strong></p>
+          </label> <br/>
+
+          <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="+3">
+            <lightning-checkbox-group name="Checkbox Group"
+                                    label="SELECT OBJECT :-"
+                                    options={options2} 
+                                    value={value} 
+                                    onchange={handleChange2} 
+                                    
+                                    variant="label-hidden"
+                                    style="columns: 3;">
+            </lightning-checkbox-group>
+      </font></strong> </p> <br/><br/>
+
+      <!--For Retention Window-->
+      <label class="slds-form-element__label">
+        <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="3">Retention Window :- </font></strong></p>
+      </label> <br/><br/>
+
+      <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="3"></font>
+        <template if:true={show3MonthButton}>
+          <lightning-button  label="3 Months" onclick={threeMonthHandler} ></lightning-button>
+          </template> 
+  
+          <template if:true={show3MonthBrandButton}>
+            <lightning-button variant="brand" label="3 Months" onclick={threeMonthBrandHandler} ></lightning-button>
+            </template> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+          <template if:true={show6MonthButton}>
+          <lightning-button  label="6 Months" onclick={sixMonthHandler} > </lightning-button> 
+        </template>
+  
+        <template if:true={show6MonthBrandButton}>
+          <lightning-button variant="brand" label="6 Months" onclick={sixMonthBrandHandler} > </lightning-button> 
+        </template>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </font></strong> </p><br/><br/>
+
+      <!--For Execute-->
+      <label class="slds-form-element__label">
+        <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="3">Execute :- </font></strong></p>
+      </label> <br/><br/>
+
+      <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="3"></font>
+        <template if:true={showRunNowButton}>
+          <lightning-button  label="Run Now" onclick={RunNowHandler} ></lightning-button>
+          </template> 
+  
+          <template if:true={showRunNowhBrandButton}>
+            <lightning-button variant="brand" label="Run Now" onclick={RunNowBrandHandler} ></lightning-button>
+            </template> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+          <template if:true={showScheduledButton}>
+          <lightning-button  label="Scheduled" onclick={scheduledPageHandler} > </lightning-button> 
+        </template>
+  
+        <template if:true={showScheduledBrandButton}>
+          <lightning-button variant="brand" label="Scheduled" onclick={scheduledPageBrandHandler} > </lightning-button> 
+        </template>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </font></strong> </p>
+    
+
+
+    <div class="slds-m-vertical_medium">
+      <footer class="slds-modal__footer">
+                  <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+              <lightning-button variant="brand-outline" label="Previous2" icon-name="utility:jump_to_left" class="slds-m-left_x-small" onclick={handlePrev2}></lightning-button>
+                  <lightning-button variant="brand-outline" class="slds-m-left_x-small" label="Next2" icon-position="right" icon-name="utility:jump_to_right" onclick={handleNext2}></lightning-button>
+              
+          </font></strong></p></center>
+      </footer> 
+  </div><br/><br/>
+</template>
+
+
+      <template if:true={showDataTable}>
+
+                    <div class="slds-modal__content">
+                      <div class="slds-p-around_small">
+
+                        <header class="slds-modal__header">
+                          <h2 class="slds-text-heading_medium"><strong><p style="color:rgb(6, 4, 6)"> {ObjectLabel} Records</p></strong> </h2><br/>
+                         
+                       </header><br/>
+
+                        <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2">
+                            
+                            Total Record = {totalRecords1}  <br/><br/>
+                            Selected Records = {selectedRecordsCount1} <br/><br/>
+                            
+                          </font></strong></p>
+
+                          <template if:true={showSpinnerFlag} >
+                            <div class="backgroundInverse" style="min-height:3rem;transform: translate(0, 0);">
+                                <lightning-spinner alternative-text="Loading" size="small" ></lightning-spinner>
+                            </div>
+                          </template>
+
+                          <div  style="height:350px;overflow-y:scroll ;">
+                              <!--DATA TABLE START-->    
+
+                                <lightning-datatable
+                                        key-field="Id"
+                                        data={sObjectRecordList}
+                                        columns={columns}    
+                                        draft-values={draftValues} 
+                                        onrowselection={selectedRecordsHandler1} 
+                                                          
+                                        onsave={saveHandler}> 
+                                </lightning-datatable>
+
+                            <!--DATA TABLE END-->
+
+                          
+          
+                          </div>
+                      </div>
+                  </div>
+
+                  
+                  <div class="slds-m-vertical_medium">
+                    <footer class="slds-modal__footer">
+                                <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+                            <lightning-button variant="brand-outline" label="Previous3" icon-name="utility:jump_to_left" class="slds-m-left_x-small" onclick={handlePrev3}></lightning-button>
+                                <lightning-button variant="brand-outline" class="slds-m-left_x-small" label="Next3" icon-position="right" icon-name="utility:jump_to_right" onclick={handleNext3}></lightning-button>
+                            
+                        </font></strong></p></center>
+                    </footer> 
+                  </div><br/><br/>
+</template>
+
+
+
+            <template if:true={selectedFormFlag}>  
+                            <div class="slds-modal__content">
+                              <div class="slds-p-around_small">
+                                <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2">
+                                    
+                                    Total Record = {totalselectedRecords1}  <br/><br/>
+                                    
+                                  </font></strong></p>
+              
+                                      <!--DATA TABLE START   --> 
+              
+                                        <div style="height:350px;overflow-y:scroll ;">
+                                          <lightning-datatable
+                                                  key-field="id"
+                                                  data={selectedRecords}
+                                                  show-row-number-column
+                                                  row-number-offset={rowOffset}
+                                                  hide-checkbox-column
+                                                  columns={columns}>
+                                          </lightning-datatable>
+
+                                          <template if:true={showSpinnerFlag} >
+                                            <div class="backgroundInverse" style="min-height:3rem;transform: translate(0, 0);">
+                                                <lightning-spinner alternative-text="Loading" size="small" ></lightning-spinner>
+                                            </div>
+                                          </template>
+                                        </div>
+              
+                                    <!--DATA TABLE END-->
+                              
+                          </div>
+                        </div>
+
+                  <div class="slds-m-vertical_medium">
+                    <footer class="slds-modal__footer">
+                                <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+                                        <lightning-button variant="brand-outline" label="Previous4" icon-name="utility:jump_to_left" class="slds-m-left_x-small" onclick={handlePrev4}></lightning-button>&nbsp; &nbsp; &nbsp;
+                                        <lightning-button icon-name="utility:delete" variant="destructive" label="Recycle Bin" onclick={deleteHandler}> </lightning-button> &nbsp; &nbsp; &nbsp;
+                                        <lightning-button icon-name="utility:delete" variant="destructive" label="Permanently Delete" onclick={deleteAllHandler}> </lightning-button>
+                                
+                                </font></strong></p></center>
+                    </footer> 
+                </div><br/><br/>
+       </template>
+
+ <!-- Scheduled Job Start  -->
+       
+       <template if:true={showSchedulePage}>
+
+                                <div  style="text-align:left">    
+                                  <div class="control" >
+                                    <p class="required" style="text-align:middle"> <strong><font size="2"></font><span class="required" ></span> &nbsp; Note :-   *  -  Required Fields  </font></strong></p>
+                                  </div><br/><br/>
+
+                                  <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+                                  <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+
+                                    
+                                  
+                                          <div class="control">
+                                            <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                                            <label for="name">Schedule Job Name : &nbsp; <span class="required">*</span></label><input aria-describedby="required-description" id="name" type="text" value={scheduleJobName} onchange={scheduleJobNameHandleChange}/></font></strong> </p><br/><br/>
+                                          </div>
+
+
+                                          <div class="control">
+                                            <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2"><span class="required">*</span>When do you want to schedule the Records cleanup job? </font></strong></p>
+
+                                          
+                                              <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+
+                                              &nbsp;&nbsp;<lightning-radio-group  name="radioGroup2"
+                                                                      label="When do you want to schedule the Records cleanup job?"
+                                                                      options={options3}
+                                                                      value={value}
+                                                                      required
+                                                                      onchange={handleChange3}
+                                                                      type="radio"
+                                                                      variant="label-hidden"
+                                                                      style="columns: 5;"
+                                                                      >
+                                              </lightning-radio-group></font></strong> </p><br/>
+
+                                              <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+                                              <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+                                            
+                                                        <template if:true={showHourlyButton}>     
+                                                              <div>
+                                                                  <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Every: &nbsp;</font></strong> 
+                                                                    <input type="number" value={numberOfHours} min="1" style="width:50px" onchange={numberOfEveryHoursHandler}>&nbsp;
+                                                                    <strong><font size="2"> Hour(s) </font></strong> </p> 
+                                                              </div>      
+                                                        </template> 
+
+
+                                                          <template if:true={showDailyButton}>     
+                                                                <div>
+                                                                    <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Every: &nbsp;</font></strong>
+                                                                      <input type="number" value={numberOfDays}  min="1" style="width:50px" onchange={numberOfDaysHandler}>&nbsp;
+                                                                      <strong><font size="2"> Day(s) </font></strong> </p> 
+                                                                </div>      
+                                                          </template> 
+
+                                                          <template if:true={showWeeklyButton}>
+                                                                    <!-- Button group: simple buttons -->
+                                                                    
+
+                                                                <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="-1"></font>
+                                                                    <lightning-button-group>
+                                                                      <template if:true={showMonButton}>
+                                                                        <lightning-button  class="button"  label="Monday"  onclick={mondayHandler}></lightning-button>
+                                                                      </template>
+                                                                        <template if:true={showMondayBrandButton}>
+                                                                            <lightning-button variant="brand"  class="button"  label="Monday"  onclick={mondayBrandHandler}></lightning-button>
+                                                                        </template>
+
+                                                                      
+                                                                        <template if:true={showTueButton}>
+                                                                        <lightning-button  class="button" label="Tuesday" onclick={tuesdayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showTuesBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Tuesday"  onclick={TuesdayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showWedButton}>
+                                                                        <lightning-button class="button" label="Wednesday" onclick={wednesdayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showWedBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Wednesday"  onclick={WednesdayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showThurButton}>
+                                                                        <lightning-button class="button" label="Thursday" onclick={thursdayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showThursBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Thursday"  onclick={ThursdayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showFriButton}>
+                                                                        <lightning-button class="button" label="Friday" onclick={fridayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showFridayBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Friday"  onclick={FridayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showSatButton}>
+                                                                        <lightning-button class="button" label="Saturday" onclick={saturdayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showSatBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Saturday"  onclick={SaturdayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showSunButton}>
+                                                                        <lightning-button class="button" label="Sunday" onclick={sundayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showSunBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Sunday"  onclick={SundayBrandHandler}></lightning-button>
+                                                                  </template>
+
+                                                                  </lightning-button-group>
+                                                                  
+                                                                </font></strong> </p>
+
+                                                           
+                                                          </template> <br/>
+                                                          </div>
+                                                          
+                                                          <div>   
+                                                            <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Time Start At : &nbsp;</font></strong> 
+                                                              <input type="number" value={Hour} placeholder="HH" min="00" max="23" style="width:50px" onchange={numberOfHoursHandler}>&nbsp;
+                                                              <input type="number" value={Minut} placeholder="MM" min="00" max="59" style="width:50px" onchange={numberOfMinutesHandler}></p><br/>
+                                                          </div>      
+                                                        
+                                        <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Cron Expression : &nbsp;</font></strong> 
+                                        <input type="text" value={cron} style="width:250px" ></p><br/>
+
+                                  </div>
+
+                            
+
+                          <footer class="slds-modal__footer">
+                            <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+                            <lightning-button variant="brand-outline" label="PreviousSch" icon-name="utility:jump_to_left" class="slds-m-left_x-small" onclick={handlePrevSchedule}></lightning-button>&nbsp; &nbsp; &nbsp;
+                            <lightning-button variant="success" label="Schedule" name="Schedule" onclick={scheduleApexJob}></lightning-button> &nbsp; &nbsp; &nbsp;
+                          </font></strong></p></center>
+                            
+                          </footer>
+                        
+         </template>
+
+<!-- Scheduled Job End  -->
+
+
+                <!--  Git Branch Start  -->
+<template if:true={GitBranchesButton}>
+
+  
+            <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="2">
+              <lightning-record-edit-form
+                      object-api-name="copado__Git_Commit__c"
+                      onsuccess={handleSuccess}>
+                  
+                                <lightning-input-field
+                                    field-name="copado__Git_Repository__c"
+                                    onchange={handleChange23}
+                                    style="width:350px" >
+                                </lightning-input-field>
+                      
+              </lightning-record-edit-form>
+            </font></strong></p><br/><br/>
+
+            <template if:true={showButtonFlag}> 
+                                        
+
+                        <div class="slds-form-element">
+                          <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="2">
+                            <label class="slds-form-element__label" for="text-input-id-1"> API Key</label> <br/>
+                                  <input type="text"  name="apiKey" value={apiKeyVar} style="width:350px" class="slds-input"/>&nbsp;
+                                  <lightning-helptext content="API Key is present in Account Summary Tab. Prvoide the API Key present in the Account Summary Tab"></lightning-helptext>
+                          </font></strong></p>
+                        </div><br/><br/>
+
+                        <div class="slds-form-element">
+                          <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="2">
+                            <label class="slds-form-element__label" for="text-input-id-1"> Server URL</label> <br/>
+                                  <input type="text" name="serverUrl" value={serverUrlVar} style="width:350px" class="slds-input" /> &nbsp;
+                                  
+                                  <lightning-helptext  content="Server URL is present in Account Summary Tab. Prvoide the server URL present in the Account Summary Tab"></lightning-helptext>
+                          </font></strong></p>
+                        </div><br/><br/>
+
+
+                        <div class="slds-form-element">
+                          <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="2">
+                              <label class="slds-form-element__label" for="text-input-id-1"> Branch to be Excluded</label> <br/>
+                                  <input type="text" name="branchToBe" value={branchToBeVar} style="width:350px" class="slds-input" /> &nbsp;
+                                  <lightning-helptext  content="Environment Branches to be prevented from deletion. Eg:- main,staging,uat (branch names are case-sensitive)"></lightning-helptext>
+                          </font></strong></p>
+                        </div><br/><br/>
+
+                        <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+                        <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/><br/>
+
+                        <form action="/action_page.php">
+                          <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="2">
+                          <label for="Branch" >Branch Type :</label> &nbsp;&nbsp; &nbsp;
+                          <select name="Branches" id="Branches" onchange={changeHandler}>
+                            
+                            <option value="User Story">User Story </option>
+                            <option value="Promotion Branches">Promotion Branches</option>
+                          </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        </font></strong></p>
+                      </form> <br/><br/>
+
+
+                          <!--For Retention Window-->
+                        <label class="slds-form-element__label">
+                          <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="2">Retention Window :- </font></strong></p>
+                        </label> <br/>
+
+                        <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="3"></font>
+                          <template if:true={show3MonthButton2}>
+                            <lightning-button  label="3 Months" onclick={threeMonthHandler2} ></lightning-button>
+                            </template> 
+                    
+                            <template if:true={show3MonthBrandButton2}>
+                              <lightning-button variant="brand" label="3 Months" onclick={threeMonthBrandHandler2} ></lightning-button>
+                              </template> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                            <template if:true={show6MonthButton2}>
+                            <lightning-button  label="6 Months" onclick={sixMonthHandler2} > </lightning-button> 
+                          </template>
+                    
+                          <template if:true={show6MonthBrandButton2}>
+                            <lightning-button variant="brand" label="6 Months" onclick={sixMonthBrandHandler2} > </lightning-button> 
+                          </template>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </font></strong></p>
+                      <br/><br/>
+
+            <!--For Execute-->
+                <label class="slds-form-element__label">
+                  <p class="slds-var-p-left_x-small" style="text-align:left"><strong><font size="2">Execute :- </font></strong></p>
+                </label> <br/>
+
+                <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="3"></font>
+                  <template if:true={showRunNowButton2}>
+                    <lightning-button  label="Run Now" onclick={RunNowHandler2} ></lightning-button>
+                    </template> 
+
+                    <template if:true={showRunNowhBrandButton2}>
+                      <lightning-button variant="brand" label="Run Now" onclick={RunNowBrandHandler2} ></lightning-button>
+                      </template> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <template if:true={showScheduledButton2}>
+                    <lightning-button  label="Scheduled" onclick={scheduledPageHandler2} > </lightning-button> 
+                  </template>
+
+                  <template if:true={showScheduledBrandButton2}>
+                    <lightning-button variant="brand" label="Scheduled" onclick={scheduledPageBrandHandler2} > </lightning-button> 
+                  </template>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </font></strong> </p>
+
+
+                <div class="slds-m-vertical_medium">
+                  <footer class="slds-modal__footer">
+                              <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+                          <lightning-button variant="brand-outline" label="Previous233" icon-name="utility:jump_to_left" class="slds-m-left_x-small" onclick={handlePrev233}></lightning-button>
+                              <lightning-button variant="brand-outline" class="slds-m-left_x-small" label="Next233" icon-position="right" icon-name="utility:jump_to_right" onclick={handleNext233}></lightning-button>
+                          
+                      </font></strong></p></center>
+                  </footer> 
+                  </div><br/><br/>
+
+  </template>
+</template>
+
+<template if:true={showFeatureDataTable}>
+                <div class="slds-modal__content">
+                  <div class="slds-p-around_small">
+                          <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2">
+                                    
+                            Selected Records = {selectedRecordsCount} <br/><br/>
+                            
+                          </font></strong></p>
+
+                          <template if:true={showSpinnerFlag} >
+                            <div class="backgroundInverse" style="min-height:3rem;transform: translate(0, 0);">
+                                <lightning-spinner alternative-text="Loading" size="small" ></lightning-spinner>
+                            </div>
+                            
+                          </template>
+
+                          <div  style="height:400px;overflow-y:scroll ;">
+                                    <lightning-datatable
+                                                  key-field="Id"
+                                                  data={recordList}
+                                                  columns={columns}    
+                                                  draft-values={draftValues} 
+                                                  onrowselection={selectedRecordsHandler}                     
+                                                  onsave={saveHandler}> 
+                                    </lightning-datatable><br/><br/>
+                          </div>
+                  </div>
+                </div>
+ 
+
+        <div class="slds-m-vertical_medium">
+        <footer class="slds-modal__footer">
+                  <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+              <lightning-button variant="brand-outline" label="Previous23333" icon-name="utility:jump_to_left" class="slds-m-left_x-small" onclick={handlePrev23333}></lightning-button>
+              <lightning-button variant="brand-outline" class="slds-m-left_x-small" label="Next23333" icon-position="right" icon-name="utility:jump_to_right" onclick={handleNext233333}></lightning-button>
+              
+          </font></strong></p></center>
+        </footer> 
+        </div><br/><br/>
+   </template>
+
+
+   <template if:true={showSelectedFeatureDataTableFlag}>
+
+
+                  <div class="slds-modal__content">
+                    <div class="slds-p-around_small">
+                      <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2">
+                          
+                          Total Record = {totalselectedRecords}  <br/><br/>
+                          
+                        </font></strong></p>
+
+                            <!--DATA TABLE START -->  
+
+                            <template if:true={showSpinnerFlag} >
+                              <div class="backgroundInverse" style="min-height:3rem;transform: translate(0, 0);">
+                                  <lightning-spinner alternative-text="Loading" size="small" ></lightning-spinner>
+                              </div>
+                              
+                            </template>
+                            
+                          <div  style="height:300px;overflow-y:scroll ;">
+                            <lightning-datatable
+                                    key-field="id"
+                                    data={selectedRecords}
+                                    show-row-number-column
+                                    row-number-offset={rowOffset}
+                                    hide-checkbox-column
+                                    columns={columns}>
+                            </lightning-datatable>
+                        </div>
+
+                        <!-- DATA TABLE END-->  
+
+                    </div>
+                </div>
+
+
+                
+                <div class="slds-m-vertical_medium">
+                  <footer class="slds-modal__footer">
+                            <center><p class="slds-var-p-left_x-small" style="text-align:middle"><strong><font size="3">
+                        <lightning-button variant="brand-outline" label="Previous23333444" icon-name="utility:jump_to_left" class="slds-m-left_x-small" onclick={handlePrev23333444}></lightning-button> &nbsp; &nbsp;&nbsp;
+                        <lightning-button variant="destructive" label="Delete" onclick={deleteHandler2} > </lightning-button>
+                        
+                    </font></strong></p></center>
+                  </footer> 
+                  </div><br/><br/>
+
+   </template>
+
+
+   <template if:true={showScheduleBranchFlag}>
+                                <div  style="text-align:left">    
+                                  <div class="control" >
+                                    <p class="required" style="text-align:middle"> <strong><font size="2"></font><span class="required" ></span> &nbsp; Note :-   *  -  Required Fields  </font></strong></p>
+                                  </div><br/><br/>
+
+                                  <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+                                  <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+
+                                    
+                                  
+                                          <div class="control">
+                                            <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+                                            <label for="name">Schedule Job Name : &nbsp; <span class="required">*</span></label><input aria-describedby="required-description" id="nameid" type="text" value={scheduleJobName} onchange={scheduleJobNameHandleChange}/></font></strong> </p><br/><br/>
+                                          </div>
+
+
+                                          <div class="control">
+                                            <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2"><span class="required">*</span>When do you want to schedule the Records cleanup job? </font></strong></p>
+
+                                          
+                                              <p class="slds-var-p-left_x-small" style="text-align:middle"> <strong><font size="2">
+
+                                              &nbsp;&nbsp;<lightning-radio-group  name="radioGroup2"
+                                                                      label="When do you want to schedule the Records cleanup job?"
+                                                                      options={options3}
+                                                                      value={value}
+                                                                      required
+                                                                      onchange={handleChange3}
+                                                                      type="radio"
+                                                                      variant="label-hidden"
+                                                                      style="columns: 5;"
+                                                                      >
+                                              </lightning-radio-group></font></strong> </p><br/>
+
+                                              <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div>
+                                              <div class="slds-size_5-of-1 slds-var-p-around_long slds-size_full slds-border_bottom"></div><br/>
+                                            
+                                                        <template if:true={showHourlyButton}>     
+                                                              <div>
+                                                                  <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Every: &nbsp;</font></strong> 
+                                                                    <input type="number" value={numberOfHours} min="1" style="width:50px" onchange={numberOfEveryHoursHandler}>&nbsp;
+                                                                    <strong><font size="2"> Hour(s) </font></strong> </p> 
+                                                              </div>      
+                                                        </template> 
+
+
+                                                          <template if:true={showDailyButton}>     
+                                                                <div>
+                                                                    <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Every: &nbsp;</font></strong>
+                                                                      <input type="number" value={numberOfDays}  min="1" style="width:50px" onchange={numberOfDaysHandler}>&nbsp;
+                                                                      <strong><font size="2"> Day(s) </font></strong> </p> 
+                                                                </div>      
+                                                          </template> 
+
+                                                          <template if:true={showWeeklyButton}>
+                                                                    <!-- Button group: simple buttons -->
+                                                                    
+
+                                                                <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="-1"></font>
+                                                                    <lightning-button-group>
+                                                                      <template if:true={showMonButton}>
+                                                                        <lightning-button  class="button"  label="Monday"  onclick={mondayHandler}></lightning-button>
+                                                                      </template>
+                                                                        <template if:true={showMondayBrandButton}>
+                                                                            <lightning-button variant="brand"  class="button"  label="Monday"  onclick={mondayBrandHandler}></lightning-button>
+                                                                        </template>
+
+                                                                      
+                                                                        <template if:true={showTueButton}>
+                                                                        <lightning-button  class="button" label="Tuesday" onclick={tuesdayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showTuesBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Tuesday"  onclick={TuesdayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showWedButton}>
+                                                                        <lightning-button class="button" label="Wednesday" onclick={wednesdayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showWedBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Wednesday"  onclick={WednesdayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showThurButton}>
+                                                                        <lightning-button class="button" label="Thursday" onclick={thursdayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showThursBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Thursday"  onclick={ThursdayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showFriButton}>
+                                                                        <lightning-button class="button" label="Friday" onclick={fridayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showFridayBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Friday"  onclick={FridayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showSatButton}>
+                                                                        <lightning-button class="button" label="Saturday" onclick={saturdayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showSatBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Saturday"  onclick={SaturdayBrandHandler}></lightning-button>
+                                                                  </template>
+
+
+                                                                      <template if:true={showSunButton}>
+                                                                        <lightning-button class="button" label="Sunday" onclick={sundayHandler}></lightning-button>
+                                                                      </template>
+                                                                      <template if:true={showSunBrandButton}>
+                                                                        <lightning-button variant="brand"  class="button"  label="Sunday"  onclick={SundayBrandHandler}></lightning-button>
+                                                                  </template>
+
+                                                                  </lightning-button-group>
+                                                                  
+                                                                </font></strong> </p>
+
+                                                          
+                                                          </template> <br/>
+                                                          </div>
+                                                          
+                                                          <div>   
+                                                            <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Time Start At : &nbsp;</font></strong> 
+                                                              <input type="number" value={Hour} placeholder="HH" min="00" max="23" style="width:50px" onchange={numberOfHoursHandler}>&nbsp;
+                                                              <input type="number" value={Minut} placeholder="MM" min="00" max="59" style="width:50px" onchange={numberOfMinutesHandler}></p><br/>
+                                                          </div>      
+                                                        
+                                        <p class="slds-var-p-left_x-small" style="text-align:left"> <strong><font size="2"><span class="required">*</span>Cron Expression : &nbsp;</font></strong> 
+                                        <input type="text" value={cron} style="width:250px" ></p><br/>
+
+                                  </div>
+
+
+
+                            <footer class="slds-modal__footer">
+                            <center>
+                              <lightning-button variant="brand-outline" label="Previous23378" icon-name="utility:jump_to_left" class="slds-m-left_x-small" onclick={handlePrevSchedule2}></lightning-button>&nbsp; &nbsp; &nbsp;
+                            <lightning-button variant="success" label="Schedule" name="Schedule" onclick={scheduleBranchApexJob}></lightning-button> 
+                            </center>
+
+                            </footer>
+
+    
+   </template>
+<!--  Git Branch End  -->
+
+
+
+
+    </lightning-card>
+    
+</template>

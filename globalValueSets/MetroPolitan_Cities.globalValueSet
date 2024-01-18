@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Delhi/NCR</fullName>
+        <default>false</default>
+        <label>Delhi/NCR</label>
+    </customValue>
+    <customValue>
+        <fullName>Pune</fullName>
+        <default>false</default>
+        <label>Pune</label>
+    </customValue>
+    <customValue>
+        <fullName>Mumbai</fullName>
+        <default>false</default>
+        <label>Mumbai</label>
+    </customValue>
+    <customValue>
+        <fullName>Hyderabad/ Secunderabad</fullName>
+        <default>false</default>
+        <label>Hyderabad/ Secunderabad</label>
+    </customValue>
+    <customValue>
+        <fullName>Chennai</fullName>
+        <default>false</default>
+        <label>Chennai</label>
+    </customValue>
+    <customValue>
+        <fullName>Bangalore/Bengaluru</fullName>
+        <default>false</default>
+        <label>Bangalore/Bengaluru</label>
+    </customValue>
+    <customValue>
+        <fullName>Gurugram/ Gurgaon</fullName>
+        <default>false</default>
+        <label>Gurugram/ Gurgaon</label>
+    </customValue>
+    <customValue>
+        <fullName>Noida</fullName>
+        <default>false</default>
+        <label>Noida</label>
+    </customValue>
+    <customValue>
+        <fullName>Ahmedabad</fullName>
+        <default>false</default>
+        <label>Ahmedabad</label>
+    </customValue>
+    <masterLabel>MetroPolitan Cities</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

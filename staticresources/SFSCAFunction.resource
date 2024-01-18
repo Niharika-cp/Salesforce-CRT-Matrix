@@ -1,0 +1,31 @@
+{
+  "recordTypeMap": {},
+  "RecordSetBundles": [
+    {
+      "Records": [
+        {
+          "attributes": {
+            "type": "copado__Function__c",
+            "url": "/services/data/v59.0/sobjects/copado__Function__c/aQ43J0000008OO5SAM"
+          },
+          "copado__API_Name__c": "CloneSFDXSCAFunctions",
+          "copado__Image_Name__c": "cbsrlaowbenauz7nj0qcriifrxseww-checkmarx-docker:v1.0",
+          "copado__Options__c": "[ ]",
+          "copado__Parameters__c": "[ {\n  \"required\" : true,\n  \"name\" : \"git_json\",\n  \"defaultValue\" : \"{$Context.Repository.Credential}\"\n}, {\n  \"name\" : \"userStoryId\",\n  \"defaultValue\" : \"\"\n}, {\n  \"name\" : \"sourceBranch\",\n  \"defaultValue\" : \"\"\n}, {\n  \"name\" : \"promotionId\",\n  \"defaultValue\" : \"\"\n} ]",
+          "copado__Script__c": "#!/bin/bash\nset -euo pipefail\nexport SHELLOPTS \ntrap 'echo \"##### there was an error with exit code $? on line $LINENO ${branch:-}\"' ERR\n\ncd /app\n\n\nparameter() {\n    local v; eval v=\"\\${$1:=}\"; [ -z \"$v\" ] && { printf -v \"$1\" \"%s\" \"${3:-}\"; eval v=\"\\${$1:=}\"; }; echo \"[parameter] $1=$v\"\n}\n\nfunction profiler() { export TIMEFORMAT=\"[profiler] %R seconds: $1\"$'\\n'; time $@; }\n\nparameter git_json\nparameter userStoryId --optional ''\nparameter promotionId --optional ''\nparameter sourceBranch --optional ''\n\nSOURCE_BRANCH_PATH=\"/tmp/sourceBranch\"\n# ORPHAN_BRANCH_PATH=\"/tmp/git_orphan_branch\"\n# ORPHAN_BRANCH_NAME=\"${sourceBranch////$'-'}\"\n# parameter ORPHAN_BRANCH_NAME\n\ncopado -p \"Starting the Job\"\nnpm install --no-audit --progress=false jsforce\ncat <<'__HERE' > /tmp/getFilenamesFromUserStoryOrPromotion.js\nconst { execSync } = require(\"child_process\");\nconst fs = require('fs');\nconst jsforce = require('/app/node_modules/jsforce');\n\nconst copadoConn = new jsforce.Connection({\n    serverUrl : 'https://'+ new URL(process.env.CF_SF_ENDPOINT).hostname,\n    sessionId : process.env.CF_SF_SESSIONID\n});\n\nasync function getFilenamesFromUserStoryOrPromotion(userStoryId, promotionId) {\n    let response;\n    let userStoryIds = [];\n    let filenameMap = {};\n\n    if(userStoryId) {\n        userStoryIds.push(userStoryId);\n    }else{\n        // get all the user stories of this promotion\n        response = await copadoConn.query(\"SELECT copado__User_Story__c FROM copado__Promoted_User_Story__c WHERE copado__Promotion__c = '\"+promotionId+\"' ORDER BY LastModifiedDate ASC\");\n        for(const item of response.records) {\n            userStoryIds.push(item.copado__User_Story__c);\n        }\n\n        // also get the branch of the promotion from the step\n        response = await copadoConn.query(\"SELECT copado__Branch__c FROM copado__Step__c WHERE copado__Deployment__r.copado__Promotion__c = '\"+promotionId+\"' ORDER BY LastModifiedDate DESC\");\n        for(const item of response.records) {\n        \tif (item.copado__Branch__c){console.log('This is the branch to scan:',item.copado__Branch__c);\n            fs.writeFileSync('/tmp/promotionBranch.txt', item.copado__Branch__c );\n            break;\n            }\n        }\n   }\n\n    if(userStoryIds.length==0) {\n        throw new Error('There are no user stories to read in the Promotion, or there is no User Story');\n    }\n\n    userStoryIds = \"'\" + userStoryIds.join(\"','\") + \"'\"; // convert the list of ids to a list of SOQL ids\n    response = await copadoConn.query(\"SELECT copado__Metadata_API_Name__c FROM copado__User_Story_Metadata__c \"\n        +\"WHERE copado__User_Story__c IN (\"+userStoryIds+\") ORDER BY copado__Type__c, copado__Metadata_API_Name__c\");\n    for(const item of response.records) {\n        let filename;\n        let [t, n] = item.copado__Metadata_API_Name__c.split('.', 2);\n        switch(t) {\n            case 'ApexClass':\n                filename = `classes/${n}.cls`;\n                break;\n            case 'ApexTrigger':\n                filename = `triggers/${n}.trigger`;\n                break;\n            case 'ApexComponent':\n                filename = `components/${n}.component`;\n                break;\n            case 'ApexPage':\n                filename = `pages/${n}.page`;\n                break;\n            case 'LightningComponentBundle':\n                filename = `lwc/${n}/${n}.js`;\n                break;\n            case 'AuraDefinitionBundle':\n                filename = `aura/${n}`;\n                break;\n        }\n        if(!filename) {\n            continue;\n        }\n        filenameMap[filename] = filename;\n    }\n    return Object.values(filenameMap);\n}\n\nconst start = async () => {\n    const userStoryId = process.env.userStoryId;\n    const promotionId = process.env.promotionId;\n\n    console.time(\"getFilenamesFromUserStoryOrPromotion\");\n    const filenames = await getFilenamesFromUserStoryOrPromotion(userStoryId, promotionId);\n    console.timeEnd(\"getFilenamesFromUserStoryOrPromotion\");\n\n    for(const filename of filenames) {\n        console.log(filename);\n    }\n    fs.writeFileSync(process.argv[2], filenames.join('\\n')+'\\n' );\n};\n\nstart();\n__HERE\ncopado -p \"Scan In Progress.... 25%\"\n\nnode /tmp/getFilenamesFromUserStoryOrPromotion.js /tmp/metadata.txt\n\nmetadata_path=\"/tmp/metadata.txt\"\n\nmetadata_content=$(cat \"$metadata_path\" | tr '\\n' ',' | sed 's/,$//')\n\nsfdx plugins:install @salesforce/sfdx-scanner\ncopado -p \"Scan In Progress.... 50%\"\n\ncopado-git-get \"$sourceBranch\"\n\ncopado -p \"Scan In Progress.... 75%\"\nsfdx scanner:run --target \"$metadata_content\" --format=json>scanresult.json\n\ncopado -p \"Scan Completed\"\n\ncopado -p \"#Attaching the Result\" -r '{ \"userstoryid\": \"'\"$userStoryId\"'\" }'\ncopado -u scanresult.json",
+          "copado__Timeout__c": 999,
+          "copado__Type__c": "Standard",
+          "copado__Version__c": "1",
+          "copado__Worker_Size__c": "S",
+          "CurrencyIsoCode": "USD",
+          "Id": "aQ43J0000008OO5SAM",
+          "LastReferencedDate": "2023-11-22T12:52:38.000+0000",
+          "LastViewedDate": "2023-11-22T12:52:38.000+0000",
+          "Name": "SFDX SCA Functions"
+        }
+      ],
+      "ObjectType": "copado__Function__c"
+    }
+  ],
+  "blobsByUID": {}
+}

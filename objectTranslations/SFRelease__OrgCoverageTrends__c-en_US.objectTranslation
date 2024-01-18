@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Calculated Date --></label>
+        <name>SFRelease__Calculated_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comparison Report History --></label>
+        <name>SFRelease__Comparison_Report_History__c</name>
+        <relationshipLabel><!-- OrgCoverageTrends --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Org Code Coverage --></label>
+        <name>SFRelease__Org_Code_Coverage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org --></label>
+        <name>SFRelease__Org__c</name>
+        <relationshipLabel><!-- OrgCoverageTrends --></relationshipLabel>
+    </fields>
+</CustomObjectTranslation>

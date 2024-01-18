@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>send_email_regarding_the_on_hold_process</name>
+        <label>send email regarding the on hold process</label>
+        <locationX>533</locationX>
+        <locationY>383</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>onholdemail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Your Application at CloudFulcrum</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <apiVersion>54.0</apiVersion>
+    <interviewLabel>sending email for Onhold Process {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>sending email for Onhold Process</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>407</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>send_email_regarding_the_on_hold_process</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>On Hold</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Notification__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Resource__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>onholdemail</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Dear {!$Record.Name},&lt;/p&gt;&lt;p&gt;Thank you for coming in to learn more about the {!$Record.Job_Posting__r.Name} position at CloudFulcrum. The team really enjoyed meeting you. We want to make the best hiring decision and are currently completing interviews with other candidates. We are aiming to have all interviews completed and make a decision in weeks’ time. I will notify you about any next steps as soon as possible.&lt;/p&gt;&lt;p&gt;Please feel free to stay in touch or reach out with any questions.&lt;/p&gt;&lt;p&gt;Sincerely,&lt;/p&gt;&lt;p&gt;Ambika N&lt;/p&gt;&lt;p&gt;Team HR&lt;/p&gt;&lt;p&gt;CloudFulcrum.&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>

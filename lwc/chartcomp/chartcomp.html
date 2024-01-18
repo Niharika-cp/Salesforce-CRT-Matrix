@@ -1,0 +1,35 @@
+<template>
+    <lightning-card>
+        <div style="margin: 10%;">
+    <c-chart type="bubble" responsive="true">
+         <c-dataset> 
+          <c-data label="Exclude Completed Stories" detail='[\{"x": 2,"y": 26,"r":10\}]' backgroundcolor="rgba(225, 96, 50, 1)"></c-data>
+          <c-data label="Automation Templates" detail='[\{"x": 1,"y": 62,"r":10\}]' backgroundcolor="rgba(146, 7, 18)"></c-data>
+          <c-data label="Sprint Wall" detail='[\{"x": 2,"y": 73,"r": 10\}' backgroundcolor="rgba(102, 208, 18)"></c-data>
+          <c-data label="User Story Dependencies" detail='[\{"x": 1.3,"y": 60,"r": 10\}]' backgroundcolor="rgba(25, 176, 59, 1)"></c-data>
+          <c-data label="User Story Bundles" detail='[\{"x": 69,"y": 65,"r": 10\}]' backgroundcolor="rgba(102, 31, 177,1)"></c-data>
+          <c-data label="Salesforce Flow Dynamic Variables" detail='[\{"x": 50,"y": 10,"r": 10\}]' backgroundcolor="rgba(255, 166, 177,1)"></c-data>
+          <c-data label="Copado Functions" detail='[\{"x": 20,"y": 10,"r": 10\}]' backgroundcolor="rgba(102, 128, 177,1)"></c-data>
+          <c-data label="User Stories" detail='[\{"x": 96,"y": 86,"r": 10\}]' backgroundcolor="rgba(146, 158, 181,1)"></c-data>
+          <c-data label="Promotions" detail='[\{"x": 87,"y": 74,"r": 10\}]' backgroundcolor="rgba(123, 114, 255,1)"></c-data>
+          <c-data label="Deployments" detail='[\{"x": 54,"y": 71,"r": 10\}]' backgroundcolor="rgba(123, 87, 255,1)"></c-data>
+          <c-data label="Org Differences" detail='[\{"x": 93,"y": 85,"r": 10\}]' backgroundcolor="rgba(255, 158, 18,1)"></c-data>
+          <c-data label="Snapshot Differences" detail='[\{"x": 52,"y": 65,"r": 10\}]' backgroundcolor="rgba(213, 178, 25, 1)"></c-data>
+          <c-data label="Data Commits" detail='[\{"x": 30,"y": 32,"r": 10\}]' backgroundcolor="rgba(103, 255, 213,1)"></c-data>
+          <c-data label="Data Sets" detail='[\{"x": 5,"y": 15,"r": 10\}]' backgroundcolor="rgba(255, 205, 71,1)"></c-data>
+          <c-data label="Data Templates" detail='[\{"x": 17,"y": 19,"r": 10\}]' backgroundcolor="rgba(255, 99, 71,1)"></c-data>
+          <c-data label="Static Code Analysis" detail='[\{"x": 92,"y": 82,"r": 10\}]' backgroundcolor="rgba(255, 125, 7, 1)"></c-data>
+          <c-data label="Compliance Hub" detail='[\{"x": 98,"y": 93,"r": 10\}]' backgroundcolor="rgba(213, 248, 0, 1)"></c-data>
+          <c-data label="Scheduled Jobs" detail='[\{"x": 39,"y": 43,"r": 10\}]' backgroundcolor="rgba(255, 165, 0),1"></c-data>
+          <c-data label="Quality Gates" detail='[\{"x": 86,"y": 87,"r": 10\}]' backgroundcolor="rgba(238, 130, 238,1)"></c-data>
+          <c-data label="Deployment Task" detail='[\{"x": 65,"y": 70,"r": 10\}]' backgroundcolor="rgba(160, 179, 113,1)"></c-data>
+          <c-data label="Pull Requests" detail='[\{"x": 91,"y": 80,"r": 10\}]' backgroundcolor="rgba(0, 0, 255,1)"></c-data>
+    </c-dataset>
+         <c-title text="Feature Audit" fontsize=28 fontstyle="bold"></c-title>
+         <c-legend position="bottom"></c-legend>
+         <c-cartesian-linear-axis axisid="left" axis="y" position="left" ticks-stepsize="10" title-labelstring="Usage %" title-display="true"></c-cartesian-linear-axis>
+        <c-cartesian-linear-axis axisid="right" axis="x" position="bottom" ticks-stepsize="20" title-labelstring="User %" title-display="true"></c-cartesian-linear-axis>
+        </c-chart>
+    </div>
+    </lightning-card>
+</template>

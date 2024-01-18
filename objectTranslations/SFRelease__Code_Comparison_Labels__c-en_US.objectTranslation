@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Last Run --></label>
+        <name>SFRelease__Last_Run__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Run --></label>
+        <name>SFRelease__Next_Run__c</name>
+    </fields>
+</CustomObjectTranslation>

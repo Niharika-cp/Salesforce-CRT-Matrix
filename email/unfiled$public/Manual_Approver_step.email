@@ -1,0 +1,2 @@
+Hello UAT approval , the manual approval is in pending on this deployment record :{!copado__Deployment__c.Link}
+Please mark it as completed so that the components will be deployed to higher environment.

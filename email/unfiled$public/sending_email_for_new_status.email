@@ -1,0 +1,15 @@
+Hi {!$Record.Name}
+
+Thank you for applying to the {!$Record.Job_Posting__r.Name} position at CloudFulcrum.
+
+I’d like to inform you that we received your resume. Our hiring team is currently reviewing all applications and we are planning to schedule interviews in next week. If you are among qualified candidates, you will receive a call from our one of our recruiters to schedule Technical interview. In any case, we will keep you posted on the status of your application.
+
+Thank you, again, for taking the time to apply to this role at CloudFulcrum.
+
+Best regards,
+
+{!$Record.Name__c}
+
+Team HR
+
+CloudFulcrum

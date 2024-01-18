@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Job Name --></label>
+        <name>infy_dm__Job_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Line Number --></label>
+        <name>infy_dm__Line_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Message --></label>
+        <name>infy_dm__Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stack Trace --></label>
+        <name>infy_dm__Stack_Trace__c</name>
+    </fields>
+    <fields>
+        <label><!-- Time Stamp --></label>
+        <name>infy_dm__Time_Stamp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type Name --></label>
+        <name>infy_dm__Type_Name__c</name>
+    </fields>
+</CustomObjectTranslation>

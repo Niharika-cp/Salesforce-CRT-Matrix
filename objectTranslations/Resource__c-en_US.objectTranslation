@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Resource</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Resource</value>
+    </caseValues>
+    <fields>
+        <label><!-- Any Offers in Hand --></label>
+        <name>Any_Offers_in_Hand__c</name>
+    </fields>
+    <fields>
+        <label><!-- CTC --></label>
+        <name>CTC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comment Box --></label>
+        <name>Comment_Box__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current CTC --></label>
+        <name>Current_CTC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Location --></label>
+        <name>Current_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Organization --></label>
+        <name>Current_Organization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Notification ? --></label>
+        <name>Email_Notification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected CTC --></label>
+        <name>Expected_CTC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback1 --></label>
+        <name>Feedback1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback2 --></label>
+        <name>Feedback2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback3 --></label>
+        <name>Feedback3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interviewer1 --></label>
+        <name>Interviewer1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interviewer2 --></label>
+        <name>Interviewer2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interviewer3 --></label>
+        <name>Interviewer3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job Posting --></label>
+        <name>Job_Posting__c</name>
+        <relationshipLabel><!-- Resource --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- LinkedIn URL --></label>
+        <name>LinkedIn_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile --></label>
+        <name>Mobile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Level Stages --></label>
+        <name>Next_Level_Stages__c</name>
+        <picklistValues>
+            <masterLabel>1st Level</masterLabel>
+            <translation><!-- 1st Level --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2nd Level</masterLabel>
+            <translation><!-- 2nd Level --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3rd Level</masterLabel>
+            <translation><!-- 3rd Level --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR Rejection</masterLabel>
+            <translation><!-- HR Rejection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR Round</masterLabel>
+            <translation><!-- HR Round --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High CTC Expectation</masterLabel>
+            <translation><!-- High CTC Expectation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interview Rejection</masterLabel>
+            <translation><!-- Interview Rejection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Joined</masterLabel>
+            <translation><!-- Joined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Location Constraint</masterLabel>
+            <translation><!-- Location Constraint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recommend Offer</masterLabel>
+            <translation><!-- Recommend Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Screening Rejection</masterLabel>
+            <translation><!-- Screening Rejection --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Next Level Stages --></label>
+        <name>Next_Level_Stages_del__c</name>
+        <picklistValues>
+            <masterLabel>1st Level</masterLabel>
+            <translation><!-- 1st Level --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2nd Level</masterLabel>
+            <translation><!-- 2nd Level --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3rd Level</masterLabel>
+            <translation><!-- 3rd Level --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR Rejection</masterLabel>
+            <translation><!-- HR Rejection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR Round</masterLabel>
+            <translation><!-- HR Round --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High CTC Expectation</masterLabel>
+            <translation><!-- High CTC Expectation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interview Rejection</masterLabel>
+            <translation><!-- Interview Rejection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Joined</masterLabel>
+            <translation><!-- Joined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Location Constraint</masterLabel>
+            <translation><!-- Location Constraint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recommend Offer</masterLabel>
+            <translation><!-- Recommend Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Screening Rejection</masterLabel>
+            <translation><!-- Screening Rejection --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Notice Period --></label>
+        <name>Notice_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reasons for Job Change --></label>
+        <name>Reasons_for_Job_Change__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recruiter Name --></label>
+        <name>Recruiter_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Relevant Experience --></label>
+        <name>Relevant_Experience__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>1st Level Interview</masterLabel>
+            <translation><!-- 1st Level Interview --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2nd Level Interview</masterLabel>
+            <translation><!-- 2nd Level Interview --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3rd Level Interview</masterLabel>
+            <translation><!-- 3rd Level Interview --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR Discussion</masterLabel>
+            <translation><!-- HR Discussion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Joined</masterLabel>
+            <translation><!-- Joined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NEW</masterLabel>
+            <translation><!-- NEW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Offered</masterLabel>
+            <translation><!-- Offered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recommend to Offer</masterLabel>
+            <translation><!-- Recommend to Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Screening</masterLabel>
+            <translation><!-- Screening --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Total year of Experience --></label>
+        <name>Total_year_of_Experience__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Mobile Number is Invalid --></errorMessage>
+        <name>Mobile_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mobile Number Should have only 10 digits --></errorMessage>
+        <name>Mobile_Number_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

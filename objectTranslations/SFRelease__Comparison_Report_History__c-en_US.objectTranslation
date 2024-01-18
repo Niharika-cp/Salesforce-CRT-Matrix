@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Code Comparison Label --></label>
+        <name>SFRelease__Code_Comparison_Label__c</name>
+        <relationshipLabel><!-- Comparison Report History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Last Run --></label>
+        <name>SFRelease__Last_Run__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org1 --></label>
+        <name>SFRelease__Org1__c</name>
+        <relationshipLabel><!-- Comparison Report History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Org2 --></label>
+        <name>SFRelease__Org2__c</name>
+        <relationshipLabel><!-- Comparison Report History (Org2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Org3 --></label>
+        <name>SFRelease__Org3__c</name>
+        <relationshipLabel><!-- Comparison Report History (Org3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Org4 --></label>
+        <name>SFRelease__Org4__c</name>
+        <relationshipLabel><!-- Comparison Report History (Org4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Org5 --></label>
+        <name>SFRelease__Org5__c</name>
+        <relationshipLabel><!-- Comparison Report History (Org5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Org 1 --></label>
+        <name>SFRelease__Org_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org 2 --></label>
+        <name>SFRelease__Org_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org 3 --></label>
+        <name>SFRelease__Org_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org 4 --></label>
+        <name>SFRelease__Org_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org 5 --></label>
+        <name>SFRelease__Org_5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overall Org1 Coverage --></label>
+        <name>SFRelease__Overall_Org1_Coverage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overall Org2 Coverage --></label>
+        <name>SFRelease__Overall_Org2_Coverage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overall Org3 Coverage --></label>
+        <name>SFRelease__Overall_Org3_Coverage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overall Org4 Coverage --></label>
+        <name>SFRelease__Overall_Org4_Coverage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overall Org5 Coverage --></label>
+        <name>SFRelease__Overall_Org5_Coverage__c</name>
+    </fields>
+    <fields>
+        <label><!-- PDF --></label>
+        <name>SFRelease__PDF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Report Last Run --></label>
+        <name>SFRelease__Report_Last_Run__c</name>
+    </fields>
+    <fields>
+        <label><!-- Report Next Run --></label>
+        <name>SFRelease__Report_Next_Run__c</name>
+    </fields>
+</CustomObjectTranslation>

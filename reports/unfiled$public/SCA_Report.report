@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>copado__Static_Code_Analysis_Violation__c.copado__File__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>copado__Static_Code_Analysis_Violation__c.copado__Line__c</field>
+    </columns>
+    <columns>
+        <field>copado__Static_Code_Analysis_Violation__c.copado__Rule__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>copado__Static_Code_Analysis_Violation__c.copado__Priority__c</field>
+    </columns>
+    <columns>
+        <field>copado__Static_Code_Analysis_Violation__c.copado__Message__c</field>
+    </columns>
+    <columns>
+        <field>copado__Static_Code_Analysis_Violation__c.copado__Info_URL__c</field>
+    </columns>
+    <columns>
+        <field>CUST_CREATED_DATE</field>
+    </columns>
+    <format>Tabular</format>
+    <name>SCA Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$copado__Static_Code_Analysis_Result__c$copado__Static_Code_Analysis_Violation__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

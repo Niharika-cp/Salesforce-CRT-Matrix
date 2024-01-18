@@ -1,0 +1,184 @@
+<!-------------------------------------------------------------------------------------------
+-                                                                                            
+-         Name :  DataMaskingConfigEditedViewPage
+-       Author :  Amarnathreddy Sureddy (Infosys Limited)                                              
+-  Description :  Developed for Infosys Data Masking AppExchange product                           
+-                 This Page is written to replicate the configration done on edit of a particular saved jobs.
+-                                                                                             
+-         © 2018 Infosys Limited, Bangalore, India. All rights reserved.                      
+-         No part of this code should be used without prior written consent from the author
+-------------------------------------------------------------------------------------------->
+
+<apex:page Controller="infy_dm.DataMaskingObjectEditController" showheader="false" sidebar="false" tabStyle="infy_dm__Data_Masking_Object_Config__c">
+<table style="width:500px">
+ 	<tr>
+ 	 <th align="center"><apex:image url="{!$Resource.infy_dm__DataMaskingLogo}" /></th>
+ 	 <th><apex:sectionHeader id="ConfigurationViewDetails" title="Preview Configuration" subtitle="Data Masking:Configuration View Page"/></th>
+ 	</tr>
+</table>
+
+<!-- ********* Code Block for Floating Headers using jQuery ********** -->
+	 
+    <apex:includeScript value="{!$Resource.infy_dm__jquery}"/>
+	 <script src="{!URLFOR($Resource.jquery_vfFloatingHeaders)}"></script>
+		<style>
+	        .tableContainer
+	        {
+	            height:290px;
+	            width: 100%;
+	            overflow: auto;
+	        }
+	                  
+	        .floatingStyle 
+	        { 
+	            position:relative;
+	            
+	        }
+	    </style>
+	
+	    <script>
+	    $(document).ready(function() {
+	        $('.floatingHeaderTable').vfFloatingHeaders();
+	    });
+	    </script> 
+	<!-- *************************************************************** -->
+	
+	<!-- ******* CSS Styling for Changing background Color of header of pageBlockTables ********  -->
+	<style>
+		.headerRow .TableTitle{
+			background-color:#C2EBFF !important;
+			text-align:center;
+		}
+	</style>
+	<!-- **************************************************************************************** -->
+	
+	<!-- ****************** CSS Styling for Button **********************-->
+   <style>
+		.buttong2y{
+			   border-top: 1px solid #90ae6a;
+			   background: #91af6a;
+			   background: -webkit-gradient(linear, left top, left bottom, from(#91af6a), to(#91af6a));
+			   background: -webkit-linear-gradient(top, #91af6a, #91af6a);
+			   background: -moz-linear-gradient(top, #91af6a, #91af6a);
+			   background: -ms-linear-gradient(top, #91af6a, #91af6a);
+			   background: -o-linear-gradient(top, #91af6a, #91af6a);
+			   padding: 5px 10px;
+			   -webkit-border-radius: 8px;
+			   -moz-border-radius: 8px;
+			   border-radius: 8px;
+			   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+			   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+			   box-shadow: rgba(0,0,0,1) 0 1px 0;
+			   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+			   color: #000000;
+			   font-size: 14px;
+			   font-family: Helvetica, Arial, Sans-Serif;
+			   text-decoration: none;
+			   vertical-align: middle;
+			   }
+		.buttong2y:hover {
+			   border-top-color: #BFDFFF;
+			   background: #BFDFFF;
+			   color: #000000;
+			   }
+		.buttong2y:active {
+			   border-top-color: #91af6a;
+			   background: #91af6a;
+			   }
+	</style>
+	<!--*************************************************-->
+	<!--  CSS Styling to change the background of Page -->
+	<style>
+        .bPageBlock {
+              background-color: #F1F8FF !important;
+       }
+    </style>
+	<!--  ******************************************** -->
+	
+	<!-- ************************* Custom Pop-up **************************-->
+	<style type="text/css">
+       .customPopup{
+            background-color: white;
+            border-style: solid;
+            border-width: 2px;
+            left: 50%;
+            padding:20px;
+            position: absolute;
+            z-index: auto;
+            width: auto;
+            height:auto;
+            margin-left: -200px;
+            top:220px;
+        }
+         .popupBackground{
+            background-color:black;
+            opacity: 0.80;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: auto;
+        }
+	</style>
+	<!-- ****************************************************************** -->
+	
+	<apex:form >
+	
+	<apex:pageBlock title="Job Details:">
+         <apex:pageBlockSection columns="2" >
+            <apex:pageBlockTable value="{!dmoc}" var="dm" columns="3" align="center" border="1">
+                <apex:column id="JobName" value="{!dm.infy_dm__Job_Name__c}" style="text-align:center" headerClass="TableTitle"/>
+                <apex:column id="ObjectName" value="{!dm.Name}" style="text-align:center" headerClass="TableTitle"/> 
+                <apex:column id="Description" value="{!dm.infy_dm__Description__c}" style="text-align:center" headerClass="TableTitle"/>
+           </apex:pageBlockTable>
+         </apex:pageBlockSection>
+  	</apex:pageBlock>
+  	
+		<apex:pageBlock title="Configuration:" id="configfieldsPageBlock">
+			<apex:pageBlockSection columns="1">
+	 			<apex:outputPanel styleClass="tableContainer" layout="block">
+	  				<apex:pageBlockTable align="center" value="{!maskingWrapperViewList}" var="FieldConfigRowView" id="configFieldsTable" styleclass="floatingHeaderTable"> 
+	  					<apex:column headerValue="Field Name" width="15%" style="text-align:center;font-weight:bold;font-size:8.5pt" headerClass="TableTitle">
+	 						<apex:outputText id="FldName" value="{!FieldConfigRowView.fldConfig.Name}"></apex:outputText>
+	    				</apex:column>
+	    				
+	    				<apex:column headerValue="Data Type" width="15%" style="text-align:center" headerClass="TableTitle">
+ 							<apex:outputText id="dataType" value="{!FieldConfigRowView.dataType}"></apex:outputText>
+                		</apex:column>
+                		
+	    				<apex:column headerValue="Masking Mechanism" width="15%" style="text-align:center;font-weight:bold;font-size:8.5pt" headerClass="TableTitle">
+	 						<apex:outputText id="maskingMechanism" value="{!FieldConfigRowView.fldConfig.infy_dm__Masking_Mechanism__c}"></apex:outputText>
+	    				</apex:column>
+	    				<apex:column headerValue="Masking Rule" width="15%" style="text-align:center;font-weight:bold;font-size:8.5pt" headerClass="TableTitle">
+	 						<!--<apex:outputText id="maskingRule" value="{!FieldConfigRowView.fldConfig.infy_dm__Masking_Rule__c}"></apex:outputText> -->
+                            <apex:outputText id="maskingRule" value="Substitution" rendered="{!IF(FieldConfigRowView.fldConfig.infy_dm__Masking_Mechanism__c = 'Substitution',true,false)}"  />
+                           <apex:outputText id="maskingRule1" value="{!FieldConfigRowView.fldConfig.infy_dm__Masking_Rule__c}" rendered="{!!IF(FieldConfigRowView.fldConfig.infy_dm__Masking_Mechanism__c = 'Substitution',true,false)}" />
+	    				
+                        </apex:column>
+	    			</apex:pageBlockTable><br/><br/>
+	  			</apex:outputPanel>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	
+	
+	<center>
+        <apex:commandButton action="{!previousButtonConfigEditViewPage}" value="Previous" styleClass="buttong2y" style="height:10%;width:4%;text-align:center!important;" immediate="false"/>&nbsp;
+        <apex:commandButton action="{!showPopup}" value="Save Configuration" styleClass="buttong2y" style="height:10%;width:8%;text-align:center!important;" immediate="false"/>&nbsp; 
+	    	<apex:outputPanel id="popup">
+	    	<apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}">
+	    	<apex:outputPanel styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
+	    	<center><div class="heading"><strong>Do you want to Save the changes?</strong></div></center><br/>
+	    	<apex:commandButton value="Yes" action="{!saveButtonConfigEditPage}" rerender="popup" styleClass="buttong2y" style="height:10%;width:14%;text-align:center!important;"/>&nbsp;
+	    	<apex:commandButton value="No" action="{!closePopup}" rerender="popup" styleClass="buttong2y" style="height:10%;width:14%;text-align:center!important;"/>
+	    	</apex:outputPanel>
+	    	</apex:outputPanel>
+	    	</apex:outputPanel>
+	    	<apex:commandButton action="{!cancel}" value="Cancel" styleClass="buttong2y" style="height:10%;width:4%;text-align:center!important;" immediate="false"/>
+             <apex:commandButton id="HomeButton" action="{!HomeButtonWizardStepOne}" value="Home" styleClass="buttong2y" style="height:10%;width:4%;text-align:center!important;"/>
+
+        </center>
+    
+  </apex:form>
+</apex:page>

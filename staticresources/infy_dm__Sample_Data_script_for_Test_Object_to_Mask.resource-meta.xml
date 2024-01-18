@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>text/plain</contentType>
+    <description>You can use this file for i) Creating sample data for Test_Obj_to_Mask__c ii)Delete all data in Test_Obj_to_Mask__c iii) Delete all data in Data_Dictionary__c</description>
+</StaticResource>

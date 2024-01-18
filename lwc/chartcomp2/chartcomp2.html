@@ -1,0 +1,135 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+<lightning-card>
+    <div style="margin: 10%;">
+        <div class="slds-align_absolute-right">
+        <template if:true={opps}>
+            <lightning-badge label="Job is already Scheduled. Please check after 6AM tomorrow" class="slds-badge_inverse badgesize slds-theme_warning"></lightning-badge>
+        </template>
+    </div>
+        <div class="slds-float_right">
+        <lightning-button variant="brand" label="Generate New Chart" title="Generate New Chart" onclick={handleClick}></lightning-button>
+        <lightning-helptext content="If clicked, New Chart will be displayed from next day"></lightning-helptext>
+    </div>
+<c-chart type="bubble" responsive="true">
+    <c-dataset>
+        <template if:true={n0}>
+        <c-data label={n0} detail='{arr0}' backgroundcolor="rgba(0, 0, 255,1)"></c-data>
+    </template>   
+        <template if:true={n1}>
+        <c-data label={n1} detail='{arr1}' backgroundcolor="rgba(225, 96, 50, 1)"></c-data>
+    </template>
+        <template if:true={n2}>
+        <c-data label={n2} detail='{arr2}' backgroundcolor="rgba(146, 7, 18)"></c-data>
+    </template>
+    <template if:true={n3}>
+        <c-data label={n3} detail='{arr3}' backgroundcolor="rgba(102, 208, 18)"></c-data>
+    </template>
+    <template if:true={n4}>
+        <c-data label={n4} detail='{arr4}' backgroundcolor="rgba(25, 176, 59, 1)"></c-data>
+        </template>
+        <template if:true={n5}>
+        <c-data label={n5} detail='{arr5}' backgroundcolor="rgba(102, 31, 177,1)"></c-data>
+    </template>
+    <template if:true={n5}>
+        <c-data label={n6} detail='{arr6}' backgroundcolor="rgba(255, 166, 177,1)"></c-data>
+        </template>
+        <template if:true={n7}>
+        <c-data label={n7} detail='{arr7}' backgroundcolor="rgba(102, 128, 177,1)"></c-data>
+    </template>
+        <template if:true={n8}>
+        <c-data label={n8} detail='{arr8}' backgroundcolor="rgba(146, 158, 181,1)"></c-data>
+        </template>
+        <template if:true={n9}>
+        <c-data label={n9} detail='{arr9}' backgroundcolor="rgba(123, 114, 255,1)"></c-data>
+        </template>
+        <template if:true={n10}>
+        <c-data label={n10} detail='{arr10}' backgroundcolor="rgba(123, 87, 255,1)"></c-data>
+    </template>
+        <template if:true={n11}>
+        <c-data label={n11} detail='{arr11}' backgroundcolor="rgba(255, 158, 18,1)"></c-data>
+    </template>
+        <template if:true={n12}>
+        <c-data label={n12} detail='{arr12}' backgroundcolor="rgba(213, 178, 25, 1)"></c-data>
+    </template>
+        <template if:true={n13}>
+        <c-data label={n13} detail='{arr13}' backgroundcolor="rgba(103, 255, 213,1)"></c-data>
+    </template>
+        <template if:true={n14}>
+        <c-data label={n14} detail='{arr14}' backgroundcolor="rgba(255, 205, 71,1)"></c-data>
+    </template>
+        <template if:true={n15}>
+        <c-data label={n15} detail='{arr15}' backgroundcolor="rgba(255, 99, 71,1)"></c-data>
+    </template>
+        <template if:true={n16}>
+        <c-data label={n16} detail='{arr16}' backgroundcolor="rgba(255, 125, 7, 1)"></c-data>
+    </template>
+        <template if:true={n17}>
+        <c-data label={n17} detail='{arr17}' backgroundcolor="rgba(213, 248, 0, 1)"></c-data>
+    </template>
+        <template if:true={n18}>
+        <c-data label={n18} detail='{arr18}' backgroundcolor="rgba(205, 155, 0,1)"></c-data>
+    </template>
+        <template if:true={n19}>
+        <c-data label={n19} detail='{arr19}' backgroundcolor="rgba(238, 130, 238,1)"></c-data>
+    </template>
+        <template if:true={n20}>
+        <c-data label={n20} detail='{arr20}' backgroundcolor="rgba(160, 179, 113,1)"></c-data>
+    </template>
+        <template if:true={n21}>
+        <c-data label={n21} detail='{arr21}' backgroundcolor="rgba(105, 169, 153,1)"></c-data>
+    </template>
+    <template if:true={n22}>
+        <c-data label={n22} detail='{arr22}' backgroundcolor="rgba(195, 129, 220,1)"></c-data>
+    </template>
+    <template if:true={n23}>
+        <c-data label={n23} detail='{arr23}' backgroundcolor="rgba(160, 149, 220,1)"></c-data>
+    </template>
+    <template if:true={n24}>
+        <c-data label={n24} detail='{arr24}' backgroundcolor="rgba(145, 199, 220,1)"></c-data>
+    </template>
+    <template if:true={n25}>
+        <c-data label={n25} detail='{arr25}' backgroundcolor="rgba(175, 189, 220,1)"></c-data>
+    </template>
+    <template if:true={n26}>
+        <c-data label={n26} detail='{arr26}' backgroundcolor="rgba(129, 169, 220,1)"></c-data>
+    </template>
+    <template if:true={n27}>
+        <c-data label={n27} detail='{arr27}' backgroundcolor="rgba(174, 149, 220,1)"></c-data>
+    </template>
+    <template if:true={n28}>
+        <c-data label={n28} detail='{arr28}' backgroundcolor="rgba(163, 129, 220,1)"></c-data>
+    </template>
+    <template if:true={n29}>
+        <c-data label={n29} detail='{arr29}' backgroundcolor="rgba(152, 60, 220,1)"></c-data>
+    </template>
+    <template if:true={n30}>
+        <c-data label={n30} detail='{arr30}' backgroundcolor="rgba(145, 201, 220,1)"></c-data>
+    </template>
+    <template if:true={n31}>
+        <c-data label={n31} detail='{arr31}' backgroundcolor="rgba(105, 102, 220,1)"></c-data>
+    </template>
+    </c-dataset>
+        <c-title text="Feature Audit" fontsize=28 fontstyle="bold"></c-title>
+        <c-legend position="bottom"></c-legend>
+        <c-cartesian-linear-axis axisid="left" axis="y" position="left" ticks-stepsize="100" title-labelstring="Usage Count" title-display="true"></c-cartesian-linear-axis>
+    <c-cartesian-linear-axis axisid="right" axis="x" position="bottom" ticks-stepsize="20" title-labelstring="User %" title-display="true"></c-cartesian-linear-axis>
+    </c-chart><br/>
+        <div style="margin:auto 5%">
+        <template if:true={check}>
+            <!-- <template for:each={count2.data} for:item="con">
+                <p key={con.Id}>{con.Name}</p>
+            </template>-->
+            <lightning-datatable
+            key-field="id"
+            data={val}
+            columns={columns}
+            hide-checkbox-column 
+            wrap-text-max-lines="4">
+            </lightning-datatable>
+        </template>
+        </div>
+</div>
+</lightning-card>
+</template>

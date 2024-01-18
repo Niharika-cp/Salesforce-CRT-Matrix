@@ -1,0 +1,35 @@
+.utilTitle{
+    background-color: #eee7e7;
+    padding-left:0.5rem;
+}
+.utils{
+    font-weight: 500;
+}
+.customcss{
+    margin: 2px;
+    size:x-small;
+}
+.utilTitle1{
+    background-color: #fbf4f4;
+    padding-left:0.5rem;
+}
+/*
+.c-container {
+    border: 1px solid #d8dde6;
+    margin: 10px 0 20px;
+}
+
+ .large {
+    height: 100px;
+}
+
+ .x-large {
+    height: 100px;
+}
+
+ /*.custom-box {
+    text-align: center;
+    background-color: #f4f6f9;
+    padding: 2rem;
+    border: 1px solid #d8dde6;
+}*/

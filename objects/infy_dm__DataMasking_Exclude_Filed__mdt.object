@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>infy_dm__Field_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>Please configure filed name with name on  Data Masking: Step 2 of 3 (Field Level Configuration) vf page as its case sensitive.</inlineHelpText>
+        <label>Field Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>infy_dm__Object_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Object Name</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>DataMasking Exclude Field</label>
+    <pluralLabel>DataMasking Exclude Fields</pluralLabel>
+    <validationRules>
+        <fullName>infy_dm__validation_rule_for_Duplicate_obj_field</fullName>
+        <active>false</active>
+        <errorConditionFormula>IF((PRIORVALUE(infy_dm__Object_Name__c ) ==infy_dm__Object_Name__c &amp;&amp;  ISNEW())&amp;&amp;(PRIORVALUE(infy_dm__Field_Name__c ) ==infy_dm__Field_Name__c  &amp;&amp;  ISNEW()), TRUE, null)</errorConditionFormula>
+        <errorMessage>No Duplicate Object Filed value is allowed</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

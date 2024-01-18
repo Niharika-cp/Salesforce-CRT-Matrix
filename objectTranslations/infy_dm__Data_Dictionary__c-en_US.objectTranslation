@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- CURRENCY --></label>
+        <name>infy_dm__Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- DATE --></label>
+        <name>infy_dm__DATE__c</name>
+    </fields>
+    <fields>
+        <label><!-- DOUBLE --></label>
+        <name>infy_dm__DOUBLE__c</name>
+    </fields>
+    <fields>
+        <label><!-- EMAIL --></label>
+        <name>infy_dm__Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- STRING --></label>
+        <name>infy_dm__First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- TEXTAREA --></label>
+        <name>infy_dm__Mailing_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- NUMBER --></label>
+        <name>infy_dm__Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- PHONE --></label>
+        <name>infy_dm__Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- URL --></label>
+        <name>infy_dm__URL__c</name>
+    </fields>
+</CustomObjectTranslation>

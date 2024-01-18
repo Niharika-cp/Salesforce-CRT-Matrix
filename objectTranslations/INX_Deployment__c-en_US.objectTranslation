@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Deployment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Deployments</value>
+    </caseValues>
+    <fields>
+        <label><!-- Created Date --></label>
+        <name>INX_Created_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Id --></label>
+        <name>INX_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Instance --></label>
+        <name>INX_Instance__c</name>
+        <relationshipLabel><!-- Deployments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Last Modified Date --></label>
+        <name>INX_Last_Modified_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>INX_Type__c</name>
+        <picklistValues>
+            <masterLabel>package</masterLabel>
+            <translation><!-- package --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>tag</masterLabel>
+            <translation><!-- tag --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

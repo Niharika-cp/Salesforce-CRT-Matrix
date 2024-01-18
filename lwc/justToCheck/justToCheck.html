@@ -1,0 +1,8 @@
+<template>
+    <div>
+        <template for:each={options} for:item="option">
+          <lightning-input type="checkbox" key={option.value} label={option.label} value={option.value} onchange={handleChange} disabled={option.disabled}>
+          </lightning-input>
+        </template>
+      </div>
+  </template>

@@ -1,0 +1,29 @@
+<template>
+    <div class="slds-box" style="height: 100%;">
+       <div class="slds-grid slds-wrap">
+          <div class="slds-col slds-size_1-of-3">
+             <lightning-combobox
+                label="Production Status"
+                placeholder={prevValue}
+                value={valueSelected}
+                options={pickListValues}
+                onchange={optionChange}
+                class="combo"
+                ></lightning-combobox>
+          </div>
+          <div class="slds-col slds-size_1-of-3 mrgn">
+             <lightning-button variant="brand" label="Submit" onclick={submitHandler} ></lightning-button>
+          </div>
+          <br/> 
+          <div class="slds-col slds-size_1-of-3"> <br/>
+             <p style="font-weight: bold;">Branches Excluded</p>
+             <lightning-datatable
+                key-field="id"
+                data={bval}
+                columns={columns}
+                hide-checkbox-column>
+             </lightning-datatable>
+          </div>
+       </div>
+    </div>
+ </template>

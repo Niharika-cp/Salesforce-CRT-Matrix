@@ -1,0 +1,20 @@
+<template>
+     <div class="slds-box" style="background-color:white">
+        <lightning-combobox  name="progress"
+        label="Select Repository"
+        value={selectedRepository}
+        placeholder="None"
+        options={varOptions}
+        onchange={handleChange}>
+ </lightning-combobox><br/>
+ <lightning-button variant="brand" label="Get Branches" onclick={branchhandler}></lightning-button>
+    <lightning-dual-listbox name="avaialble repo"
+    label="Select Branches"
+    source-label="Available"
+    selected-label="Selected"
+    field-level-help=""
+    options={duelPicklist}
+    onchange={duelhandleChange}
+    class="slds-m-around_small"></lightning-dual-listbox>
+     </div>
+</template>

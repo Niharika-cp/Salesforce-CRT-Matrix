@@ -1,0 +1,19 @@
+.slds-modal__container{
+	width: 80% !important;
+	max-width: 80% !important;
+
+  height: 100% !important;
+  max-height: 100% !important;
+}
+.my-cystom-input{
+  --sds-c-input-radius-border: 25px;
+  --slds-c-input-color-background:#fff;
+  --slds-c-input-color-border: #3670b6;
+   
+}
+.my-icon {
+  padding: 0.2rem;
+}
+.my-icon1 {
+  padding: 0.1rem;
+}

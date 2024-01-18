@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Access Token --></label>
+        <name>SFRelease__Access_Token__c</name>
+    </fields>
+    <fields>
+        <label><!-- Async Test Job Id --></label>
+        <name>SFRelease__Async_Test_Job_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- If Authentication is failed, the fail reason will be displayed here. --></help>
+        <label><!-- Authentication Failure Reason --></label>
+        <name>SFRelease__Authentication_Failure_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Time --></label>
+        <name>SFRelease__Current_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Desired Timezone --></label>
+        <name>SFRelease__Desired_Timezone__c</name>
+        <picklistValues>
+            <masterLabel>Africa/Johannesburg</masterLabel>
+            <translation><!-- Africa/Johannesburg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>America/Chicago</masterLabel>
+            <translation><!-- America/Chicago --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>America/Los_Angeles</masterLabel>
+            <translation><!-- America/Los_Angeles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>America/Mexico_City</masterLabel>
+            <translation><!-- America/Mexico_City --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>America/New_York</masterLabel>
+            <translation><!-- America/New_York --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>America/Phoenix</masterLabel>
+            <translation><!-- America/Phoenix --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia/Bahrain</masterLabel>
+            <translation><!-- Asia/Bahrain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia/Dubai</masterLabel>
+            <translation><!-- Asia/Dubai --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia/Hong_Kong</masterLabel>
+            <translation><!-- Asia/Hong_Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia/Karachi</masterLabel>
+            <translation><!-- Asia/Karachi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia/Kolkata</masterLabel>
+            <translation><!-- Asia/Kolkata --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia/Shanghai</masterLabel>
+            <translation><!-- Asia/Shanghai --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia/Singapore</masterLabel>
+            <translation><!-- Asia/Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia/Tokyo</masterLabel>
+            <translation><!-- Asia/Tokyo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Australia/Melbourne</masterLabel>
+            <translation><!-- Australia/Melbourne --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Australia/Sydney</masterLabel>
+            <translation><!-- Australia/Sydney --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe/Amsterdam</masterLabel>
+            <translation><!-- Europe/Amsterdam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe/London</masterLabel>
+            <translation><!-- Europe/London --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe/Moscow</masterLabel>
+            <translation><!-- Europe/Moscow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe/Prague</masterLabel>
+            <translation><!-- Europe/Prague --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe/Stockholm</masterLabel>
+            <translation><!-- Europe/Stockholm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe/Vatican</masterLabel>
+            <translation><!-- Europe/Vatican --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Domain URL --></label>
+        <name>SFRelease__Domain_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Id(s) --></label>
+        <name>SFRelease__Email_Id_s__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used for Test class to avoid recurring flow --></help>
+        <label><!-- IsTestRunning --></label>
+        <name>SFRelease__IsTestRunning__c</name>
+    </fields>
+    <fields>
+        <help><!-- To check last time the callout hit to Target Org to get Status --></help>
+        <label><!-- Last Run --></label>
+        <name>SFRelease__Last_Run__c</name>
+    </fields>
+    <fields>
+        <help><!-- The time that callout will happen to get the Status from Target Org --></help>
+        <label><!-- Next Run --></label>
+        <name>SFRelease__Next_Run__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Schedule Based on TimeZone --></label>
+        <name>SFRelease__Next_Schedule_Based_on_TimeZone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Next Schedule On --></label>
+        <name>SFRelease__Next_Schedule_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org Type --></label>
+        <name>SFRelease__Org_Type__c</name>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sandbox</masterLabel>
+            <translation><!-- Sandbox --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Overall Code Coverage --></label>
+        <name>SFRelease__Overall_Code_Coverage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password --></label>
+        <name>SFRelease__Password__c</name>
+    </fields>
+    <fields>
+        <label><!-- Production Org --></label>
+        <name>SFRelease__Production_Org__c</name>
+        <relationshipLabel><!-- Orgs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Refresh Token --></label>
+        <name>SFRelease__Refresh_Token__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sandbox Last Login --></label>
+        <name>SFRelease__Sandbox_Last_Login__c</name>
+    </fields>
+    <fields>
+        <label><!-- Security Token --></label>
+        <name>SFRelease__Security_Token__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Check Frequency --></label>
+        <name>SFRelease__Status_Check_Frequency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>SFRelease__Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Test Run Type --></label>
+        <name>SFRelease__Test_Run_Type__c</name>
+        <picklistValues>
+            <masterLabel>Run All Tests</masterLabel>
+            <translation><!-- Run All Tests --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Run Local Tests</masterLabel>
+            <translation><!-- Run Local Tests --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Username --></label>
+        <name>SFRelease__Username__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Production --></label>
+        <name>SFRelease__Production</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Sandbox --></label>
+        <name>SFRelease__Sandbox</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Org Name Should Not be more than 10 Characters. --></errorMessage>
+        <name>SFRelease__Name_Charecters_Should_be_Less_Than_10</name>
+    </validationRules>
+</CustomObjectTranslation>

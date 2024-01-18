@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Account --></label>
+        <name>DOZISF__Account__c</name>
+        <relationshipLabel><!-- ZoomInfo Intent --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>DOZISF__Categories__c</name>
+    </fields>
+    <fields>
+        <label><!-- Change in Signal Score --></label>
+        <name>DOZISF__Change_in_Surge_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Intent ID --></label>
+        <name>DOZISF__Intent_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signal Date --></label>
+        <name>DOZISF__Signal_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signal Score --></label>
+        <name>DOZISF__Surge_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Topic --></label>
+        <name>DOZISF__Topic__c</name>
+    </fields>
+    <fields>
+        <label><!-- ZoomInfo External Id --></label>
+        <name>DOZISF__ZoomInfo_External_Id__c</name>
+    </fields>
+</CustomObjectTranslation>

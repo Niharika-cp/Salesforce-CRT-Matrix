@@ -1,0 +1,4 @@
+Hi,
+{!copado__User_Story__c.copado__Developer__c},
+
+{!copado__User_Story__c.Name} is Deployed Successfully to {!copado__User_Story__c.copado__Org_Credential__c}.

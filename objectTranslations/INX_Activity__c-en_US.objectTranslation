@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Activity</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Activities</value>
+    </caseValues>
+    <fields>
+        <label><!-- Action --></label>
+        <name>INX_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity Date --></label>
+        <name>INX_Activity_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity timestamp --></label>
+        <name>INX_Activity_Timestamp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Branch --></label>
+        <name>INX_Branch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Close branch --></label>
+        <name>INX_Close_Branch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deployment --></label>
+        <name>INX_Deployment__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>INX_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commit (hash) --></label>
+        <name>INX_Hash__c</name>
+    </fields>
+    <fields>
+        <label><!-- Id --></label>
+        <name>INX_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Instance --></label>
+        <name>INX_Instance__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Message --></label>
+        <name>INX_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>INX_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Needs review --></label>
+        <name>INX_Needs_Review__c</name>
+    </fields>
+    <fields>
+        <label><!-- Package directory --></label>
+        <name>INX_Package_Directory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Package --></label>
+        <name>INX_Package__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Repository --></label>
+        <name>INX_Repository__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Resolution --></label>
+        <name>INX_Resolution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source branch --></label>
+        <name>INX_Source_Branch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source --></label>
+        <name>INX_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Type --></label>
+        <name>INX_Sub_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tag --></label>
+        <name>INX_Tag__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>INX_Type__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

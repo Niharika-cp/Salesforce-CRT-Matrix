@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Please configure filed name with name on  Data Masking: Step 2 of 3 (Field Level Configuration) vf page as its case sensitive. --></help>
+        <label><!-- Field Name --></label>
+        <name>infy_dm__Field_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Name --></label>
+        <name>infy_dm__Object_Name__c</name>
+    </fields>
+    <validationRules>
+        <errorMessage><!-- No Duplicate Object Filed value is allowed --></errorMessage>
+        <name>infy_dm__validation_rule_for_Duplicate_obj_field</name>
+    </validationRules>
+</CustomObjectTranslation>

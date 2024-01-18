@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Job Posting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Job Postings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Company_Name__c</name>
+        <picklistValues>
+            <masterLabel>Cloudfulcrum</masterLabel>
+            <translation><!-- Cloudfulcrum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Realase Owl</masterLabel>
+            <translation><!-- Realase Owl --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Job Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Experience --></label>
+        <name>Experience__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number Of Positions --></label>
+        <name>Number_Of_Positions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Applicants --></label>
+        <name>Number_of_Applicants__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

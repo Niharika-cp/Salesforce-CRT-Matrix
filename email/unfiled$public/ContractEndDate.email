@@ -1,0 +1,7 @@
+Hi Team,
+
+Your Contract {!Contract.Id} with Account {!Contract.Account} is going to expire on {!Contract.EndDate}.
+You can check contract here: {!Contract.Link}
+
+Regards,
+{!Organization.Name}

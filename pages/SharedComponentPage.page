@@ -1,0 +1,19 @@
+<apex:page controller="SharedComponentMatrixClass" readOnly="true" renderAs="pdf" standardStylesheets="false">
+    <apex:form >
+        <apex:pageBlock title="Shared Components Report">
+    	<apex:pageBlockTable value="{!complist}" var="usm">
+        	<apex:column headerValue="Component Name" value="{!usm.component}" width="20%"/>
+            <apex:column headerValue="Type" value="{!usm.typer}" width="15%"/>
+            <apex:column headerValue="User Story Details" width="55%">
+            <apex:pageBlockTable value="{!usm.usList}" var="usl">
+                <apex:column headerValue="UserStory">
+                    <apex:outputLink value="/{!usl.id}">{!usl.name}</apex:outputLink>
+                </apex:column>
+                <apex:column value="{!usl.copado__Environment__r.Name}"/>
+                <apex:column value="{!usl.CreatedBy.Name}"/>
+            </apex:pageBlockTable>
+            </apex:column>    
+        </apex:pageBlockTable>
+    </apex:pageBlock>        
+    </apex:form>
+</apex:page>

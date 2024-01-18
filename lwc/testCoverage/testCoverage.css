@@ -1,0 +1,14 @@
+.utilTitle{
+    background-color: #dad5d5;
+    padding-left:0.5rem;
+}
+.utils{
+    font-weight: 600;
+}
+.slds-modal__container{
+	width: 80% !important;
+	max-width: 80% !important;
+
+  height: 100% !important;
+  max-height: 100% !important;
+}

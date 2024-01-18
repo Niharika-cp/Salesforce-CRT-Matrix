@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="My Calendar" icon-name="standard:event">
+        <div class="slds-p-around_medium">
+            <div class="calendar-header">
+                <lightning-button-icon icon-name="utility:left" variant="border-filled" alternative-text="Previous" onclick={goToPreviousMonth}></lightning-button-icon>
+                <h2>{monthLabel} {year}</h2>
+                <lightning-button-icon icon-name="utility:right" variant="border-filled" alternative-text="Next" onclick={goToNextMonth}></lightning-button-icon>
+            </div>
+            <div class="calendar-grid slds-grid slds-wrap">
+                <!-- Calendar header -->
+                <template for:each={daysOfWeek} for:item="day">
+                    <div key={day} class="slds-col slds-size_1-of-7 slds-align_absolute-center slds-m-bottom_small">
+                        {day}
+                    </div>
+                </template>
+                <!-- Calendar days -->
+                <template for:each={calendarDays} for:item="week" for:index="weekIndex">
+                    <template for:each={week} for:item="day">
+                        <div key={day.key} class="slds-col slds-size_1-of-7 slds-align_absolute-center slds-m-bottom_small">
+                            <span class={day.classes}>
+                                {day.label}
+                            </span>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

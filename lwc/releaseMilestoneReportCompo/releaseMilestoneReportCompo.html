@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="Release Milestone Report">
+        <div class="slds-m-around_medium">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Release">Release</div>
+                        </th>
+                        <template for:each={environments} for:item="env">
+                            <th scope="colgroup" colspan="2" key={env} class="center-text">
+                                <div class="slds-truncate" title={env}>{env}</div>
+                            </th>
+                        </template>
+                    </tr>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col"> <!-- Empty for alignment --> </th>
+                        <template for:each={environments} for:item="env">
+                            <th scope="col" key={envStart}>
+                                <div class="slds-truncate" title="Start Date">Start Date</div>
+                            </th>
+                            <th scope="col" key={envEnd}>
+                                <div class="slds-truncate" title="End Date">End Date</div>
+                            </th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={releases} for:item="release">
+                        <tr key={release.releaseName} >
+                            <td >
+                                {release.releaseName}</td>
+                                <template for:each={release.environments} for:item="env">
+                                    <template for:each={env.datesWithKeys} for:item="dateWithKey">
+                                        <td key={dateWithKey.startKey}>{dateWithKey.startDate}</td>
+                                        <td key={dateWithKey.endKey}>{dateWithKey.endDate}</td>
+                                    </template>
+                                </template>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>

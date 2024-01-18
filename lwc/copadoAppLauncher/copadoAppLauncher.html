@@ -1,0 +1,169 @@
+<template>
+    <div class="slds-box" style="height: auto;">
+        <!--Section header-->
+        <div class="slds-section slds-is-open">
+            <h1 class="slds-section__title utilTitle">      
+                    <div class="slds-truncate utils" title="All Apps">All Utilities</div>      
+            </h1>
+            <!--Section body-->
+            <div class="slds-section__content"  id="control" aria-hidden={hid} >
+                <div class="slds-assistive-text" id="drag-live-region" aria-live="assertive"></div>
+                <ul class="slds-grid slds-wrap slds-grid_pull-padded">
+                    <li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-3">
+                        <div draggable="true" class="slds-app-launcher__tile slds-text-link_reset slds-is-draggable">
+                          <div class="slds-app-launcher__tile-figure">
+                            <span class="slds-icon_container">
+                              <img src={CleanUp} class="cleanup">
+                          </span>
+                          </div>
+                          <div class="slds-app-launcher__tile-body tileBody">
+                            <a href="/lightning/n/Copado_Cleanup_Utilities"><span class="link">Copado Cleanup Utilities</span></a>
+         <p class="data-1">This Utility helps to keep your Copado Infrastructure Clean  
+         </p><span>
+            <template if:true={checkCC}>
+            <button class="slds-button slds-button_icon " title="moreinfo" onclick={showCCInfo1}>
+            <lightning-button-icon icon-name="utility:jump_to_top"
+            alternative-text="more"
+            size="small"
+            variant="bare"
+            class="icon-Button" ></lightning-button-icon>
+         </button>
+        </template>
+        <template if:false={checkCC}>
+            <button class="slds-button slds-button_icon " title="moreinfo" onclick={showCCInfo2}>
+                <lightning-button-icon icon-name="utility:threedots"
+                alternative-text="more"
+                size="small"
+                variant="bare"
+                class="icon-Button" ></lightning-button-icon>
+             </button>
+        </template>
+    </span>
+                            <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide" role="tooltip" id="help-0" style="position:absolute;top:80px;right:30px">
+                              <div class="slds-popover__body"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-3">
+                          <div draggable="true" class="slds-app-launcher__tile slds-text-link_reset slds-is-draggable">
+                            <div class="slds-app-launcher__tile-figure">
+                              <span class="slds-icon_container">
+                                <img src={audit} class="feature">
+                            </span>
+                            </div>
+                            <div class="slds-app-launcher__tile-body  tileBody" >
+                                <a href="/lightning/n/Feature_Audit"><span class="link">Feature Audit</span></a>
+                                <p class="data-2">The Copado Feature Audit will run against your Copado Installation
+                                </p><span>
+                                   <template if:true={checkFA}>
+                                   <button class="slds-button slds-button_icon " title="moreinfo" onclick={showFAInfo1}>
+                                   <lightning-button-icon icon-name="utility:jump_to_top"
+                                   alternative-text="more"
+                                   size="small"
+                                   variant="bare"
+                                   class="icon-Button" ></lightning-button-icon>
+                                </button>
+                               </template>
+                               <template if:false={checkFA}>
+                                   <button class="slds-button slds-button_icon " title="moreinfo" onclick={showFAInfo2}>
+                                       <lightning-button-icon icon-name="utility:threedots"
+                                       alternative-text="more"
+                                       size="small"
+                                       variant="bare"
+                                       class="icon-Button" ></lightning-button-icon>
+                                    </button>
+                               </template>
+                           </span>
+                              <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide" role="tooltip" id="help-1" style="position:absolute;top:80px;right:30px">
+                                <div class="slds-popover__body"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-3">
+                          <div draggable="true" class="slds-app-launcher__tile slds-text-link_reset slds-is-draggable">
+                            <div class="slds-app-launcher__tile-figure">
+                              <span class="slds-icon_container">
+                                <img src={logs} class="logs">
+                            </span>
+                            </div>
+                            <div class="slds-app-launcher__tile-body tileBody">
+                                <a href="/lightning/o/AuditLog__c/list?filterName=00B520000067as6EAA"><span class="link">Audit Logs</span></a>
+                                <p class="data-3">Audit Log will capture the transactions done thourgh this utility.
+                                </p><span>
+                                   <template if:true={checkAL}>
+                                   <button class="slds-button slds-button_icon " title="moreinfo" onclick={showALInfo1}>
+                                   <lightning-button-icon icon-name="utility:jump_to_top"
+                                   alternative-text="more"
+                                   size="small"
+                                   variant="bare"
+                                   class="icon-Button" ></lightning-button-icon>
+                                </button>
+                               </template>
+                               <template if:false={checkAL}>
+                                   <button class="slds-button slds-button_icon " title="moreinfo" onclick={showALInfo2}>
+                                       <lightning-button-icon icon-name="utility:threedots"
+                                       alternative-text="more"
+                                       size="small"
+                                       variant="bare"
+                                       class="icon-Button" ></lightning-button-icon>
+                                    </button>
+                               </template>
+                           </span>
+                              <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide" role="tooltip" id="help-2" style="position:absolute;top:80px;right:30px">
+                                <div class="slds-popover__body"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-3">
+                          <div draggable="true" class="slds-app-launcher__tile slds-text-link_reset slds-is-draggable">
+                            <div class="slds-app-launcher__tile-figure">
+                             <span class="slds-icon_container">
+                                  <img src={dora} class="dora">
+                             </span>
+                            </div>
+                            <div class="slds-app-launcher__tile-body tileBody">
+                                <a href="/lightning/n/Devops_Maturity_Report"><span class="link">Devops Maturity Report</span></a>
+                                <p class="data-4">DORA principles are basis for defining DevOps Maturity Model.  
+                                </p><span>
+                                   <template if:true={checkDR}>
+                                   <button class="slds-button slds-button_icon " title="moreinfo" onclick={showDRInfo1}>
+                                   <lightning-button-icon icon-name="utility:jump_to_top"
+                                   alternative-text="more"
+                                   size="small"
+                                   variant="bare"
+                                   class="icon-Button" ></lightning-button-icon>
+                                </button>
+                               </template>
+                               <template if:false={checkDR}>
+                                   <button class="slds-button slds-button_icon " title="moreinfo" onclick={showDRInfo2}>
+                                       <lightning-button-icon icon-name="utility:threedots"
+                                       alternative-text="more"
+                                       size="small"
+                                       variant="bare"
+                                       class="icon-Button" ></lightning-button-icon>
+                                    </button>
+                               </template>
+                           </span>
+                              <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide" role="tooltip" id="help-4" style="position:absolute;top:80px;right:30px">
+                                <div class="slds-popover__body"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                </ul>
+            </div>
+        </div>
+        <div class="slds-section slds-is-open">
+            <h1 class="slds-section__title title">
+                <div class="slds-truncate settings"> Utility Settings</div>
+            </h1>
+            <!--Section Body-->
+            <div class="slds-section__content">
+                <c-getting-started></c-getting-started>
+            </div>
+        </div>
+    </div>
+</template>

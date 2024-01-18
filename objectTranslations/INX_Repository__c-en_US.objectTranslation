@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Repository</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Repositories</value>
+    </caseValues>
+    <fields>
+        <label><!-- Format --></label>
+        <name>INX_Format__c</name>
+    </fields>
+    <fields>
+        <label><!-- Id --></label>
+        <name>INX_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>INX_Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Branch --></label>
+        <name>INX_Main_Branch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Needs Review --></label>
+        <name>INX_Needs_Review__c</name>
+    </fields>
+    <fields>
+        <label><!-- Origin --></label>
+        <name>INX_Origin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remote --></label>
+        <name>INX_Remote__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Path --></label>
+        <name>INX_Source_Path__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

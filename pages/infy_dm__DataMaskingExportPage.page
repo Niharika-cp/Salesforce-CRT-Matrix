@@ -1,0 +1,152 @@
+<apex:page Controller="infy_dm.DataMaskingJobsController" showheader="false" sidebar="false" tabStyle="infy_dm__Data_Masking_Object_Config__c">
+
+<table style="width:500px">
+        <tr>
+            <th align="center"><apex:image url="{!$Resource.infy_dm__DataMaskingLogo}" /></th>
+            <th><apex:sectionHeader id="DataMaskingJobHeader" title="List of Export Data Masking Jobs existing in the Application" subtitle="Data Masking:Export Jobs Details"/></th>
+        </tr>
+    </table>
+
+    <!--CSS Styling for changing background color of page-->
+    <style>
+        .bPageBlock {
+              background-color: #F1F8FF !important;
+       }
+    </style>
+    <!--*************************************************-->
+
+<!--CSS Styling for Button-->
+   <style>
+        .buttong2y{
+               border-top: 1px solid #90ae6a;
+               background: #91af6a;
+               background: -webkit-gradient(linear, left top, left bottom, from(#91af6a), to(#91af6a));
+               background: -webkit-linear-gradient(top, #91af6a, #91af6a);
+               background: -moz-linear-gradient(top, #91af6a, #91af6a);
+               background: -ms-linear-gradient(top, #91af6a, #91af6a);
+               background: -o-linear-gradient(top, #91af6a, #91af6a);
+               padding: 5px 10px;
+               -webkit-border-radius: 8px;
+               -moz-border-radius: 8px;
+               border-radius: 8px;
+               -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+               -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+               box-shadow: rgba(0,0,0,1) 0 1px 0;
+               text-shadow: rgba(0,0,0,.4) 0 1px 0;
+               color: #000000;
+               font-size: 14px;
+               font-family: Helvetica, Arial, Sans-Serif;
+               text-decoration: none;
+               vertical-align: middle;
+               }
+        .buttong2y:hover {
+               border-top-color: #BFDFFF;
+               background: #BFDFFF;
+               color: #000000;
+               }
+        .buttong2y:active {
+               border-top-color: #91af6a;
+               background: #91af6a;
+               }
+    </style>
+    <!--*************************************************-->
+    
+        
+    
+    <!--CSS Styling for Loading Image PopUp-->
+    <style>
+        .actionStatusPopup{
+            left: 50%;
+            padding:15px;
+            position: absolute;
+            z-index: 9999;
+            width: auto;
+            height:auto;
+            margin-left: auto;
+            top:200px;
+        }
+        .actionStatusPopupBackground{
+            background-color:white;
+            opacity: 0.40;
+            filter: alpha(opacity = 10);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left:0;
+            z-index: auto;
+        }
+    </style>
+    <!--*************************************************-->
+    
+       
+   <apex:form id="ObjectPageForm1">
+   
+   <apex:pageMessages />
+    <!--  ******************* Page Block for User to do Object Configuration ********************** -->
+    <apex:pageBlock title="Enter Credentials" id="objectBlock" mode="edit">
+        
+            <apex:pageBlockSection columns="1">
+                
+                <apex:pageBlockSectionItem >
+                    Enter Username
+                    <apex:outputPanel >
+                        <apex:inputText id="userName" value="{!userName}" style="width:19.5%"/>
+                        <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Enter Destination Username"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>  
+                
+                <apex:pageBlockSectionItem >
+                    Enter Password
+                    <apex:outputPanel >
+                        <apex:inputText id="userName" value="{!password}" style="width:19.5%"/>
+                        <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Enter Destination Password."/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>  
+                
+                <apex:pageBlockSectionItem >
+                    Enter Security Token
+                    <apex:outputPanel >
+                        <apex:inputText id="userName" value="{!securityToken}" style="width:19.5%"/>
+                        <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Enter Destination Security Token."/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>  
+                
+                <apex:pageBlockSectionItem >
+                    	isSandbox?
+                        <apex:outputPanel >
+                            <apex:inputcheckbox id="isSandbox" value="{!isSandbox}"  >
+                            </apex:inputcheckbox>
+                            <apex:image url="{!$Resource.infy_dm__HelpTextIcon}" title="Select , if your org is Sandbox"/>
+                        </apex:outputPanel>
+                    
+                </apex:pageBlockSectionItem>
+                 
+                
+
+            </apex:pageBlockSection>
+        <apex:pageBlockTable value="{!SelectedJobs}" var="job" id="table">
+                
+                <!-- This is how we access the Data Masking Jobs within our dmObjectWrapper container/wrapper -->
+                <apex:column value="{!job.dmo.infy_dm__Job_Name__c}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.Name}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.infy_dm__Description__c}" style="text-align:justify;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.infy_dm__Data_Masking_Status__c}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.infy_dm__Last_Masked_On__c}" style="text-align:center;" headerClass="TableTitle"/>
+                <apex:column value="{!job.dmo.CreatedDate}" style="text-align:center;" headerClass="TableTitle"/>
+            </apex:pageBlockTable>
+
+    </apex:pageBlock>
+    <!--***************************************************************************-->
+  
+    
+    
+    <!-- *************** Button to Migrate to the Next Page ******************** -->
+    <center>
+        <apex:commandButton action="{!exportSelectedJobs}" value="Export Jobs" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;" />&nbsp;   
+        <apex:commandButton action="{!gotoJobsPage}" value="Previous" styleClass="buttong2y" style="height:10%;width:6%;text-align:center!important;" />&nbsp;   
+    </center>
+    <!--***************************************************************************-->
+
+  </apex:form>
+</apex:page>
