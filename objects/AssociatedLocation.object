@@ -142,6 +142,15 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>CRT_Test__c</fullName>
+        <externalId>false</externalId>
+        <label>CRT Test</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>LocationId</fullName>
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
