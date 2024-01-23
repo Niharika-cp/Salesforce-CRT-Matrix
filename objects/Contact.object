@@ -344,6 +344,16 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>Contact_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Details</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>DOZISF__ZoomInfo_Company_ID__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>
