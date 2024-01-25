@@ -422,6 +422,16 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Lead_Assitant__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Assitant</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Lead_Details__c</fullName>
         <externalId>false</externalId>
         <label>Lead Details</label>
