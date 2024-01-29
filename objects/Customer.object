@@ -136,6 +136,14 @@
         <fullName>Name</fullName>
     </fields>
     <fields>
+        <fullName>Opp_API__c</fullName>
+        <externalId>false</externalId>
+        <label>Opp API</label>
+        <required>false</required>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>OwnerId</fullName>
         <type>Lookup</type>
     </fields>
