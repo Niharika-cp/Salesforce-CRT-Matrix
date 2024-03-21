@@ -21,4 +21,11 @@
         <shortDescription>TestCannotBeRunMessage_custom2</shortDescription>
         <value>Please define a user story in order to run the single test execution from this record. Custom</value>
     </labels>
+    <labels>
+        <fullName>testing_custom_labels</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>testing custom labels</shortDescription>
+        <value>xyz123</value>
+    </labels>
 </CustomLabels>
