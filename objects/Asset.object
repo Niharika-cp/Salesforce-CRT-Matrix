@@ -125,6 +125,14 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Asset_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Asset Check</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>ConsequenceOfFailure</fullName>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
