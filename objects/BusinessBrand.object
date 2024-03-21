@@ -143,6 +143,34 @@
         <fullName>ParentId</fullName>
         <type>Lookup</type>
     </fields>
+    <fields>
+        <fullName>Picklist_Commit__c</fullName>
+        <externalId>false</externalId>
+        <label>Picklist Commit</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Check 1</fullName>
+                    <default>false</default>
+                    <label>Check 1</label>
+                </value>
+                <value>
+                    <fullName>Check 2</fullName>
+                    <default>false</default>
+                    <label>Check 2</label>
+                </value>
+                <value>
+                    <fullName>Check 3</fullName>
+                    <default>false</default>
+                    <label>Check 3</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
     <listViews>
         <fullName>All_BusinessBrands</fullName>
         <filterScope>Everything</filterScope>
