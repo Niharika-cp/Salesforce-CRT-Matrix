@@ -15279,6 +15279,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>BusinessBrand.Picklist_Commit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CHANNEL_ORDERS__Customer_Order_Product_History__c.CHANNEL_ORDERS__Contract_End_Date__c</field>
         <readable>false</readable>
@@ -40579,6 +40584,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>AuditLog__c.Record_Type</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>BusinessBrand.BB_record1</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
