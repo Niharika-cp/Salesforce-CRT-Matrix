@@ -40582,6 +40582,11 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>BusinessBrand.BB_record1</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <default>false</default>
         <recordType>DOZISF__ZoomInfo__c.DOZISF__Company</recordType>
         <visible>true</visible>
